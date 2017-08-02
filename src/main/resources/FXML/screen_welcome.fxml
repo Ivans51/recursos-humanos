@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.111"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenWelcome">
+    <children>
+        <ImageView fitHeight="372.0" fitWidth="758.0" pickOnBounds="true" preserveRatio="true" smooth="false"
+                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <image>
+                <Image url="@../icons/Capture.png"/>
+            </image>
+        </ImageView>
+        <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="40.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <JFXButton text="Bienvenido al Sistema">
+                    <styleClass>
+                        <String fx:value="button-bold"/>
+                        <String fx:value="button-font-max"/>
+                    </styleClass>
+                </JFXButton>
+            </children>
+        </HBox>
+    </children>
+    <stylesheets>
+        <URL value="@../CSS/styles-button.css"/>
+        <URL value="@../CSS/styles-layout.css"/>
+        <URL value="@../CSS/styles-label.css"/>
+    </stylesheets>
+</AnchorPane>

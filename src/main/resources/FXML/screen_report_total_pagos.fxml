@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenReportTotalPagos">
+    <children>
+        <VBox maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <GridPane maxWidth="1.7976931348623157E308">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="653.0" minWidth="10.0" prefWidth="622.0" />
+                        <ColumnConstraints maxWidth="226.0" minWidth="10.0" prefWidth="136.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="Reporte de Auditoria">
+                            <styleClass>
+                                <String fx:value="label-bold" />
+                                <String fx:value="label-font-medium" />
+                            </styleClass>
+                            <padding>
+                                <Insets left="20.0" top="10.0" />
+                            </padding>
+                        </Label>
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Imprimir" GridPane.columnIndex="1">
+                            <styleClass>
+                                <String fx:value="button-bold" />
+                                <String fx:value="button-report-padding" />
+                                <String fx:value="button-black" />
+                            </styleClass>
+                            <graphic>
+                                <ImageView fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../icons/Print_96px.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </JFXButton>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </GridPane>
+                <HBox maxWidth="1.7976931348623157E308" spacing="20.0" styleClass="layot-color-four">
+                    <padding>
+                        <Insets bottom="5.0" left="30.0" top="5.0" />
+                    </padding>
+                    <children>
+                        <Label text="Datos de la auditoria" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+        <AnchorPane layoutY="102.0" prefHeight="400.0" prefWidth="758.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="102.0">
+            <children>
+                <TableView layoutY="21.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="379.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="21.0">
+                    <columns>
+                        <TableColumn prefWidth="36.0" text="idAuditoria" />
+                        <TableColumn prefWidth="49.0" text="Fecha" />
+                        <TableColumn prefWidth="75.0" text="Hora" />
+                        <TableColumn prefWidth="75.0" text="idUsuario" />
+                        <TableColumn prefWidth="75.0" text="NombreUsuario" />
+                        <TableColumn prefWidth="75.0" text="Acción" />
+                    </columns>
+                    <padding>
+                        <Insets left="20.0" right="20.0" top="20.0" />
+                    </padding>
+                </TableView>
+            </children>
+        </AnchorPane>
+        <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" spacing="30.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <JFXButton layoutX="490.0" layoutY="15.0" styleClass="button-bold" text="Cerrar" />
+            </children>
+            <padding>
+                <Insets bottom="5.0" left="30.0" right="50.0" top="5.0" />
+            </padding>
+        </HBox>
+    </children>
+    <stylesheets>
+        <URL value="@../CSS/styles-button.css" />
+        <URL value="@../CSS/styles-layout.css" />
+        <URL value="@../CSS/styles-label.css" />
+        <URL value="@../CSS/styles-input.css" />
+    </stylesheets>
+</AnchorPane>

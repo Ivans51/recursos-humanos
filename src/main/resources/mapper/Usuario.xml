@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Usuario">
+
+    <resultMap id="result" type="Usuario">
+        <!-- property="atributo java" column="columna tabla" -->
+        <result property="idUsuario" column="idUsuario"/>
+        <result property="nombreUsuario" column="nombreUsuario"/>
+        <result property="clave" column="clave"/>
+        <result property="correo" column="correo"/>
+        <result property="nivelAcceso" column="nivelAcceso"/>
+        <result property="pregunta1" column="pregunta1"/>
+        <result property="respuesta1" column="respuesta1"/>
+        <result property="pregunta2" column="pregunta2"/>
+        <result property="respuesta2" column="respuesta2"/>
+        <result property="fechaCreacion" column="fechaCreacion"/>
+        <result property="cedula" column="cedula"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="result">
+        SELECT *
+        FROM rrhh.usuario;
+    </select>
+
+    <select id="selectById" parameterType="int" resultMap="result">
+        SELECT *
+        FROM rrhh.usuario
+        WHERE idUsuario = #{idUsuario}
+    </select>
+
+    <select id="login" parameterType="Usuario" resultMap="result">
+        SELECT *
+        FROM rrhh.usuario
+        WHERE nombreUsuario = #{nombreUsuario} AND clave = #{clave}
+    </select>
+
+    <select id="nombreUsurio" parameterType="Usuario" resultMap="result">
+        SELECT *
+        FROM rrhh.usuario
+        WHERE nombreUsuario = #{nombreUsuario}
+    </select>
+
+    <insert id="inserUsuario" parameterType="Usuario" useGeneratedKeys="true" keyProperty="idUsuario">
+        INSERT INTO rrhh.usuario (nombreUsuario, clave, correo, nivelAcceso,
+                                  pregunta1, respuesta1, pregunta2, respuesta2,
+                                  fechaCreacion, cedula, status)
+        VALUES (#{nombreUsuario}, #{clave}, #{correo}, #{nivelAcceso},
+                #{pregunta1}, #{respuesta1}, #{pregunta2}, #{respuesta2},
+                #{fechaCreacion}, #{cedula}, #{status});
+    </insert>
+
+    <update id="update" parameterType="Usuario">
+        UPDATE rrhh.usuario
+        SET name = #{name}
+        WHERE idUsuario = #{idUsuario}
+    </update>
+
+    <update id="updateStatus" parameterType="Usuario">
+        UPDATE rrhh.usuario
+        SET status = #{status}
+        WHERE idUsuario = #{idUsuario}
+    </update>
+
+    <update id="updatePreguntas" parameterType="Usuario">
+        UPDATE rrhh.usuario
+        SET pregunta1 = #{pregunta1}, respuesta1= #{respuesta1},
+            pregunta2 = #{pregunta2}, respuesta2 = #{respuesta2}, status = #{status}
+        WHERE idUsuario = #{idUsuario}
+    </update>
+
+    <update id="updateDatosUsuarios" parameterType="Usuario">
+        UPDATE rrhh.usuario
+        SET nombreUsuario = #{nombreUsuario}, clave= #{clave},
+            correo = #{correo}, nivelAcceso = #{nivelAcceso}, cedula = #{cedula}
+        WHERE idUsuario = #{idUsuario}
+    </update>
+
+    <update id="updateClave" parameterType="Usuario">
+        UPDATE rrhh.usuario
+        SET clave= #{clave}
+        WHERE idUsuario = #{idUsuario}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM rrhh.usuario
+        WHERE idUsuario = #{idUsuario}
+    </delete>
+</mapper>

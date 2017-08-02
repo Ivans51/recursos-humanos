@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="507.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenHomeBackground">
+    <stylesheets>
+        <URL value="@../CSS/styles-button.css" />
+        <URL value="@../CSS/styles-layout.css" />
+        <URL value="@../CSS/styles-label.css" />
+        <URL value="@../CSS/styles-input.css" />
+    </stylesheets>
+   <children>
+      <VBox layoutX="101.0" layoutY="42.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label text="Software Administrativo">
+               <styleClass>
+                  <String fx:value="label-bold" />
+                  <String fx:value="label-font-max" />
+               </styleClass>
+            </Label>
+            <ImageView fitHeight="412.0" fitWidth="677.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../icons/Capture.PNG" />
+               </image>
+            </ImageView>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

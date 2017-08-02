@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenAddUser" fx:id="anchorPane">
+    <children>
+        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox maxWidth="1.7976931348623157E308">
+                    <children>
+                        <Label text="Registro de Usuario">
+                            <styleClass>
+                                <String fx:value="label-bold" />
+                                <String fx:value="label-font-medium" />
+                            </styleClass>
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="30.0" top="10.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox maxWidth="1.7976931348623157E308" styleClass="layot-color-four">
+                    <children>
+                        <Label styleClass="label-bold" text="Llene los campos para registrar un usuario" />
+                    </children>
+                    <padding>
+                        <Insets bottom="5.0" left="30.0" top="5.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </VBox>
+        <AnchorPane prefHeight="421.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="86.0">
+            <children>
+                <GridPane layoutX="64.0" layoutY="50.0" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="374.0" minWidth="10.0" prefWidth="282.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="519.0" minWidth="10.0" prefWidth="476.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <JFXTextField alignment="TOP_LEFT" labelFloat="true" promptText="Código de usuario">
+                                    <VBox.margin>
+                                        <Insets bottom="30.0" />
+                                    </VBox.margin>
+                                </JFXTextField>
+                                <JFXTextField fx:id="nombreUsuario" alignment="TOP_LEFT" labelFloat="true" promptText="Nombre de usuario">
+                                    <VBox.margin>
+                                        <Insets bottom="30.0" />
+                                    </VBox.margin>
+                                </JFXTextField>
+                                <JFXTextField fx:id="claveUsuario" alignment="TOP_LEFT" labelFloat="true" layoutX="40.0" layoutY="75.0" promptText="Clave">
+                                    <VBox.margin>
+                                        <Insets bottom="30.0" />
+                                    </VBox.margin>
+                                </JFXTextField>
+                                <JFXTextField fx:id="correoUsuario" alignment="TOP_LEFT" labelFloat="true" layoutX="40.0" layoutY="120.0" promptText="Correo">
+                                    <VBox.margin>
+                                        <Insets bottom="30.0" />
+                                    </VBox.margin>
+                                </JFXTextField>
+                                <JFXComboBox fx:id="nivelUsuario" maxWidth="1.7976931348623157E308" minWidth="-Infinity" promptText="Nivel de Acceso">
+                                    <VBox.margin>
+                                        <Insets bottom="30.0" />
+                                    </VBox.margin>
+                                </JFXComboBox>
+                                <HBox prefHeight="29.0" prefWidth="232.0">
+                                    <children>
+                                        <JFXComboBox fx:id="nacionalidad" prefHeight="25.0" promptText="V. " />
+                                        <JFXTextField fx:id="cedula" promptText="Código de Empleado" />
+                                    </children>
+                                    <padding>
+                                        <Insets left="20.0" />
+                                    </padding>
+                                </HBox>
+                            </children>
+                            <padding>
+                                <Insets left="30.0" right="20.0" />
+                            </padding>
+                        </VBox>
+                        <TableView fx:id="tablaUsuarios" GridPane.columnIndex="1">
+                            <columns>
+                                <TableColumn fx:id="tbIdUsuario" maxWidth="1.7976931348623157E308" text="Id Usuario" />
+                                <TableColumn fx:id="tbNombreUsuario" prefWidth="75.0" text="Nombre Usuario" />
+                                <TableColumn fx:id="tbCorreo" prefWidth="75.0" text="Correo" />
+                                <TableColumn fx:id="tbNivelUsuario" prefWidth="75.0" text="Nivel Acceso" />
+                                <TableColumn fx:id="tbCedula" prefWidth="75.0" text="Cédula" />
+                                <TableColumn fx:id="tbStatus" prefWidth="75.0" text="Status" />
+                            </columns>
+                        </TableView>
+                    </children>
+                    <padding>
+                        <Insets top="20.0" />
+                    </padding>
+                </GridPane>
+                <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" spacing="30.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <children>
+                        <JFXButton fx:id="btnGuardar" onAction="#onClickGuardar" styleClass="button-bold" text="Guardar" />
+                        <JFXButton fx:id="btnCancelar" onAction="#onClickCancelar" layoutX="419.0" layoutY="15.0" styleClass="button-bold" text="Cancelar" />
+                        <JFXButton fx:id="btnEliminar" onAction="#onClickEliminar" layoutX="490.0" layoutY="15.0" styleClass="button-bold" text="Eliminar" />
+                        <JFXButton fx:id="btnActualizar" onAction="#onClickUpdate" layoutX="490.0" layoutY="15.0" styleClass="button-bold" text="Actualizar" />
+                    </children>
+                    <padding>
+                        <Insets bottom="5.0" left="30.0" top="5.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </AnchorPane>
+    </children>
+    <stylesheets>
+        <URL value="@../CSS/styles-button.css" />
+        <URL value="@../CSS/styles-layout.css" />
+        <URL value="@../CSS/styles-label.css" />
+        <URL value="@../CSS/styles-input.css" />
+    </stylesheets>
+</AnchorPane>

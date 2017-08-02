@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Capacitacion">
+
+    <resultMap id="result" type="Capacitacion">
+        <!-- property="atributo java" column="columna tabla" -->
+        <result property="idCapacitacion" column="idCapacitacion"/>
+        <result property="instructor" column="instructor"/>
+        <result property="tipo" column="tipo"/>
+        <result property="cedulaEmpleado" column="cedulaEmpleado"/>
+        <result property="nombreEmpleado" column="nombreEmpleado"/>
+        <result property="fechaInicio" column="fechaInicio"/>
+        <result property="fechaCulminacion" column="fechaCulminacion"/>
+        <result property="duracion" column="duracion"/>
+        <result property="FK_cedula_empleado" column="empleado_cedula"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="result">
+        SELECT *
+        FROM rrhh.capacitacion;
+    </select>
+
+    <select id="selectById" parameterType="int" resultMap="result">
+        SELECT *
+        FROM rrhh.capacitacion
+        WHERE idCapacitacion = #{id}
+    </select>
+
+    <insert id="insert" parameterType="Capacitacion" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO rrhh.capacitacion (name) VALUES (#{name});
+    </insert>
+
+    <update id="update" parameterType="Capacitacion">
+        UPDATE rrhh.capacitacion
+        SET name = #{name}
+        WHERE idCapacitacion = #{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM rrhh.capacitacion
+        WHERE idCapacitacion = #{id}
+    </delete>
+</mapper>

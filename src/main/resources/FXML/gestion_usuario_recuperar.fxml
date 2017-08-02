@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="rootPane" prefHeight="512.0" prefWidth="711.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.gestion.GestionUserRecuperar">
+    <children>
+          <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                  <Label layoutX="60.0" layoutY="120.0" styleClass="label-bold" text="Introducir correo">
+                      <padding>
+                          <Insets bottom="5.0" />
+                      </padding>
+                  </Label>
+                  <TextField layoutX="60.0" layoutY="145.0" fx:id="txtCorreo">
+                      <VBox.margin>
+                          <Insets bottom="15.0" />
+                      </VBox.margin>
+                  </TextField>
+                  <Label layoutX="60.0" layoutY="170.0" styleClass="label-bold" text="Nombre de usuario">
+                      <padding>
+                          <Insets bottom="5.0" />
+                      </padding>
+                  </Label>
+                  <TextField layoutX="60.0" layoutY="195.0">
+                      <VBox.margin>
+                          <Insets bottom="15.0" />
+                      </VBox.margin>
+                  </TextField>
+                  <VBox alignment="CENTER" />
+              </children>
+              <padding>
+                  <Insets left="200.0" right="200.0" top="100.0" />
+              </padding>
+          </VBox>
+        <HBox alignment="CENTER" prefWidth="800.0" spacing="60.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <JFXButton text="Guardar" />
+                <JFXButton layoutX="647.0" layoutY="54.0" text="Cancelar" />
+            </children>
+            <padding>
+                <Insets top="50.0" />
+            </padding>
+            <styleClass>
+                <String fx:value="button-bold" />
+                <String fx:value="button-font-medium" />
+            </styleClass>
+        </HBox>
+    </children>
+    <stylesheets>
+        <URL value="@../CSS/styles-button.css" />
+        <URL value="@../CSS/styles-label.css" />
+    </stylesheets>
+</AnchorPane>

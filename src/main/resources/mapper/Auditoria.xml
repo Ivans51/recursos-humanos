@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Auditoria">
+
+    <resultMap id="result" type="Auditoria">
+        <!-- property="atributo java" column="columna tabla" -->
+        <result property="idAuditoria" column="idAuditoria"/>
+        <result property="fecha" column="fecha"/>
+        <result property="hora" column="hora"/>
+        <result property="accion" column="accion"/>
+        <result property="FK_idUsuario" column="usuario_idUsuario"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="result">
+        SELECT *
+        FROM rrhh.auditoria;
+    </select>
+
+    <select id="selectById" parameterType="int" resultMap="result">
+        SELECT *
+        FROM rrhh.auditoria
+        WHERE idAuditoria = #{id}
+    </select>
+
+    <insert id="insert" parameterType="Auditoria" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO rrhh.auditoria (name) VALUES (#{name});
+    </insert>
+
+    <update id="update" parameterType="Auditoria">
+        UPDATE rrhh.auditoria
+        SET name = #{name}
+        WHERE idAuditoria = #{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM rrhh.auditoria
+        WHERE idAuditoria = #{id}
+    </delete>
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Valores">
+
+    <resultMap id="result" type="Valores">
+        <!-- property="atributo java" column="columna tabla" -->
+        <result property="idvalores" column="idvalores"/>
+        <result property="salario" column="salario"/>
+        <result property="precioUnidadTributaria" column="precioUnidadTributaria"/>
+        <result property="paroForzoso" column="paroForzoso"/>
+        <result property="IVSS" column="IVSS"/>
+        <result property="FAO" column="FAO"/>
+        <result property="fk_id_usuario" column="fk_id_usuario"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="result">
+        SELECT *
+        FROM rrhh.valores;
+    </select>
+
+    <select id="selectById" parameterType="int" resultMap="result">
+        SELECT *
+        FROM rrhh.valores
+        WHERE idEstrutura = #{id}
+    </select>
+
+    <insert id="insert" parameterType="Valores" useGeneratedKeys="true" keyProperty="idvalores">
+        INSERT INTO rrhh.valores (name) VALUES (#{name});
+    </insert>
+
+    <update id="update" parameterType="Valores">
+        UPDATE rrhh.valores
+        SET name = #{name}
+        WHERE idEstrutura = #{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM rrhh.valores
+        WHERE idEstrutura = #{id}
+    </delete>
+</mapper>

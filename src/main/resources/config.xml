@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <!-- Úsalos y de esa forma no tendrás que escribir constantemente el nombre totalmente cualificado -->
+    <typeAliases>
+        <typeAlias type="core.conexion.vo.Auditoria" alias="Auditoria"/>
+        <typeAlias type="core.conexion.vo.Capacitacion" alias="Capacitacion"/>
+        <typeAlias type="core.conexion.vo.Contratacion" alias="Contratacion"/>
+        <typeAlias type="core.conexion.vo.Empleado" alias="Empleado"/>
+        <typeAlias type="core.conexion.vo.EstructuraOrganizativa" alias="EstructuraOrganizativa"/>
+        <typeAlias type="core.conexion.vo.Nomina" alias="Nomina"/>
+        <typeAlias type="core.conexion.vo.Usuario" alias="Usuario"/>
+        <typeAlias type="core.conexion.vo.SeleccionPersonal" alias="SeleccionPersonal"/>
+        <typeAlias type="core.conexion.vo.Valores" alias="Valores"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3308/rrhh?zeroDateTimeBehavior=convertToNull"/>
+                <property name="username" value="root"/>
+                <property name="password" value=""/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- In SQL Mapping XML file -->
+    <mappers>
+        <mapper resource="mapper/Auditoria.xml"/>
+        <mapper resource="mapper/Capacitacion.xml"/>
+        <mapper resource="mapper/Contratacion.xml"/>
+        <mapper resource="mapper/Empleado.xml"/>
+        <mapper resource="mapper/EstructuraOrganizativa.xml"/>
+        <mapper resource="mapper/Nomina.xml"/>
+        <mapper resource="mapper/SeleccionPersonal.xml"/>
+        <mapper resource="mapper/Usuario.xml"/>
+        <mapper resource="mapper/Valores.xml"/>
+    </mappers>
+
+</configuration>

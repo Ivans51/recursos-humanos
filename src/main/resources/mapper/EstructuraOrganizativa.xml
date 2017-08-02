@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="EstructuraOrganizativa">
+
+    <resultMap id="result" type="EstructuraOrganizativa">
+        <!-- property="atributo java" column="columna tabla" -->
+        <result property="idEstructura" column="idEstructura"/>
+        <result property="departamento" column="departamento"/>
+        <result property="funcion" column="funcion"/>
+        <result property="jefeInmediato" column="jefeInmediato"/>
+        <result property="FK_idUsuario" column="usuario_idUsuario"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="result">
+        SELECT *
+        FROM rrhh.estructura_organizativa;
+    </select>
+
+    <select id="selectById" parameterType="int" resultMap="result">
+        SELECT *
+        FROM rrhh.estructura_organizativa
+        WHERE idEstrutura = #{id}
+    </select>
+
+    <insert id="insert" parameterType="EstructuraOrganizativa" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO rrhh.estructura_organizativa (name) VALUES (#{name});
+    </insert>
+
+    <update id="update" parameterType="EstructuraOrganizativa">
+        UPDATE rrhh.estructura_organizativa
+        SET name = #{name}
+        WHERE idEstrutura = #{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM rrhh.estructura_organizativa
+        WHERE idEstrutura = #{id}
+    </delete>
+</mapper>

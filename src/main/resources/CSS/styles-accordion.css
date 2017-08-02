@@ -1,0 +1,33 @@
+/* Inside - Anchor Pane */
+.accordion .titled-pane > *.content {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.titled-pane > .title > .arrow-button > .arrow{
+    -fx-shape: "";
+}
+
+.titled-pane > .title > .arrow-button .arrow {
+    -fx-background-color: transparent;
+}
+
+.titled-pane > .title{
+    -fx-padding: 10 0 10 0;
+}
+
+/* Title pane */
+.accordion .titled-pane .title {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.title-pane {
+    -fx-text-fill: white;
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
+
+.titled-pane > .title .title-click{
+    -fx-background-color: #5DB8F1;
+}

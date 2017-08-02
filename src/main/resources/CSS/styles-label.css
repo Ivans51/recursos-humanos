@@ -1,0 +1,50 @@
+.label {
+    -fx-font-family: Segoe-UI;
+    -fx-font-size: 16;
+}
+
+.menu-bar {
+    -fx-font-size: 12;
+}
+
+#btn {
+    -fx-background-image: url("../icons/ContactCard_96px.png");
+    -fx-background-size: 18 18;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:left;
+}
+
+.label-white {
+    -fx-text-fill: white;
+}
+
+.label-black {
+    -fx-text-fill: black;
+}
+
+.label-bold {
+    -fx-font-weight: bold;
+}
+
+.label-font-medium {
+    -fx-font-size: 20;
+}
+
+.label-font-max {
+    -fx-font-size: 25;
+}
+
+.label-font-ultra {
+    -fx-font-size: 30;
+}
+
+.label-size-tab {
+    -fx-pref-width: 90;
+}
+.label-size-montos {
+    -fx-pref-width: 200;
+}
+
+.label-cursor {
+    -fx-cursor: hand;
+}

@@ -1,0 +1,32 @@
+.button-reset {
+    -fx-background-color: transparent !important;
+}
+
+.button {
+    -fx-background-color: #5DB8F1;
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-font-size: 16;
+    -fx-padding: 0 30 0 30;
+    -fx-cursor: hand;
+}
+
+.button-font-medium {
+    -fx-font-size: 20;
+}
+
+.button-font-max {
+    -fx-font-size: 25;
+}
+
+.button-bold {
+    -fx-font-weight: bold;
+}
+
+.button-report-padding {
+    -fx-padding: 0 10 0 10;
+}
+
+.button-black {
+    -fx-background-color: black !important;
+}

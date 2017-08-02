@@ -1,0 +1,25 @@
+.hbox-border {
+    -fx-background-color: #5DB8F1;
+    -fx-background-radius: 20;
+    -fx-padding: 10 0 10 0;
+}
+
+.root {
+    -fx-background-color: white;
+}
+
+.layot-color-primary {
+    -fx-background-color: #5DB8F1;
+}
+
+.layot-color-secondary {
+    -fx-background-color: #2B2B2B;
+}
+
+.layot-color-tercer {
+    -fx-background-color: #333645;
+}
+
+.layot-color-four {
+    -fx-background-color: #EEEEEE;
+}

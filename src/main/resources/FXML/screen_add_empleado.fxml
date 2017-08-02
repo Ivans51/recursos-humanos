@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenAddEmpleado">
+    <children>
+        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox maxWidth="1.7976931348623157E308">
+                    <children>
+                        <Label text="Administrador de Empleados">
+                            <styleClass>
+                                <String fx:value="label-bold" />
+                                <String fx:value="label-font-medium" />
+                            </styleClass>
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="30.0" top="10.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox maxWidth="1.7976931348623157E308" styleClass="layot-color-four">
+                    <children>
+                        <Label styleClass="label-bold" text="Agregar Empleado en la Nomina" />
+                    </children>
+                    <padding>
+                        <Insets bottom="5.0" left="30.0" top="5.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </VBox>
+        <AnchorPane prefHeight="421.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+            <children>
+                <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <children>
+                        <JFXTextField fx:id="cedula" alignment="TOP_LEFT" promptText="Cédula" styleClass="text-field-medium">
+                            <VBox.margin>
+                                <Insets bottom="35.0" />
+                            </VBox.margin>
+                        </JFXTextField>
+                        <JFXTextField fx:id="registroSS" alignment="TOP_LEFT" labelFloat="true" promptText="Registro SS" styleClass="text-field-medium">
+                            <VBox.margin>
+                                <Insets bottom="35.0" />
+                            </VBox.margin>
+                        </JFXTextField>
+                        <JFXTextField fx:id="direccion" alignment="TOP_LEFT" labelFloat="true" promptText="Direccion" styleClass="text-field-medium">
+                            <VBox.margin>
+                                <Insets bottom="35.0" />
+                            </VBox.margin>
+                        </JFXTextField>
+                        <JFXDatePicker fx:id="fechaNacimiento" maxWidth="1.7976931348623157E308" minWidth="-Infinity">
+                            <VBox.margin>
+                                <Insets bottom="35.0" />
+                            </VBox.margin>
+                        </JFXDatePicker>
+                        <JFXTextField fx:id="cargo" alignment="TOP_LEFT" labelFloat="true" layoutX="40.0" layoutY="120.0" promptText="Cargo" styleClass="text-field-medium">
+                            <VBox.margin>
+                                <Insets bottom="35.0" />
+                            </VBox.margin>
+                        </JFXTextField>
+                        <JFXTextField fx:id="status" alignment="TOP_LEFT" labelFloat="true" layoutX="110.0" layoutY="215.0" promptText="Estatus" styleClass="text-field-medium">
+                            <VBox.margin>
+                                <Insets bottom="35.0" />
+                            </VBox.margin>
+                        </JFXTextField>
+                    </children>
+                    <padding>
+                        <Insets left="150.0" right="150.0" top="40.0" />
+                    </padding>
+                </VBox>
+                <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="30.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <children>
+                        <JFXButton fx:id="btnAgregar" onAction="#clickAction" styleClass="button-bold" text="Agregar" />
+                        <JFXButton fx:id="btnCancelar" layoutX="419.0" layoutY="15.0" onAction="#clickAction" styleClass="button-bold" text="Cancelar" />
+                    </children>
+                    <padding>
+                        <Insets bottom="5.0" left="30.0" top="5.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </AnchorPane>
+    </children>
+    <stylesheets>
+        <URL value="@../CSS/styles-button.css" />
+        <URL value="@../CSS/styles-layout.css" />
+        <URL value="@../CSS/styles-label.css" />
+        <URL value="@../CSS/styles-input.css" />
+    </stylesheets>
+</AnchorPane>

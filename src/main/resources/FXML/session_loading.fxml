@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.scene.control.ProgressIndicator?>
+<AnchorPane fx:id="rootPane" prefHeight="512.0" prefWidth="711.0" xmlns="http://javafx.com/javafx/8.0.111"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.session.SessionLoading">
+    <children>
+        <Label layoutX="266.0" layoutY="432.0" styleClass="label-bold" text="Ingrese el nombre de usuario"
+               AnchorPane.bottomAnchor="50.0">
+            <padding>
+                <Insets bottom="5.0"/>
+            </padding>
+        </Label>
+        <ImageView fitHeight="346.0" fitWidth="711.0" pickOnBounds="true" AnchorPane.bottomAnchor="160.0"
+                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@../icons/Capture.PNG"/>
+            </image>
+        </ImageView>
+        <ProgressBar layoutX="193.0" layoutY="397.0" prefHeight="18.0" prefWidth="367.0" progress="0.0"
+                     fx:id="barLoading"/>
+        <ProgressIndicator layoutX="193.0" layoutY="397.0" prefHeight="18.0" prefWidth="367.0" progress="0.0"
+                           fx:id="pin" />
+    </children>
+    <stylesheets>
+        <URL value="@../CSS/styles-button.css"/>
+        <URL value="@../CSS/styles-label.css"/>
+    </stylesheets>
+</AnchorPane>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="550.0" prefWidth="450.0" style="-fx-background-color: #333645;" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.session.SesionUser">
+    <VBox layoutX="82.0" spacing="40.0" style="-fx-background-color: #333645;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Respuestos Cart S 21 C.A." textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="Segoe UI Bold" size="28.0" />
+            </font>
+            <VBox.margin>
+                <Insets />
+            </VBox.margin>
+            <styleClass>
+                <String fx:value="label-font-max" />
+                <String fx:value="label-bold" />
+            </styleClass>
+        </Label>
+        <JFXTextField fx:id="nombre" focusColor="WHITE" labelFloat="true" promptText="Nombre de Usuario" styleClass="text-field-white" unFocusColor="WHITE">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </JFXTextField>
+        <JFXTextField fx:id="clave" focusColor="WHITE" labelFloat="true" layoutX="90.0" layoutY="184.0" promptText="Clave de Usuario" styleClass="text-field-white" unFocusColor="WHITE">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </JFXTextField>
+        <AnchorPane>
+            <JFXButton fx:id="bthAcceder" onMouseClicked="#clickLogin" text="Acceder" textFill="WHITE" AnchorPane.leftAnchor="20.0">
+                <font>
+                    <Font name="Segoe UI Bold" size="18.0" />
+                </font>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <styleClass>
+                    <String fx:value="button-bold" />
+                    <String fx:value="button-font-medium" />
+                </styleClass>
+            </JFXButton>
+            <JFXButton fx:id="btnCancelar" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" onMouseClicked="#clickClose" style="-fx-background-color: #5DB8F1;" text="Salir" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+                <font>
+                    <Font name="Segoe UI Bold" size="18.0" />
+                </font>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <styleClass>
+                    <String fx:value="button-bold" />
+                    <String fx:value="button-font-medium" />
+                </styleClass>
+            </JFXButton>
+        </AnchorPane>
+        <Label fx:id="txtGestionUsuario" alignment="CENTER" layoutX="60.0" layoutY="110.0" maxWidth="1.7976931348623157E308" onMouseClicked="#clickGestionUsuario" text="Gestión de cuentas de usuarios" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="Segoe UI Bold" size="20.0" />
+            </font>
+            <VBox.margin>
+                <Insets top="50.0" />
+            </VBox.margin>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Label>
+    </VBox>
+    <padding>
+        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+    </padding>
+    <stylesheets>
+        <URL value="@../CSS/styles-button.css" />
+        <URL value="@../CSS/styles-input.css" />
+        <URL value="@../CSS/styles-label.css" />
+        <URL value="@../CSS/styles-layout.css" />
+    </stylesheets>
+</AnchorPane>

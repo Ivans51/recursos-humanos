@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Nomina">
+
+    <resultMap id="result" type="Nomina">
+        <!-- property="atributo java" column="columna tabla" -->
+        <result property="idNomina" column="idNomina"/>
+        <result property="nombreEmpleado" column="nombreEmpleado"/>
+        <result property="diasHabiles" column="diasHabiles"/>
+        <result property="diasDescanso" column="diasDescanso"/>
+        <result property="bonoNocturno" column="bonoNocturno"/>
+        <result property="bonoLealtad" column="bonoLealtad"/>
+        <result property="diasFeriados" column="diasFeriados"/>
+        <result property="totalAsignaciones" column="totalAsignaciones"/>
+        <result property="faov" column="faov"/>
+        <result property="ivss" column="ivss"/>
+        <result property="paroForzoso" column="paroForzoso"/>
+        <result property="prestamo" column="prestamo"/>
+        <result property="diasNoLaborados" column="diasNoLaborados"/>
+        <result property="totalDeduciones" column="totalDeduciones"/>
+        <result property="salarioTotal" column="salarioTotal"/>
+        <result property="cedula" column="cedula"/>
+        <result property="FK_cedula_empleado" column="empleado_cedula"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="result">
+        SELECT *
+        FROM rrhh.nomina;
+    </select>
+
+    <select id="selectById" parameterType="int" resultMap="result">
+        SELECT *
+        FROM rrhh.nomina
+        WHERE idNomina = #{id}
+    </select>
+
+    <insert id="insert" parameterType="Nomina" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO rrhh.nomina (name) VALUES (#{name});
+    </insert>
+
+    <update id="update" parameterType="Nomina">
+        UPDATE rrhh.nomina
+        SET name = #{name}
+        WHERE idNomina = #{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM rrhh.nomina
+        WHERE idNomina = #{id}
+    </delete>
+</mapper>

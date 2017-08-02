@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="300.0" style="-fx-background-color: #5DB8F1;" stylesheets="@../CSS/styles-label.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.AlertDialog">
+   <children>
+      <Label fx:id="descripcionAlert" layoutX="113.0" layoutY="164.0" stylesheets="@../CSS/styles-label.css" text="Label">
+         <styleClass>
+            <String fx:value="label-bold" />
+            <String fx:value="label-white" />
+            <String fx:value="label-font-ultra" />
+         </styleClass>
+      </Label>
+      <ImageView fx:id="imagenAlert" fitHeight="150.0" fitWidth="200.0" layoutX="75.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0">
+         <image>
+            <Image url="@../icons/Ok_96px.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="closeAlert" layoutX="232.0" layoutY="14.0" onMouseClicked="#closeAlert" text="Cerrar" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="14.0">
+         <styleClass>
+            <String fx:value="label-white" />
+            <String fx:value="label-bold" />
+         </styleClass>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Label>
+   </children>
+</AnchorPane>

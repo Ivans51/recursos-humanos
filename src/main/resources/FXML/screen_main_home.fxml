@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.ScreenMainHome">
+    <children>
+        <MenuBar layoutY="2.0" stylesheets="@../CSS/styles-label.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="Registros">
+                    <items>
+                        <MenuItem fx:id="itemAddEmpleados" mnemonicParsing="false" onAction="#onHandleMenuItem" text="Empleados" />
+                        <MenuItem fx:id="itemSalir" mnemonicParsing="false" onAction="#onHandleMenuItemSalir" text="Salir" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Opciones">
+                    <items>
+                        <MenuItem fx:id="itemOpcionesReport" mnemonicParsing="false" onAction="#onHandleMenuItem" text="Reportes" />
+                        <MenuItem fx:id="itemOpcionesCerrar" mnemonicParsing="false" onAction="#onHandleMenuItemCerrar" text="Cierre Sesión" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Herramientas">
+                    <items>
+                        <MenuItem fx:id="itemToolUsuarios" mnemonicParsing="false" onAction="#onHandleMenuItem" text="Administración de Usuarios" />
+                        <MenuItem fx:id="itemToolRegistroSistema" mnemonicParsing="false" onAction="#onHandleMenuItem" text="Registro del Sistema" />
+                        <MenuItem fx:id="itemToolManual" mnemonicParsing="false" onAction="#onHandleMenuItem" text="Manual de Usuario" />
+                        <MenuItem fx:id="itemToolEstructura" mnemonicParsing="false" onAction="#onHandleMenuItem" text="Manual de Usuario" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <AnchorPane layoutY="33.0" prefHeight="567.0" prefWidth="242.0" styleClass="layot-color-tercer" stylesheets="@../CSS/styles-accordion.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="33.0">
+            <children>
+                <Accordion AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
+                    <panes>
+                        <TitledPane fx:id="titleAdministrar" animated="false" onMouseClicked="#onHandleEvent" styleClass="title-pane" text="Administrar Empleados">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0">
+                                    <children>
+                                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <children>
+                                                <Label fx:id="adminAgregar" text="Agregar" onMouseClicked="#abrirGestionEmpleado">
+                                                    <padding>
+                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                    </padding>
+                                                    <styleClass>
+                                                        <String fx:value="label-white" />
+                                                        <String fx:value="label-cursor" />
+                                                    </styleClass>
+                                                </Label>
+                                                <Label fx:id="adminGestion" text="Gestion" onMouseClicked="#abrirGestionEmpleado">
+                                                    <padding>
+                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                    </padding>
+                                                    <styleClass>
+                                                        <String fx:value="label-white" />
+                                                        <String fx:value="label-cursor" />
+                                                    </styleClass>
+                                                </Label>
+                                                <Label fx:id="adminLiquidaciones" text="Liquidaciones" onMouseClicked="#abrirGestionEmpleado">
+                                                    <padding>
+                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                    </padding>
+                                                    <styleClass>
+                                                        <String fx:value="label-white" />
+                                                        <String fx:value="label-cursor" />
+                                                    </styleClass>
+                                                </Label>
+                                            </children>
+                                            <padding>
+                                                <Insets left="20.0" />
+                                            </padding>
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </TitledPane>
+                        <TitledPane fx:id="titleReport" animated="false" layoutX="10.0" layoutY="10.0" styleClass="title-pane" text="Reportes">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0">
+                                    <children>
+                                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <children>
+                                                <Label fx:id="reportFiltrado" text="Filtrado" onMouseClicked="#abrirReport">
+                                                    <padding>
+                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                    </padding>
+                                                    <styleClass>
+                                                        <String fx:value="label-white" />
+                                                        <String fx:value="label-cursor" />
+                                                    </styleClass>
+                                                </Label>
+                                                <Label fx:id="reportPagos" text="Todo los pagos" onMouseClicked="#abrirReport">
+                                                    <padding>
+                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                    </padding>
+                                                    <styleClass>
+                                                        <String fx:value="label-white" />
+                                                        <String fx:value="label-cursor" />
+                                                    </styleClass>
+                                                </Label>
+                                                <Label fx:id="reportFactura" text="Factura al Empleado" onMouseClicked="#abrirReport">
+                                                    <padding>
+                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                    </padding>
+                                                    <styleClass>
+                                                        <String fx:value="label-white" />
+                                                        <String fx:value="label-cursor" />
+                                                    </styleClass>
+                                                </Label>
+                                            </children>
+                                            <padding>
+                                                <Insets left="20.0" />
+                                            </padding>
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </TitledPane>
+                        <TitledPane fx:id="titleValores" animated="false" layoutX="10.0" layoutY="10.0" styleClass="title-pane" text="Actualizar Valores" onMouseClicked="#abrirActualizarValores" />
+                        <TitledPane fx:id="titleAyuda" animated="false" layoutX="10.0" layoutY="186.0" styleClass="title-pane" text="Ayuda" onMouseClicked="#abrirAyuda" />
+                    </panes>
+                </Accordion>
+            </children>
+        </AnchorPane>
+        <HBox alignment="CENTER_RIGHT" maxHeight="60.0" prefHeight="60.0" prefWidth="758.0" styleClass="layot-color-secondary" AnchorPane.leftAnchor="242.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
+            <children>
+                <JFXButton fx:id="nombreUsuario" style="-fx-padding: 0 10 0 5;" styleClass="button-bold" text="Nombre de Usuario">
+                    <HBox.margin>
+                        <Insets right="20.0" />
+                    </HBox.margin>
+                    <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../icons/CircledUserMale_48px.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+            </children>
+        </HBox>
+        <AnchorPane fx:id="rootPane" layoutX="242.0" layoutY="93.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="242.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="93.0">
+         <children>
+            <VBox layoutX="91.0" layoutY="32.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label text="Software Administrativo">
+                     <styleClass>
+                        <String fx:value="label-bold" />
+                        <String fx:value="label-font-max" />
+                     </styleClass>
+                  </Label>
+                  <ImageView fitHeight="412.0" fitWidth="677.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../icons/Capture.PNG" />
+                     </image>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding></VBox>
+         </children></AnchorPane>
+    </children>
+    <stylesheets>
+        <URL value="@../CSS/styles-label.css" />
+        <URL value="@../CSS/styles-button.css" />
+        <URL value="@../CSS/styles-layout.css" />
+    </stylesheets>
+</AnchorPane>

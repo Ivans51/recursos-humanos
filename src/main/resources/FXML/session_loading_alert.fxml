@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane fx:id="rootPane" prefHeight="512.0" prefWidth="711.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.session.SessionLoadingAlert">
+    <children>
+        <ImageView fitHeight="346.0" fitWidth="711.0" pickOnBounds="true" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@../icons/Capture.PNG" />
+            </image>
+        </ImageView>
+      <HBox alignment="CENTER" styleClass="hbox-border" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+         <children>
+            <ImageView fitHeight="57.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/Ok_96px.png" />
+               </image>
+               <HBox.margin>
+                  <Insets right="30.0" />
+               </HBox.margin>
+            </ImageView>
+              <Label text="Bienvenido al Sistema">
+                  <padding>
+                      <Insets bottom="5.0" />
+                  </padding>
+               <styleClass>
+                  <String fx:value="label-bold" />
+                  <String fx:value="label-white" />
+                  <String fx:value="label-font-max" />
+               </styleClass>
+              </Label>
+         </children>
+      </HBox>
+    </children>
+    <stylesheets>
+        <URL value="@../CSS/styles-button.css" />
+        <URL value="@../CSS/styles-label.css" />
+      <URL value="@../CSS/styles-layout.css" />
+    </stylesheets>
+</AnchorPane>

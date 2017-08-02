@@ -1,0 +1,110 @@
+package core.conexion.dao;
+
+import core.conexion.vo.SeleccionPersonal;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import java.util.List;
+
+public class SeleccionPersonalDAO {
+
+    private SqlSessionFactory sqlSessionFactory = null;
+
+    public SeleccionPersonalDAO(SqlSessionFactory sqlSessionFactory) {
+        this.sqlSessionFactory = sqlSessionFactory;
+    }
+
+    /**
+     * Returns the list of all Usuario instances from the database.
+     *
+     * @return the list of all Usuario instances from the database.
+     */
+    @SuppressWarnings("unchecked")
+    public List<SeleccionPersonal> selectAll() {
+        List<SeleccionPersonal> list = null;
+        SqlSession session = sqlSessionFactory.openSession();
+
+        try {
+            list = session.selectList("SeleccionPersonal.selectAll");
+        } finally {
+            session.close();
+        }
+        System.out.println("selectAll() --> " + list);
+        return list;
+
+    }
+
+    /**
+     * Select instance of SeleccionPersonal from the database.
+     *
+     * @param id the instance to be persisted.
+     */
+    public SeleccionPersonal selectById(int id) {
+        SeleccionPersonal person = null;
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            person = session.selectOne("SeleccionPersonal.selectById", id);
+        } finally {
+            session.close();
+        }
+        System.out.println("selectById(" + id + ") --> " + person);
+        return person;
+    }
+
+    /**
+     * Insert an instance of SeleccionPersonal into the database.
+     *
+     * @param seleccionPersonal the instance to be persisted.
+     */
+    public int insert(SeleccionPersonal seleccionPersonal) {
+        int id = -1;
+        SqlSession session = sqlSessionFactory.openSession();
+
+        try {
+            id = session.insert("SeleccionPersonal.insert", seleccionPersonal);
+        } finally {
+            session.commit();
+            session.close();
+        }
+        System.out.println("insert(" + seleccionPersonal + ") --> " + seleccionPersonal.getIdSeleccion());
+        return id;
+    }
+
+    /**
+     * Update an instance of SeleccionPersonal into the database.
+     *
+     * @param seleccionPersonal the instance to be persisted.
+     */
+    public void update(SeleccionPersonal seleccionPersonal) {
+        int id = -1;
+        SqlSession session = sqlSessionFactory.openSession();
+
+        try {
+            id = session.update("SeleccionPersonal.update", seleccionPersonal);
+
+        } finally {
+            session.commit();
+            session.close();
+        }
+        System.out.println("update(" + seleccionPersonal + ") --> updated");
+    }
+
+    /**
+     * Delete an instance of SeleccionPersonal from the database.
+     *
+     * @param id value of the instance to be deleted.
+     */
+    public void delete(int id) {
+
+        SqlSession session = sqlSessionFactory.openSession();
+
+        try {
+            session.delete("SeleccionPersonal.delete", id);
+        } finally {
+            session.commit();
+            session.close();
+        }
+        System.out.println("delete(" + id + ")");
+
+    }
+}

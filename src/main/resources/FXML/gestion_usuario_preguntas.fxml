@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="rootPane" prefHeight="512.0" prefWidth="711.0" xmlns="http://javafx.com/javafx/8.0.111"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.gestion.GestionPreguntas">
+    <children>
+        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="200.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <JFXComboBox fx:id="preguntaUno" prefHeight="25.0" prefWidth="309.0"
+                             promptText="A qué hora del día nació" VBox.vgrow="ALWAYS">
+                    <VBox.margin>
+                        <Insets bottom="10.0"/>
+                    </VBox.margin>
+                </JFXComboBox>
+                <TextField layoutX="60.0" layoutY="145.0" fx:id="respuestaUno">
+                    <VBox.margin>
+                        <Insets bottom="15.0"/>
+                    </VBox.margin>
+                </TextField>
+                <JFXComboBox fx:id="preguntaDos" prefHeight="25.0" prefWidth="320.0"
+                             promptText="Segundo nombre de su esposo" VBox.vgrow="ALWAYS"/>
+                <TextField layoutX="60.0" layoutY="195.0" fx:id="respuestaDos">
+                    <VBox.margin>
+                        <Insets bottom="15.0"/>
+                    </VBox.margin>
+                </TextField>
+                <VBox alignment="CENTER"/>
+            </children>
+            <padding>
+                <Insets left="200.0" right="200.0" top="100.0"/>
+            </padding>
+        </VBox>
+        <HBox alignment="CENTER" prefWidth="800.0" spacing="60.0" AnchorPane.bottomAnchor="150.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <JFXButton text="Guardar" fx:id="btnEnviar" onMouseClicked="#clicAction"/>
+                <JFXButton layoutX="647.0" layoutY="54.0" text="Cancelar" fx:id="btnCancelar"
+                           onMouseClicked="#clicAction"/>
+            </children>
+            <padding>
+                <Insets top="50.0"/>
+            </padding>
+            <styleClass>
+                <String fx:value="button-bold"/>
+                <String fx:value="button-font-medium"/>
+            </styleClass>
+        </HBox>
+    </children>
+    <stylesheets>
+        <URL value="@../CSS/styles-button.css"/>
+        <URL value="@../CSS/styles-label.css"/>
+    </stylesheets>
+</AnchorPane>

@@ -24,7 +24,7 @@
                 <String fx:value="label-bold" />
             </styleClass>
         </Label>
-        <Label alignment="CENTER" layoutX="60.0" layoutY="110.0" maxWidth="1.7976931348623157E308" onMouseClicked="#onHandleClick" opacity="0.5" styleClass="label-bold" text="El &quot;empleado&quot; su registro fue a las &quot;09:00&quot;" textAlignment="CENTER" textFill="WHITE">
+        <Label alignment="CENTER" layoutX="60.0" layoutY="110.0" maxWidth="1.7976931348623157E308" opacity="0.5" styleClass="label-bold" textAlignment="CENTER" textFill="WHITE" fx:id="labelRegistroEmpleado">
             <font>
                 <Font name="Segoe UI Bold" size="20.0" />
             </font>
@@ -35,7 +35,7 @@
                 <Cursor fx:constant="DEFAULT" />
             </cursor>
         </Label>
-      <JFXButton fx:id="estructuraOrga" layoutX="74.0" layoutY="256.0" onMouseClicked="#onHandleClick" text="Estructura Organizativa" textFill="WHITE">
+      <JFXButton fx:id="estructuraOrga" layoutX="74.0" layoutY="256.0" onMouseClicked="#onEstructura" text="Estructura Organizativa" textFill="WHITE">
          <font>
             <Font name="Segoe UI Bold" size="18.0" />
          </font>
@@ -47,7 +47,7 @@
             <String fx:value="button-font-medium" />
          </styleClass>
       </JFXButton>
-         <JFXButton fx:id="terminarJornada" onMouseClicked="#onHandleClick" text="Terminar jornada" textFill="WHITE">
+         <JFXButton fx:id="terminarJornada" onMouseClicked="#onTerminar" text="Terminar jornada" textFill="WHITE">
              <font>
                  <Font name="Segoe UI Bold" size="18.0" />
              </font>
@@ -59,7 +59,7 @@
                  <String fx:value="button-font-medium" />
              </styleClass>
          </JFXButton>
-         <JFXButton fx:id="hideVentana" alignment="TOP_LEFT" onMouseClicked="#onHandleClick" style="-fx-background-color: #5DB8F1;" text="Salir" textFill="WHITE">
+         <JFXButton fx:id="hideVentana" alignment="TOP_LEFT" onMouseClicked="#onClose" style="-fx-background-color: #5DB8F1;" text="Salir" textFill="WHITE">
              <font>
                  <Font name="Segoe UI Bold" size="18.0" />
              </font>

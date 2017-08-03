@@ -14,7 +14,7 @@ public class Empleado {
     private String cargo;
     private String status;
     private String registroSS;
-    private Date horaInicio;
+    private String horaInicio;
     private int horasTrabajadas;
     private int statusLaborando;
     private int FK_id_Usuario;
@@ -83,11 +83,11 @@ public class Empleado {
         this.FK_id_Usuario = FK_id_Usuario;
     }
 
-    public Date getHoraInicio() {
+    public String getHoraInicio() {
         return horaInicio;
     }
 
-    public void setHoraInicio(Date horaInicio) {
+    public void setHoraInicio(String horaInicio) {
         this.horaInicio = horaInicio;
     }
 

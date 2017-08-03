@@ -2,6 +2,7 @@ package core.controller.session;
 
 import com.jfoenix.controls.JFXTextField;
 import core.conexion.vo.Usuario;
+import core.consultas.LoginUser;
 import core.util.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

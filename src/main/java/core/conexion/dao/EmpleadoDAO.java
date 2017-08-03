@@ -51,6 +51,18 @@ public class EmpleadoDAO {
         return person;
     }
 
+    public Empleado selectByIdUser(int id) {
+        Empleado person = null;
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            person = session.selectOne("Empleado.selectByIdUser", id);
+        } finally {
+            session.close();
+        }
+        System.out.println("selectById(" + id + ") --> " + person);
+        return person;
+    }
+
     /**
      * Insert an instance of Empleado into the database.
      *
@@ -87,6 +99,20 @@ public class EmpleadoDAO {
             session.close();
         }
         System.out.println("update(" + usuario + ") --> updated");
+    }
+
+    public void updateStatusTrabajo(Empleado empleado) {
+        int id = -1;
+        SqlSession session = sqlSessionFactory.openSession();
+
+        try {
+            id = session.update("Empleado.updateStatusTrabajo", empleado);
+
+        } finally {
+            session.commit();
+            session.close();
+        }
+        System.out.println("update(" + empleado + ") --> updated");
     }
 
     /**

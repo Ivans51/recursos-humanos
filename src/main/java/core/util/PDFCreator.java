@@ -8,10 +8,13 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 public class PDFCreator {
+
+    public static PdfPTable tabla;
+
     public PDFCreator() {
     }
 
-    public void crearPDF(String name, String parrafo, int numColumns, int size) throws FileNotFoundException, DocumentException {
+    public void crearPDF(String name, String parrafo, int numColumns, PDFTabla pdfTabla) throws FileNotFoundException, DocumentException {
         // Se crea el documento
         Document documento = new Document();
         // Se crea el OutputStream para el fichero donde queremos dejar el pdf.
@@ -23,10 +26,11 @@ public class PDFCreator {
         documento.open();
         documento.add(new Paragraph(parrafo));
         get(documento, "Este es el segundo y tiene una fuente rara", "arial", 22, Font.ITALIC, BaseColor.CYAN);
-        PdfPTable tabla = new PdfPTable(numColumns);
-        for (int i = 0; i < size; i++) {
+        tabla = new PdfPTable(numColumns);
+        pdfTabla.addCellTable();
+        /*for (int i = 0; i < size; i++) {
             tabla.addCell("celda " + i);
-        }
+        }*/
         documento.add(tabla);
         documento.close();
         System.out.println("Hola");
@@ -34,5 +38,13 @@ public class PDFCreator {
 
     public void get(Document documento, String segundoParrafo, String fuente, int tamaño, int estilo, BaseColor color) throws DocumentException {
         documento.add(new Paragraph(segundoParrafo, FontFactory.getFont(fuente, tamaño, estilo, color)));
+    }
+
+    public interface PDFTabla {
+        void addCellTable();
+    }
+
+    public static PdfPTable getTabla() {
+        return tabla;
     }
 }

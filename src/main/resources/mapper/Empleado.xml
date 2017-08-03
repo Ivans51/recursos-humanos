@@ -31,19 +31,37 @@
         WHERE cedula = #{id}
     </select>
 
+    <select id="selectByIdUser" parameterType="int" resultMap="result">
+        SELECT
+            rrhh.empleado.cedula, rrhh.empleado.FK_id_Usuario, rrhh.empleado.nombreEmpleado,
+            rrhh.empleado.horaInicio, rrhh.empleado.statusLaborando, rrhh.empleado.horasTrabajadas,
+            rrhh.usuario.idUsuario
+        FROM rrhh.empleado
+            INNER JOIN rrhh.usuario
+                ON rrhh.empleado.FK_id_Usuario = rrhh.usuario.idUsuario
+        WHERE rrhh.empleado.FK_id_Usuario = #{FK_id_Usuario}
+    </select>
+
     <insert id="insert" parameterType="Empleado" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO rrhh.empleado (name) VALUES (#{name});
     </insert>
 
     <insert id="insertEmpleado" parameterType="Empleado" useGeneratedKeys="true" keyProperty="cedula">
         INSERT INTO rrhh.empleado (cedula, nombreEmpleado, fechaNacimiento, direccion, cargo, status, registroSS, FK_id_Usuario)
-        VALUES (#{cedula}, #{nombreEmpleado}, #{fechaNacimiento}, #{direccion}, #{cargo}, #{status}, #{registroSS}, #{FK_id_Usuario});
+        VALUES (#{cedula}, #{nombreEmpleado}, #{fechaNacimiento}, #{direccion}, #{cargo}, #{status}, #{registroSS},
+                #{FK_id_Usuario});
     </insert>
 
     <update id="update" parameterType="Empleado">
         UPDATE rrhh.empleado
         SET name = #{name}
         WHERE cedula = #{id}
+    </update>
+
+    <update id="updateStatusTrabajo" parameterType="Empleado">
+        UPDATE rrhh.empleado
+        SET horaInicio = #{horaInicio}, statusLaborando = #{statusLaborando}
+        WHERE FK_id_Usuario = #{FK_id_Usuario}
     </update>
 
     <update id="updateHorasInicio" parameterType="Empleado">

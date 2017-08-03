@@ -81,7 +81,7 @@
                     <String fx:value="button-font-medium" />
                 </styleClass>
             </JFXButton>
-            <JFXButton fx:id="cancelarEmpleado" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" onMouseClicked="#onHandleClick" style="-fx-background-color: #5DB8F1;" text="Salir" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+            <JFXButton fx:id="cancelarEmpleado" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" onMouseClicked="#onClose" style="-fx-background-color: #5DB8F1;" text="Salir" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                 <font>
                     <Font name="Segoe UI Bold" size="18.0" />
                 </font>
@@ -94,7 +94,7 @@
                 </styleClass>
             </JFXButton>
         </AnchorPane>
-        <Label alignment="CENTER" layoutX="60.0" layoutY="110.0" maxWidth="1.7976931348623157E308" onMouseClicked="#onHandleClick" opacity="0.5" text="Registre el inicio de su jornada laboral" textAlignment="CENTER" textFill="WHITE">
+        <Label alignment="CENTER" layoutX="60.0" layoutY="110.0" maxWidth="1.7976931348623157E308" onMouseClicked="#onClose" opacity="0.5" text="Registre el inicio de su jornada laboral" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font name="Segoe UI Bold" size="20.0" />
             </font>

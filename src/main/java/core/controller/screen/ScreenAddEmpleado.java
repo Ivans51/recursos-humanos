@@ -62,7 +62,7 @@ public class ScreenAddEmpleado extends ManagerFXML implements Initializable {
     private void insertarCapacitacion() {
         empleado.setCedula(cedula.getText());
         empleado.setNombreEmpleado(contratacion.getNombre());
-        empleado.setFechaNacimiento(MananejadorDateUtil.getDatePickentCurrent(fechaNacimiento));
+        empleado.setFechaNacimiento(FechaUtil.getDatePickentCurrent(fechaNacimiento));
         empleado.setDireccion(direccion.getText());
         empleado.setCargo(cargo.getText());
         empleado.setRegistroSS(registroSS.getText());

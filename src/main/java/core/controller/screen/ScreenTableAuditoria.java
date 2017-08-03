@@ -24,9 +24,9 @@ import java.util.ResourceBundle;
 /**
  * Created by Ivans on 7/18/2017.
  */
-public class ScreenTableAuditoria implements Initializable {
+public class ScreenTableAuditoria implements Initializable, PDFCreator.PDFTabla {
 
-    private PDFCreator PDFCreator = new PDFCreator();
+    private PDFCreator pdfcreator = new PDFCreator();
     // TODO: 30/07/2017 Ejemplo de tabla
     // TODO: 30/07/2017 Hacer Relacion
     public TableColumn tbIdAuditoria, tbFecha, tbHora, tbIdUsuario, tbNombreUsuario, tbCedula;
@@ -79,6 +79,15 @@ public class ScreenTableAuditoria implements Initializable {
     }
 
     public void click(MouseEvent mouseEvent) throws FileNotFoundException, DocumentException {
-        PDFCreator.crearPDF("fichero.pdf", "Esto es el primer párrafo, normalito", 3, auditorias.size());
+        pdfcreator.crearPDF("fichero.pdf", "Esto es el primer párrafo, normalito", 3, this);
+    }
+
+    @Override
+    public void addCellTable() {
+        for (int i = 0; i < auditorias.size(); i++) {
+            PDFCreator.getTabla().addCell(auditorias.get(i).getAccion());
+            PDFCreator.getTabla().addCell(String.valueOf(auditorias.get(i).getFecha()));
+            PDFCreator.getTabla().addCell(String.valueOf(auditorias.get(i).getHora()));
+        }
     }
 }

@@ -44,7 +44,7 @@ public class ScreenContratoEmpleado extends ManagerFXML implements Initializable
     private void getContratacion() {
         contratacion.setCedula(cedula.getText());
         contratacion.setNombre(nombreApellido.getText());
-        contratacion.setFechaInicio(MananejadorDateUtil.getDatePickentCurrent(fechaInicio));
+        contratacion.setFechaInicio(FechaUtil.getDatePickentCurrent(fechaInicio));
         contratacion.setFechaCulminacion(null);
         contratacion.setSalario(Double.parseDouble(Storage.getValores().getSalario()));
         contratacion.setCargo(cargo.getText());

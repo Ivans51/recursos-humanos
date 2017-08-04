@@ -31,7 +31,42 @@ public class EmpleadoDAO {
         }
         System.out.println("selectAll() --> " + list);
         return list;
+    }
+    /**
+     * Returns the list of all Empleado instances from the database.
+     *
+     * @return the list of all Empleado instances from the database.
+     */
+    @SuppressWarnings("unchecked")
+    public Empleado selectByEmpleadoContrato(String id) {
+        Empleado list = null;
+        SqlSession session = sqlSessionFactory.openSession();
 
+        try {
+            list = session.selectOne("Empleado.selectByEmpleadoContrato", id);
+        } finally {
+            session.close();
+        }
+        System.out.println("selectByEmpleadoContrato() --> " + list);
+        return list;
+    }
+    /**
+     * Returns the list of all Empleado instances from the database.
+     *
+     * @return the list of all Empleado instances from the database.
+     */
+    @SuppressWarnings("unchecked")
+    public List<Empleado> selectAllEmpleadoContrato() {
+        List<Empleado> list = null;
+        SqlSession session = sqlSessionFactory.openSession();
+
+        try {
+            list = session.selectList("Empleado.selectAllEmpleadoContrato");
+        } finally {
+            session.close();
+        }
+        System.out.println("selectByEmpleadoContrato() --> " + list);
+        return list;
     }
 
     /**

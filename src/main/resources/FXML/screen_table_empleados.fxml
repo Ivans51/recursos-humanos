@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import java.lang.String?>
 <?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-
-<AnchorPane prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.111"
-            xmlns:fx="http://javafx.com/fxml/1"  fx:controller="core.controller.screen.ScreenTableEmpleados">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="507.0" prefWidth="758.0" fx:id="anchorPane"
+            xmlns="http://javafx.com/javafx/8.0.112" fx:controller="core.controller.screen.ScreenTableEmpleados">
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -37,6 +32,16 @@
                 <HBox maxWidth="1.7976931348623157E308" styleClass="layot-color-four">
                     <children>
                         <Label styleClass="label-bold" text="Resultados de la búsqueda"/>
+                        <TextField fx:id="txtBuscarCedula">
+                            <HBox.margin>
+                                <Insets left="10.0"/>
+                            </HBox.margin>
+                        </TextField>
+                        <JFXButton fx:id="btnBuscar" mnemonicParsing="false" onAction="#onBuscar" text="Buscar Cedula">
+                            <HBox.margin>
+                                <Insets left="10.0"/>
+                            </HBox.margin>
+                        </JFXButton>
                     </children>
                     <padding>
                         <Insets bottom="5.0" left="30.0" top="5.0"/>
@@ -49,17 +54,17 @@
             <children>
                 <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
                            minWidth="-Infinity" prefWidth="382.0" AnchorPane.bottomAnchor="0.0"
-                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" fx:id="tableEmpleado">
                     <columns>
-                        <TableColumn prefWidth="36.0" text="Cédula"/>
-                        <TableColumn prefWidth="49.0" text="Nombre"/>
-                        <TableColumn prefWidth="75.0" text="Dirección"/>
-                        <TableColumn prefWidth="75.0" text="Fecha Nac."/>
-                        <TableColumn prefWidth="75.0" text="Cargos"/>
-                        <TableColumn prefWidth="75.0" text="Status Actual"/>
-                        <TableColumn prefWidth="75.0" text="Sueldo"/>
-                        <TableColumn prefWidth="75.0" text="F. Ingreso"/>
-                        <TableColumn prefWidth="75.0" text="F. Culminación"/>
+                        <TableColumn prefWidth="36.0" text="Cédula" fx:id="tbCedula"/>
+                        <TableColumn prefWidth="49.0" text="Nombre" fx:id="tbNombre"/>
+                        <TableColumn prefWidth="75.0" text="Dirección" fx:id="tbDireccion"/>
+                        <TableColumn prefWidth="75.0" text="Fecha Nac." fx:id="tbFechaNac"/>
+                        <TableColumn prefWidth="75.0" text="Cargos" fx:id="tbCargos"/>
+                        <TableColumn prefWidth="75.0" text="Status Actual" fx:id="tbStatus"/>
+                        <TableColumn prefWidth="75.0" text="Sueldo" fx:id="tbSueldo"/>
+                        <TableColumn prefWidth="75.0" text="F. Ingreso" fx:id="tbIngreso"/>
+                        <TableColumn prefWidth="75.0" text="F. Culminación" fx:id="tbCulminuacion"/>
                     </columns>
                     <padding>
                         <Insets left="20.0" right="20.0" top="20.0"/>
@@ -70,7 +75,7 @@
         <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" spacing="30.0" AnchorPane.bottomAnchor="30.0"
               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <JFXButton layoutX="490.0" layoutY="15.0" styleClass="button-bold" text="Cerrar"/>
+                <JFXButton layoutX="490.0" layoutY="15.0" styleClass="button-bold" text="Cerrar" fx:id="btnCerrar" onAction="#onCerrar"/>
             </children>
             <padding>
                 <Insets bottom="5.0" left="30.0" right="50.0" top="5.0"/>

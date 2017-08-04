@@ -1,6 +1,7 @@
 package core.conexion.vo;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by WAMS-10 on 29/07/2017.
@@ -18,6 +19,8 @@ public class Empleado {
     private int horasTrabajadas;
     private int statusLaborando;
     private int FK_id_Usuario;
+    private Contratacion contratacion;
+    private List<Contratacion> contratacions;
 
     public String getCedula() {
         return cedula;
@@ -107,6 +110,22 @@ public class Empleado {
         this.statusLaborando = statusLaborando;
     }
 
+    public Contratacion getContratacion() {
+        return contratacion;
+    }
+
+    public void setContratacion(Contratacion contratacion) {
+        this.contratacion = contratacion;
+    }
+
+    public List<Contratacion> getContratacions() {
+        return contratacions;
+    }
+
+    public void setContratacions(List<Contratacion> contratacions) {
+        this.contratacions = contratacions;
+    }
+
     @Override
     public String toString() {
         return "Empleado{" +
@@ -117,10 +136,12 @@ public class Empleado {
                 ", cargo='" + cargo + '\'' +
                 ", status='" + status + '\'' +
                 ", registroSS='" + registroSS + '\'' +
-                ", horaInicio=" + horaInicio +
+                ", horaInicio='" + horaInicio + '\'' +
                 ", horasTrabajadas=" + horasTrabajadas +
                 ", statusLaborando=" + statusLaborando +
                 ", FK_id_Usuario=" + FK_id_Usuario +
+                ", contratacion=" + contratacion +
+                ", contratacions=" + contratacions +
                 '}';
     }
 }

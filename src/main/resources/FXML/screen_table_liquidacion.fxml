@@ -11,68 +11,62 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.111"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenTableLiquidacion">
+<AnchorPane prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenTableLiquidacion">
     <children>
-        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <HBox maxWidth="1.7976931348623157E308">
                     <children>
-                        <Label text="Registro de Usuarios en el Sistema">
+                        <Label text="Liquidación">
                             <styleClass>
-                                <String fx:value="label-bold"/>
-                                <String fx:value="label-font-medium"/>
+                                <String fx:value="label-bold" />
+                                <String fx:value="label-font-medium" />
                             </styleClass>
                             <HBox.margin>
-                                <Insets bottom="10.0" left="30.0" top="10.0"/>
+                                <Insets bottom="10.0" left="30.0" top="10.0" />
                             </HBox.margin>
                         </Label>
                     </children>
                 </HBox>
                 <HBox maxWidth="1.7976931348623157E308" styleClass="layot-color-four">
                     <children>
-                        <Label styleClass="label-bold" text="Seguimiento de los usuarios"/>
+                        <Label styleClass="label-bold" text="Seguimiento de los usuarios" />
                     </children>
                     <padding>
-                        <Insets bottom="5.0" left="30.0" top="5.0"/>
+                        <Insets bottom="5.0" left="30.0" top="5.0" />
                     </padding>
                 </HBox>
             </children>
         </VBox>
-        <AnchorPane prefHeight="421.0" prefWidth="758.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0"
-                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="86.0">
+        <AnchorPane prefHeight="421.0" prefWidth="758.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="86.0">
             <children>
-                <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-                           minWidth="-Infinity" prefWidth="382.0" AnchorPane.bottomAnchor="0.0"
-                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="382.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                        <TableColumn maxWidth="-Infinity" text="Id Usuario"/>
-                        <TableColumn prefWidth="75.0" text="Nombre Usuario"/>
-                        <TableColumn prefWidth="75.0" text="Correo"/>
-                        <TableColumn prefWidth="75.0" text="Nivel Acceso"/>
-                        <TableColumn prefWidth="75.0" text="Cédula"/>
+                        <TableColumn maxWidth="-Infinity" text="Id Usuario" />
+                        <TableColumn prefWidth="75.0" text="Nombre Usuario" />
+                        <TableColumn prefWidth="75.0" text="Correo" />
+                        <TableColumn prefWidth="75.0" text="Nivel Acceso" />
+                        <TableColumn prefWidth="75.0" text="Cédula" />
                     </columns>
                     <padding>
-                        <Insets left="20.0" right="20.0" top="20.0"/>
+                        <Insets left="20.0" right="20.0" top="20.0" />
                     </padding>
                 </TableView>
             </children>
         </AnchorPane>
-        <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" spacing="30.0" AnchorPane.bottomAnchor="30.0"
-              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" spacing="30.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <JFXButton layoutX="490.0" layoutY="15.0" styleClass="button-bold" text="Cerrar"/>
+                <JFXButton layoutX="490.0" layoutY="15.0" styleClass="button-bold" text="Cerrar" />
             </children>
             <padding>
-                <Insets bottom="5.0" left="30.0" right="50.0" top="5.0"/>
+                <Insets bottom="5.0" left="30.0" right="50.0" top="5.0" />
             </padding>
         </HBox>
     </children>
     <stylesheets>
-        <URL value="@../CSS/styles-button.css"/>
-        <URL value="@../CSS/styles-layout.css"/>
-        <URL value="@../CSS/styles-label.css"/>
-        <URL value="@../CSS/styles-input.css"/>
+        <URL value="@../CSS/styles-button.css" />
+        <URL value="@../CSS/styles-layout.css" />
+        <URL value="@../CSS/styles-label.css" />
+        <URL value="@../CSS/styles-input.css" />
     </stylesheets>
 </AnchorPane>

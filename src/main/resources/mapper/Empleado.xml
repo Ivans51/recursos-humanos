@@ -7,7 +7,7 @@
 
     <resultMap id="result" type="Empleado">
         <!-- property="atributo java" column="columna tabla" -->
-        <result property="cedula" column="cedula"/>
+        <id property="cedula" column="cedula"/>
         <result property="nombreEmpleado" column="nombreEmpleado"/>
         <result property="fechaNacimiento" column="fechaNacimiento"/>
         <result property="direccion" column="direccion"/>
@@ -18,6 +18,15 @@
         <result property="horasTrabajadas" column="horasTrabajadas"/>
         <result property="statusLaborando" column="statusLaborando"/>
         <result property="FK_id_Usuario" column="FK_id_Usuario"/>
+        <association property="contratacion" resultMap="contratacion"/>
+        <collection property="contratacions" ofType="Contratacion" resultMap="contratacion" columnPrefix="post_"></collection>
+    </resultMap>
+
+    <resultMap id="contratacion" type="Contratacion">
+        <id property="idContratacion" column="idContratacion"/>
+        <result property="salario" column="salario"/>
+        <result property="fechaInicio" column="fechaInicio"/>
+        <result property="fechaCulminacion" column="fechaCulminacion"/>
     </resultMap>
 
     <select id="selectAll" resultMap="result">
@@ -28,7 +37,24 @@
     <select id="selectById" parameterType="int" resultMap="result">
         SELECT *
         FROM rrhh.empleado
-        WHERE cedula = #{id}
+        WHERE cedula = #{cedula}
+    </select>
+
+    <select id="selectByEmpleadoContrato" parameterType="string" resultMap="result">
+        SELECT
+            a.cedula, a.nombreEmpleado, a.fechaNacimiento, a.direccion, a.direccion, a.cargo, a.status,
+            b.salario, b.fechaInicio, b.fechaCulminacion
+        FROM rrhh.empleado a INNER JOIN contratacion b
+            ON a.cedula = b.empleado_cedula
+        WHERE a.cedula = #{cedula}
+    </select>
+
+    <select id="selectAllEmpleadoContrato" parameterType="string" resultMap="result">
+        SELECT
+            a.cedula, a.nombreEmpleado, a.fechaNacimiento, a.direccion, a.direccion, a.cargo, a.status,
+            b.salario, b.fechaInicio, b.fechaCulminacion
+        FROM rrhh.empleado a INNER JOIN contratacion b
+            ON a.cedula = b.empleado_cedula
     </select>
 
     <select id="selectByIdUser" parameterType="int" resultMap="result">
@@ -36,8 +62,7 @@
             rrhh.empleado.cedula, rrhh.empleado.FK_id_Usuario, rrhh.empleado.nombreEmpleado,
             rrhh.empleado.horaInicio, rrhh.empleado.statusLaborando, rrhh.empleado.horasTrabajadas,
             rrhh.usuario.idUsuario
-        FROM rrhh.empleado
-            INNER JOIN rrhh.usuario
+        FROM rrhh.empleado INNER JOIN rrhh.usuario
                 ON rrhh.empleado.FK_id_Usuario = rrhh.usuario.idUsuario
         WHERE rrhh.empleado.FK_id_Usuario = #{FK_id_Usuario}
     </select>

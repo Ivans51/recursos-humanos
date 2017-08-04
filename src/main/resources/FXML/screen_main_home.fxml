@@ -79,6 +79,15 @@
                                                         <String fx:value="label-cursor" />
                                                     </styleClass>
                                                 </Label>
+                                                <Label fx:id="adminBuscarEmpleados" text="Buscar Empleado" onMouseClicked="#abrirGestionEmpleado">
+                                                    <padding>
+                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                    </padding>
+                                                    <styleClass>
+                                                        <String fx:value="label-white" />
+                                                        <String fx:value="label-cursor" />
+                                                    </styleClass>
+                                                </Label>
                                             </children>
                                             <padding>
                                                 <Insets left="20.0" />

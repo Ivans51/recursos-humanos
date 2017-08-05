@@ -1,39 +1,32 @@
 package core.util;
 
 import com.google.api.client.auth.oauth2.Credential;
-import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
-import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
-import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
-import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.gmail.Gmail;
-import com.google.api.services.gmail.GmailScopes;
 import com.google.api.services.oauth2.Oauth2;
 import com.google.api.services.oauth2.model.Userinfoplus;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.GeneralSecurityException;
-import java.util.HashSet;
-import java.util.Set;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class Utils {
+public class EmailUtils {
     /** Global instance of the JSON factory. */
     private static final GsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
 
     /** Global instance of the HTTP transport. */
     private static HttpTransport httpTransport;
 
-    private static final Log log = LogFactory.getLog(Utils.class);
+    private static final Log log = LogFactory.getLog(EmailUtils.class);
 
     static {
         try {
@@ -48,7 +41,7 @@ public class Utils {
     }
 
     /*private static File getGmailDataDirectory() {
-        //return new File(org.yccheok.jstock.gui.Utils.getUserDataDirectory() + "authentication" + File.separator + "gmail");
+        //return new File(org.yccheok.jstock.gui.EmailUtils.getUserDataDirectory() + "authentication" + File.separator + "gmail");
     }*/
 
     /**
@@ -115,8 +108,8 @@ public class Utils {
         scopes.add(GmailScopes.GMAIL_SEND);
 
         // load client secrets
-        GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(Utils.JSON_FACTORY,
-            new InputStreamReader(Utils.class.getResourceAsStream("/assets/authentication/gmail/client_secrets.json")));
+        GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(EmailUtils.JSON_FACTORY,
+            new InputStreamReader(EmailUtils.class.getResourceAsStream("/assets/authentication/gmail/client_secrets.json")));
 
         return authorize(clientSecrets, scopes, getGmailDataDirectory());
     }*/

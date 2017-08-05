@@ -8,23 +8,25 @@ import javafx.stage.StageStyle;
 /**
  * Created by WAMS-10 on 29/07/2017.
  */
-public class AlertUtil extends ManagerFXML{
+public class AlertUtil extends ManagerFXML {
 
-    public int tipo;
+    private int tipo;
+    private String title;
 
-    public AlertUtil(int tipo) throws Myexception {
+    public AlertUtil(int tipo, String title) {
         this.tipo = tipo;
+        this.title = title;
         dilog();
     }
 
-    public void dilog() throws Myexception {
+    private void dilog() {
         abrirStageStyle(Route.AlertDialog, "", Modality.NONE, null,
                 false, StageStyle.TRANSPARENT,
-                () ->elegir());
+                () -> elegir());
     }
 
-    public void elegir(){
-        AlertModel alertModel = new AlertModel (tipo);
+    private void elegir() {
+        AlertModel alertModel = new AlertModel(tipo, title);
         AlertDialog dialog = ManagerFXML.getFxmlLoader().getController();
         dialog.initData(alertModel);
     }

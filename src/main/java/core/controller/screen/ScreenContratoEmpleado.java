@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 public class ScreenContratoEmpleado extends ManagerFXML implements Initializable {
 
     public JFXTextField cedula, nombreApellido, cargo, salario;
-    public JFXDatePicker fechaInicio;
+    public JFXDatePicker dateFechaInicio;
     public JFXButton brbAgregar, btnCancelar;
     public AnchorPane anchorPane;
     public static Contratacion contratacion = new Contratacion();
@@ -44,7 +44,7 @@ public class ScreenContratoEmpleado extends ManagerFXML implements Initializable
     private void getContratacion() {
         contratacion.setCedula(cedula.getText());
         contratacion.setNombre(nombreApellido.getText());
-        contratacion.setFechaInicio(FechaUtil.getDatePickentCurrent(fechaInicio));
+        contratacion.setFechaInicio(FechaUtil.getDatePickentCurrent(dateFechaInicio));
         contratacion.setFechaCulminacion(null);
         contratacion.setSalario(Double.parseDouble(Storage.getValores().getSalario()));
         contratacion.setCargo(cargo.getText());

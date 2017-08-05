@@ -79,7 +79,7 @@ public class ScreenTableAuditoria implements Initializable, PDFCreator.PDFTabla 
     }
 
     public void click(MouseEvent mouseEvent) throws FileNotFoundException, DocumentException {
-        pdfcreator.crearPDF("fichero.pdf", "Esto es el primer párrafo, normalito", 3, this);
+        pdfcreator.crearPDF("fichero.pdf", "Esto es el primer párrafo", 3, this);
     }
 
     @Override

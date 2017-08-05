@@ -1,4 +1,4 @@
-package core.util;
+package sample;
 
 /**
  * Created by WAMS-10 on 30/07/2017.

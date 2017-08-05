@@ -40,7 +40,7 @@ public class SesionUser extends ManagerFXML implements Initializable {
             validarStatus();
         } catch (Myexception ex) {
             System.out.println(ex.getMessage());
-            new AlertUtil(Estado.ERROR);
+            new AlertUtil(Estado.ERROR, ex.getMessage());
         }
     }
 

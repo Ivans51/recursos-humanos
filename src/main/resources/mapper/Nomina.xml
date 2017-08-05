@@ -34,7 +34,7 @@
     <select id="selectById" parameterType="int" resultMap="result">
         SELECT *
         FROM rrhh.nomina
-        WHERE idNomina = #{id}
+        WHERE idNomina = #{idNomina}
     </select>
 
     <insert id="insert" parameterType="Nomina" useGeneratedKeys="true" keyProperty="id">
@@ -44,11 +44,26 @@
     <update id="update" parameterType="Nomina">
         UPDATE rrhh.nomina
         SET name = #{name}
-        WHERE idNomina = #{id}
+        WHERE idNomina = #{idNomina}
+    </update>
+
+    <update id="updateDeduciones" parameterType="Nomina">
+        UPDATE rrhh.nomina
+        SET faov = #{faov}, ivss = #{ivss},
+            paroForsozo = #{paroForsozo}, prestamo = #{prestamo}
+        WHERE empleado_cedula = #{empleado_cedula}
+    </update>
+
+    <update id="updateAsignaciones" parameterType="Nomina">
+        UPDATE rrhh.nomina
+        SET diasHabiles = #{diasHabiles}, diasDescanso = #{diasDescanso},
+            bonoNocturno = #{bonoNocturno}, bonoLealtad = #{bonoLealtad},
+            diasFeriados = #{diasFeriados}
+        WHERE empleado_cedula = #{FK_cedula_empleado}
     </update>
 
     <delete id="delete" parameterType="int">
         DELETE FROM rrhh.nomina
-        WHERE idNomina = #{id}
+        WHERE idNomina = #{idNomina}
     </delete>
 </mapper>

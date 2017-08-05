@@ -55,7 +55,7 @@ public class ScreenTableEmpleados extends ManagerFXML implements Initializable, 
             columns[i].setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Empleado, String>, ObservableValue<String>>() {
                 @Override
                 public ObservableValue<String> call(TableColumn.CellDataFeatures<Empleado, String> param) {
-                    String cargo = param.getValue().getContratacion().getCargo();
+                    String cargo = String.valueOf(param.getValue().getContratacion().getSalario());
                     return new SimpleStringProperty(cargo);
                 }
             });
@@ -74,6 +74,7 @@ public class ScreenTableEmpleados extends ManagerFXML implements Initializable, 
     }
 
     public void onBuscar(ActionEvent event) throws Myexception {
+        table.getListTable().remove(empleados);
         empleado = new Empleado();
         empleado = empleadoDAO.selectByEmpleadoContrato(txtBuscarCedula.getText());
         table.getListTable().add(empleado);
@@ -90,8 +91,9 @@ public class ScreenTableEmpleados extends ManagerFXML implements Initializable, 
             TableRow<Empleado> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    empleado = table.getTablaSeleccionada(tableEmpleado);
                     Empleado rowData = row.getItem();
-                    cambiarEscena(Route.ScreenTableLiquidacion, anchorPane);
+                    cambiarEscena(Route.ScreenGestionEmpleado, anchorPane);
                     System.out.println(rowData);
                 }
             });

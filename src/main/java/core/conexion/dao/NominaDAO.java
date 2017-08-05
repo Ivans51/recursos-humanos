@@ -88,6 +88,32 @@ public class NominaDAO {
         }
         System.out.println("update(" + nomina + ") --> updated");
     }
+    public void updateDeduciones(Nomina nomina) {
+        int id = -1;
+        SqlSession session = sqlSessionFactory.openSession();
+
+        try {
+            id = session.update("Nomina.updateDeduciones", nomina);
+
+        } finally {
+            session.commit();
+            session.close();
+        }
+        System.out.println("update(" + nomina + ") --> updated");
+    }
+    public void updateAsignaciones(Nomina nomina) {
+        int id = -1;
+        SqlSession session = sqlSessionFactory.openSession();
+
+        try {
+            id = session.update("Nomina.updateAsignaciones", nomina);
+
+        } finally {
+            session.commit();
+            session.close();
+        }
+        System.out.println("update(" + nomina + ") --> updated");
+    }
 
     /**
      * Delete an instance of Nomina from the database.

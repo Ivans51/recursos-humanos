@@ -34,6 +34,26 @@ public class Validar {
             throw new Myexception("Erro message");
     }
 
+
+    public static void disableControl(TextInputControl... txt) {
+        for (TextInputControl txtInput : txt)
+            txtInput.setDisable(false);
+    }
+
+    public static void entradaNumerica(TextInputControl... txt) {
+        for (TextInputControl txtInput : txt) {
+            txtInput.promptTextProperty().addListener((observable, oldValue, newValue) -> {
+                Validar.inputNumber(txtInput, newValue);
+            });
+        }
+    }
+
+    private static void inputNumber(TextInputControl txt, String newValue){
+        if (!newValue.matches("\\d*")) {
+            txt.setText(newValue.replaceAll("[^\\d]", ""));
+        }
+    }
+
     /**
      * Comportamiento del campo
      *

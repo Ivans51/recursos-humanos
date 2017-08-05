@@ -13,3 +13,7 @@
 .text-field-focus-white {
     -jfx-focus-color: #FFF;
 }
+
+.spinner-text {
+    -fx-font-size: 10;
+}

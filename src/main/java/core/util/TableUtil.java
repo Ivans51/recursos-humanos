@@ -65,10 +65,11 @@ public class TableUtil<T, V, S, U> {
     /**
      * Método para poner en los textFields la tupla que seleccionemos
      */
-    public void seleccionarTabla(StatusControles statusControles) {
+    public void seleccionarTabla(@Nullable StatusControles statusControles) {
         model = getTablaSeleccionada(tablaUsuarios);
         posicionPersonaEnTabla = listTable.indexOf(model);
-        statusControles.setStatusControls();
+        if (statusControles != null)
+            statusControles.setStatusControls();
     }
 
     /**

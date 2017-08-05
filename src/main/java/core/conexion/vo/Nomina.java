@@ -9,8 +9,8 @@ public class Nomina {
     private String nombreEmpleado;
     private int diasHabiles;
     private int diasDescanso;
-    private double bonoNocturno;
-    private double bonoLealtad;
+    private int bonoNocturno;
+    private int bonoLealtad;
     private int diasFeriados;
     private double totalAsignaciones;
     private double faov;
@@ -18,7 +18,7 @@ public class Nomina {
     private double paroForzoso;
     private double prestamo;
     private int diasNoLaborados;
-    private double totalDeducciones;
+    private double totalDeduciones;
     private double salarioTotal;
     private String cedula;
     private String FK_cedula_empleado;
@@ -55,19 +55,19 @@ public class Nomina {
         this.diasDescanso = diasDescanso;
     }
 
-    public double getBonoNocturno() {
+    public int getBonoNocturno() {
         return bonoNocturno;
     }
 
-    public void setBonoNocturno(double bonoNocturno) {
+    public void setBonoNocturno(int bonoNocturno) {
         this.bonoNocturno = bonoNocturno;
     }
 
-    public double getBonoLealtad() {
+    public int getBonoLealtad() {
         return bonoLealtad;
     }
 
-    public void setBonoLealtad(double bonoLealtad) {
+    public void setBonoLealtad(int bonoLealtad) {
         this.bonoLealtad = bonoLealtad;
     }
 
@@ -127,12 +127,12 @@ public class Nomina {
         this.diasNoLaborados = diasNoLaborados;
     }
 
-    public double getTotalDeducciones() {
-        return totalDeducciones;
+    public double getTotalDeduciones() {
+        return totalDeduciones;
     }
 
-    public void setTotalDeducciones(double totalDeducciones) {
-        this.totalDeducciones = totalDeducciones;
+    public void setTotalDeduciones(double totalDeduciones) {
+        this.totalDeduciones = totalDeduciones;
     }
 
     public double getSalarioTotal() {
@@ -175,7 +175,7 @@ public class Nomina {
                 ", paroForzoso=" + paroForzoso +
                 ", prestamo=" + prestamo +
                 ", diasNoLaborados=" + diasNoLaborados +
-                ", totalDeducciones=" + totalDeducciones +
+                ", totalDeduciones=" + totalDeduciones +
                 ", salarioTotal=" + salarioTotal +
                 ", cedula='" + cedula + '\'' +
                 ", FK_cedula_empleado='" + FK_cedula_empleado + '\'' +

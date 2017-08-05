@@ -150,6 +150,21 @@ public class EmpleadoDAO {
         System.out.println("update(" + empleado + ") --> updated");
     }
 
+    public void updateDatosEmpleado(Empleado empleado) {
+        int id = -1;
+        Empleado person;
+        SqlSession session = sqlSessionFactory.openSession();
+
+        try {
+            id = session.update("Empleado.updateDatosEmpleado", empleado);
+
+        } finally {
+            session.commit();
+            session.close();
+        }
+        System.out.println("update(" + empleado + ") --> updated");
+    }
+
     /**
      * Delete an instance of Empleado from the database.
      *

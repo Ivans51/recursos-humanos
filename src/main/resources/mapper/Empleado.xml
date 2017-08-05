@@ -89,6 +89,13 @@
         WHERE FK_id_Usuario = #{FK_id_Usuario}
     </update>
 
+    <update id="updateDatosEmpleado" parameterType="Empleado">
+        UPDATE rrhh.empleado
+        SET nombreEmpleado = #{nombreEmpleado}, fechaNacimiento = #{fechaNacimiento},
+            cargo = #{cargo}, status = #{status}
+        WHERE cedula = #{cedula}
+    </update>
+
     <update id="updateHorasInicio" parameterType="Empleado">
         UPDATE rrhh.empleado
         SET horaInicio = #{horaInicio}

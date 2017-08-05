@@ -52,7 +52,7 @@
                                 <Insets />
                             </VBox.margin>
                         </JFXTextField>
-                        <JFXDatePicker fx:id="fechaInicio" maxWidth="1.7976931348623157E308" minWidth="-Infinity" promptText="Fecha de Inicio">
+                        <JFXDatePicker fx:id="dateFechaInicio" maxWidth="1.7976931348623157E308" minWidth="-Infinity" promptText="Fecha de Inicio">
                             <VBox.margin>
                                 <Insets />
                             </VBox.margin>

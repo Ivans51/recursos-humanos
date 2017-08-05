@@ -49,7 +49,7 @@ public class GestionPreguntas extends ManagerFXML implements Initializable {
                 abrirStage(Route.SessionUsuario, "Inicio de Session", btnEnviar, null);
             } catch (Myexception ex) {
                 System.out.println(ex.getMessage());
-                new AlertUtil(Estado.ERROR);
+                new AlertUtil(Estado.ERROR, ex.getMessage());
             }
         }
     }

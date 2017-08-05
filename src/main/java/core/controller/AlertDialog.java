@@ -23,7 +23,7 @@ public class AlertDialog extends ManagerFXML implements Initializable {
     public Label closeAlert;
 
     public void initData(AlertModel alertModel){
-        elegirMensaje(alertModel.eleccion);
+        elegirMensaje(alertModel.getEleccion(), alertModel.getTitle());
     }
 
     @Override
@@ -31,11 +31,11 @@ public class AlertDialog extends ManagerFXML implements Initializable {
 
     }
 
-    private void elegirMensaje(int eleccion) {
+    private void elegirMensaje(int eleccion, String title) {
         if (eleccion == Estado.EXITOSA)
-            setInfoAlert("Modificación Exitosa", "../icons/DeleteMessage_96px.png");
+            setInfoAlert(title, "../icons/DeleteMessage_96px.png");
         else if (eleccion == Estado.ERROR)
-            setInfoAlert("Modificación Exitosa", "../icons/Ok_96px.png");
+            setInfoAlert(title, "../icons/Ok_96px.png");
     }
 
     private void setInfoAlert(String value, String path) {

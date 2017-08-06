@@ -51,6 +51,18 @@ public class ContratacionDAO {
         return person;
     }
 
+    public Contratacion selectByForeighKey(int id) {
+        Contratacion person = null;
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            person = session.selectOne("Contratacion.selectByForeighKey", id);
+        } finally {
+            session.close();
+        }
+        System.out.println("selectById(" + id + ") --> " + person);
+        return person;
+    }
+
     /**
      * Insert an instance of Contratacion into the database.
      *

@@ -1,15 +1,18 @@
 package core.conexion.vo;
 
+import java.util.Date;
+
 /**
  * Created by WAMS-10 on 29/07/2017.
  */
 public class Valores {
 
     private int idValores;
-    private String salario;
+    private double salario;
     private String precioUnidadTributaria;
     private String paroForzoso;
     private String FAO;
+    private Date fecha;
     private int fk_id_usuario;
 
     public int getIdValores() {
@@ -20,11 +23,11 @@ public class Valores {
         this.idValores = idValores;
     }
 
-    public String getSalario() {
+    public double getSalario() {
         return salario;
     }
 
-    public void setSalario(String salario) {
+    public void setSalario(double salario) {
         this.salario = salario;
     }
 
@@ -60,6 +63,10 @@ public class Valores {
         this.fk_id_usuario = fk_id_usuario;
     }
 
+    public Date getFecha() {
+        return fecha;
+    }
+
     @Override
     public String toString() {
         return "Valores{" +
@@ -68,6 +75,7 @@ public class Valores {
                 ", precioUnidadTributaria='" + precioUnidadTributaria + '\'' +
                 ", paroForzoso='" + paroForzoso + '\'' +
                 ", FAO='" + FAO + '\'' +
+                ", fecha=" + fecha +
                 ", fk_id_usuario=" + fk_id_usuario +
                 '}';
     }

@@ -49,6 +49,21 @@ public class NominaDAO {
         }
         System.out.println("selectById(" + id + ") --> " + person);
         return person;
+    }/**
+     * Select instance of Nomina from the database.
+     *
+     * @param id the instance to be persisted.
+     */
+    public Nomina selectForeighKey(int id) {
+        Nomina person = null;
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            person = session.selectOne("Nomina.selectForeighKey", id);
+        } finally {
+            session.close();
+        }
+        System.out.println("selectById(" + id + ") --> " + person);
+        return person;
     }
 
     /**

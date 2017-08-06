@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.111"
+<AnchorPane fx:id="anchor" prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.111"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenReportEmpleado">
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
@@ -36,37 +36,37 @@
                         <Insets bottom="5.0" left="30.0" top="5.0"/>
                     </padding>
                     <children>
-                        <JFXButton text="Cesta ticket">
+                        <JFXButton text="Cesta ticket" fx:id="btnCesta" onAction="#onCesta">
                             <styleClass>
                                 <String fx:value="button-bold"/>
                                 <String fx:value="button-report-padding"/>
                             </styleClass>
                         </JFXButton>
-                        <JFXButton text="Sal. Integral">
+                        <JFXButton text="Sal. Integral" fx:id="btnSalarioIntegral" onAction="#onSalarioIntegral">
                             <styleClass>
                                 <String fx:value="button-bold"/>
                                 <String fx:value="button-report-padding"/>
                             </styleClass>
                         </JFXButton>
-                        <JFXButton text="Sal Quincenal">
+                        <JFXButton text="Sal Quincenal" fx:id="btnSalarioQuincenal" onAction="#onSalarioQuincenal">
                             <styleClass>
                                 <String fx:value="button-bold"/>
                                 <String fx:value="button-report-padding"/>
                             </styleClass>
                         </JFXButton>
-                        <JFXButton text="Utilidades">
+                        <JFXButton text="Utilidades" fx:id="btnUtilidades" onAction="#onUtilidades">
                             <styleClass>
                                 <String fx:value="button-bold"/>
                                 <String fx:value="button-report-padding"/>
                             </styleClass>
                         </JFXButton>
-                        <JFXButton text="Vales">
+                        <JFXButton text="Vales" fx:id="btnVales" onAction="#onVales">
                             <styleClass>
                                 <String fx:value="button-bold"/>
                                 <String fx:value="button-report-padding"/>
                             </styleClass>
                         </JFXButton>
-                        <JFXButton text="Liquidaciones">
+                        <JFXButton text="Liquidaciones" fx:id="btnLiquidacion" onAction="#onLiquidaciones">
                             <styleClass>
                                 <String fx:value="button-bold"/>
                                 <String fx:value="button-report-padding"/>
@@ -79,19 +79,19 @@
         <AnchorPane layoutY="102.0" prefHeight="400.0" prefWidth="758.0" AnchorPane.bottomAnchor="100.0"
                     AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="102.0">
             <children>
-                <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-                           minWidth="-Infinity" prefHeight="400.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0"
+                <TableView fx:id="tablaReportTotal" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                           minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0"
                            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                        <TableColumn prefWidth="36.0" text="Cédula"/>
-                        <TableColumn prefWidth="49.0" text="Nombre"/>
-                        <TableColumn prefWidth="75.0" text="Dirección"/>
-                        <TableColumn prefWidth="75.0" text="Fecha Nac."/>
-                        <TableColumn prefWidth="75.0" text="Cargos"/>
-                        <TableColumn prefWidth="75.0" text="Status Actual"/>
-                        <TableColumn prefWidth="75.0" text="Sueldo"/>
-                        <TableColumn prefWidth="75.0" text="F. Ingreso"/>
-                        <TableColumn prefWidth="75.0" text="F. Culminación"/>
+                        <TableColumn fx:id="tbCedula" prefWidth="36.0" text="Cédula"/>
+                        <TableColumn fx:id="tbNombre" prefWidth="49.0" text="Nombre"/>
+                        <TableColumn fx:id="tbDireccion" prefWidth="75.0" text="Dirección"/>
+                        <TableColumn fx:id="tbFechaNac" prefWidth="75.0" text="Fecha Nac."/>
+                        <TableColumn fx:id="tbCargos" prefWidth="75.0" text="Cargos"/>
+                        <TableColumn fx:id="tbStatus" prefWidth="75.0" text="Status Actual"/>
+                        <TableColumn fx:id="tbSueldo" prefWidth="75.0" text="Sueldo"/>
+                        <TableColumn fx:id="tbIngreso" prefWidth="75.0" text="F. Ingreso"/>
+                        <TableColumn fx:id="tbFechaCulm" prefWidth="75.0" text="F. Culminación"/>
                     </columns>
                     <padding>
                         <Insets left="20.0" right="20.0" top="20.0"/>
@@ -102,7 +102,7 @@
         <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" spacing="30.0" AnchorPane.bottomAnchor="30.0"
               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <JFXButton layoutX="490.0" layoutY="15.0" styleClass="button-bold" text="Cerrar"/>
+                <JFXButton fx:id="btnCerrar" layoutX="490.0" layoutY="15.0" styleClass="button-bold" text="Cerrar" onAction="#onCerrar"/>
             </children>
             <padding>
                 <Insets bottom="5.0" left="30.0" right="50.0" top="5.0"/>

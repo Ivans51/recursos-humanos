@@ -30,8 +30,8 @@ public class ScreenAddUser extends ManagerFXML implements Initializable, TableUt
     public JFXTextField nombreUsuario, claveUsuario, correoUsuario, cedula;
     public JFXComboBox nivelUsuario, nacionalidad;
     public JFXButton btnGuardar, btnCancelar, btnEliminar, btnActualizar;
-    public TableView<Usuario> tablaUsuarios;
     public TableColumn tbIdUsuario, tbNombreUsuario, tbCorreo, tbNivelUsuario, tbCedula, tbStatus;
+    public TableView<Usuario> tablaUsuarios;
     public TableUtil table;
 
     private String[] tableS = {"idUsuario", "nombreUsuario", "correo", "nivelAcceso", "cedula", "status"};

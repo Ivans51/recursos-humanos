@@ -10,7 +10,6 @@ public class Capacitacion {
     private int idCapacitacion;
     private String instructor;
     private String tipo;
-    private String cedulaEmpleado;
     private String nombreEmpleado;
     private Date fechaInicio;
     private Date fechaCulminacion;
@@ -39,14 +38,6 @@ public class Capacitacion {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    public String getCedulaEmpleado() {
-        return cedulaEmpleado;
-    }
-
-    public void setCedulaEmpleado(String cedulaEmpleado) {
-        this.cedulaEmpleado = cedulaEmpleado;
     }
 
     public String getNombreEmpleado() {
@@ -95,7 +86,6 @@ public class Capacitacion {
                 "idCapacitacion=" + idCapacitacion +
                 ", instructor='" + instructor + '\'' +
                 ", tipo='" + tipo + '\'' +
-                ", cedulaEmpleado='" + cedulaEmpleado + '\'' +
                 ", nombreEmpleado='" + nombreEmpleado + '\'' +
                 ", fechaInicio=" + fechaInicio +
                 ", fechaCulminacion=" + fechaCulminacion +

@@ -13,6 +13,7 @@
         <result property="paroForzoso" column="paroForzoso"/>
         <result property="IVSS" column="IVSS"/>
         <result property="FAO" column="FAO"/>
+        <result property="fecha" column="fecha"/>
         <result property="fk_id_usuario" column="fk_id_usuario"/>
     </resultMap>
 
@@ -24,7 +25,14 @@
     <select id="selectById" parameterType="int" resultMap="result">
         SELECT *
         FROM rrhh.valores
-        WHERE idEstrutura = #{id}
+        WHERE idvalores = #{idvalores}
+    </select>
+
+    <select id="selectByIdLastDate" parameterType="int" resultMap="result">
+        SELECT *
+        FROM rrhh.valores
+        ORDER BY fecha DESC
+        LIMIT 1
     </select>
 
     <insert id="insert" parameterType="Valores" useGeneratedKeys="true" keyProperty="idvalores">
@@ -34,11 +42,11 @@
     <update id="update" parameterType="Valores">
         UPDATE rrhh.valores
         SET name = #{name}
-        WHERE idEstrutura = #{id}
+        WHERE idvalores = #{idvalores}
     </update>
 
     <delete id="delete" parameterType="int">
         DELETE FROM rrhh.valores
-        WHERE idEstrutura = #{id}
+        WHERE idvalores = #{idvalores}
     </delete>
 </mapper>

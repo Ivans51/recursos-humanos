@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenTablaSeleccionPersonal">
+    <children>
+        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox maxWidth="1.7976931348623157E308">
+                    <children>
+                        <Label text="Actualizar Seleccionar personal">
+                            <styleClass>
+                                <String fx:value="label-bold" />
+                                <String fx:value="label-font-medium" />
+                            </styleClass>
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="30.0" top="10.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox maxWidth="1.7976931348623157E308" styleClass="layot-color-four">
+                    <children>
+                        <Label styleClass="label-bold" text="Llene los campos para actualizar" />
+                    </children>
+                    <padding>
+                        <Insets bottom="5.0" left="30.0" top="5.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </VBox>
+        <AnchorPane prefHeight="421.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="86.0">
+            <children>
+                <GridPane layoutX="64.0" layoutY="50.0" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="374.0" minWidth="10.0" prefWidth="282.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="519.0" minWidth="10.0" prefWidth="476.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <JFXTextField fx:id="nombreCandidato" alignment="TOP_LEFT" labelFloat="true" promptText="Nombre Candidato">
+                                    <VBox.margin>
+                                        <Insets bottom="30.0" />
+                                    </VBox.margin>
+                                </JFXTextField>
+                                <JFXTextField fx:id="txtCedula" alignment="TOP_LEFT" labelFloat="true" promptText="Cedula">
+                                    <VBox.margin>
+                                        <Insets bottom="30.0" />
+                                    </VBox.margin>
+                                </JFXTextField>
+                                <JFXTextField fx:id="txtDireccion" alignment="TOP_LEFT" labelFloat="true" layoutX="40.0" layoutY="75.0" promptText="Direccion">
+                                    <VBox.margin>
+                                        <Insets bottom="30.0" />
+                                    </VBox.margin>
+                                </JFXTextField>
+                                <JFXTextField fx:id="txtTelefono" alignment="TOP_LEFT" labelFloat="true" layoutX="40.0" layoutY="120.0" promptText="Telefono">
+                                    <VBox.margin>
+                                        <Insets bottom="30.0" />
+                                    </VBox.margin>
+                                </JFXTextField>
+                        <JFXTextField fx:id="txtPuesto" alignment="TOP_LEFT" labelFloat="true" layoutX="40.0" layoutY="199.0" promptText="Puesto Postulacion" />
+                        <JFXTextField fx:id="txtDisponibillidad" alignment="TOP_LEFT" labelFloat="true" layoutX="40.0" layoutY="262.0" promptText="Disponibilidad" />
+                            </children>
+                            <padding>
+                                <Insets left="30.0" right="20.0" />
+                            </padding>
+                        </VBox>
+                        <TableView fx:id="tablaSeleccion" GridPane.columnIndex="1">
+                            <columns>
+                                <TableColumn fx:id="tbNombre" maxWidth="1.7976931348623157E308" text="Nombre" />
+                                <TableColumn fx:id="tbCedula" prefWidth="75.0" text="Cedula" />
+                                <TableColumn fx:id="tbDireccion" prefWidth="75.0" text="Direccion" />
+                                <TableColumn fx:id="tbTelefono" prefWidth="75.0" text="Telefono" />
+                                <TableColumn fx:id="tbPuesto" prefWidth="75.0" text="Puesto" />
+                                <TableColumn fx:id="tbDisponibildad" prefWidth="75.0" text="Disponibilidad" />
+                            </columns>
+                        </TableView>
+                    </children>
+                    <padding>
+                        <Insets top="20.0" />
+                    </padding>
+                </GridPane>
+                <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" spacing="30.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <children>
+                        <JFXButton fx:id="btnCancelar" layoutX="419.0" layoutY="15.0" onAction="#onClickCancelar" styleClass="button-bold" text="Cancelar" />
+                        <JFXButton fx:id="btnActualizar" layoutX="490.0" layoutY="15.0" onAction="#onClickUpdate" styleClass="button-bold" text="Actualizar" />
+                    </children>
+                    <padding>
+                        <Insets bottom="5.0" left="30.0" top="5.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </AnchorPane>
+    </children>
+    <stylesheets>
+        <URL value="@../CSS/styles-button.css" />
+        <URL value="@../CSS/styles-layout.css" />
+        <URL value="@../CSS/styles-label.css" />
+        <URL value="@../CSS/styles-input.css" />
+    </stylesheets>
+</AnchorPane>

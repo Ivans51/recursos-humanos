@@ -164,18 +164,18 @@ public class Nomina {
         return "Nomina{" +
                 "idNomina=" + idNomina +
                 ", nombreEmpleado='" + nombreEmpleado + '\'' +
-                ", diasHabiles=" + diasHabiles +
-                ", diasDescanso=" + diasDescanso +
-                ", bonoNocturno=" + bonoNocturno +
+                ", getDiasHabiles=" + diasHabiles +
+                ", getDiasDescanso=" + diasDescanso +
+                ", getBonoNocturno=" + bonoNocturno +
                 ", bonoLealtad=" + bonoLealtad +
-                ", diasFeriados=" + diasFeriados +
-                ", totalAsignaciones=" + totalAsignaciones +
+                ", getDiasFeriados=" + diasFeriados +
+                ", getTotalAsignaciones=" + totalAsignaciones +
                 ", faov=" + faov +
                 ", ivss=" + ivss +
-                ", paroForzoso=" + paroForzoso +
+                ", getParoForzoso=" + paroForzoso +
                 ", prestamo=" + prestamo +
-                ", diasNoLaborados=" + diasNoLaborados +
-                ", totalDeduciones=" + totalDeduciones +
+                ", getDiasNoLaborados=" + diasNoLaborados +
+                ", getTotalDeduciones=" + totalDeduciones +
                 ", salarioTotal=" + salarioTotal +
                 ", cedula='" + cedula + '\'' +
                 ", FK_cedula_empleado='" + FK_cedula_empleado + '\'' +

@@ -50,6 +50,17 @@ public class ValoresDAO {
         System.out.println("selectById(" + id + ") --> " + person);
         return person;
     }
+    public Valores selectByIdLastDate() {
+        Valores person = null;
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            person = session.selectOne("Valores.selectByIdLastDate");
+        } finally {
+            session.close();
+        }
+        System.out.println("selectById --> " + person);
+        return person;
+    }
 
     /**
      * Insert an instance of Valores into the database.

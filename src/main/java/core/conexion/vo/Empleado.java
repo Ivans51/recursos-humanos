@@ -18,9 +18,11 @@ public class Empleado {
     private String horaInicio;
     private int horasTrabajadas;
     private int statusLaborando;
+    private int diasLaborados;
     private int FK_id_Usuario;
     private Contratacion contratacion;
     private List<Contratacion> contratacions;
+    private double calculo;
 
     public String getCedula() {
         return cedula;
@@ -126,6 +128,22 @@ public class Empleado {
         this.contratacions = contratacions;
     }
 
+    public double getCalculo() {
+        return calculo;
+    }
+
+    public void setCalculo(double calculo) {
+        this.calculo = calculo;
+    }
+
+    public int getDiasLaborados() {
+        return diasLaborados;
+    }
+
+    public void setDiasLaborados(int diasLaborados) {
+        this.diasLaborados = diasLaborados;
+    }
+
     @Override
     public String toString() {
         return "Empleado{" +
@@ -139,9 +157,11 @@ public class Empleado {
                 ", horaInicio='" + horaInicio + '\'' +
                 ", horasTrabajadas=" + horasTrabajadas +
                 ", statusLaborando=" + statusLaborando +
+                ", diasLaborados=" + diasLaborados +
                 ", FK_id_Usuario=" + FK_id_Usuario +
                 ", contratacion=" + contratacion +
                 ", contratacions=" + contratacions +
+                ", calculo=" + calculo +
                 '}';
     }
 }

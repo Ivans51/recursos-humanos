@@ -16,6 +16,7 @@
         <result property="registroSS" column="registroSS"/>
         <result property="horaInicio" column="horaInicio"/>
         <result property="horasTrabajadas" column="horasTrabajadas"/>
+        <result property="diasLaborados" column="diasLaborados"/>
         <result property="statusLaborando" column="statusLaborando"/>
         <result property="FK_id_Usuario" column="FK_id_Usuario"/>
         <association property="contratacion" resultMap="contratacion"/>

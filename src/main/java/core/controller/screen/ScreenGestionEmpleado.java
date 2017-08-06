@@ -21,7 +21,6 @@ import java.util.ResourceBundle;
  */
 public class ScreenGestionEmpleado extends ManagerFXML implements Initializable {
 
-
     public JFXTextField txtCedula, txtNombreApellido, txtCargo, txtEstatus;
     public JFXDatePicker txtDateFecha;
     public JFXButton btnModificaEMpleado, btnActualizarTodos, btnActualizarDeduciones;

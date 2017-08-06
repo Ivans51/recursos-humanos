@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenReportTotalPagos">
+<AnchorPane fx:id="anchor" prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenReportTotalPagos">
     <children>
         <VBox maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -38,7 +38,7 @@
                                 <Insets left="20.0" top="10.0" />
                             </padding>
                         </Label>
-                        <JFXButton maxWidth="1.7976931348623157E308" text="Imprimir" GridPane.columnIndex="1">
+                        <JFXButton fx:id="btnImprimir" maxWidth="1.7976931348623157E308" text="Imprimir" GridPane.columnIndex="1" onAction="#onImprimir">
                             <styleClass>
                                 <String fx:value="button-bold" />
                                 <String fx:value="button-report-padding" />
@@ -69,12 +69,16 @@
         </VBox>
         <AnchorPane layoutY="102.0" prefHeight="400.0" prefWidth="758.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="102.0">
             <children>
-                <TableView layoutY="21.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="379.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="21.0">
+                <TableView fx:id="tablaReportTotal" layoutY="21.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="379.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="21.0">
                     <columns>
-                        <TableColumn prefWidth="36.0" text="idAuditoria" />
-                        <TableColumn prefWidth="49.0" text="Fecha" />
-                        <TableColumn prefWidth="75.0" text="Hora" />
-                        <TableColumn prefWidth="75.0" text="idUsuario" />
+                        <TableColumn fx:id="tbCedula" prefWidth="36.0" text="Cédula" />
+                        <TableColumn fx:id="tbNombre" prefWidth="49.0" text="Nombre" />
+                        <TableColumn fx:id="tbCestaTicke" prefWidth="75.0" text="Cesta ticket" />
+                        <TableColumn fx:id="tbSalarioIntegral" prefWidth="75.0" text="Sal. Integral" />
+                        <TableColumn fx:id="tbQuincena" prefWidth="36.0" text="Quincena" />
+                        <TableColumn fx:id="tbUtitilidades" prefWidth="49.0" text="Utilidades" />
+                        <TableColumn fx:id="tbVales" prefWidth="75.0" text="Vales" />
+                        <TableColumn fx:id="tbLiquidacion" prefWidth="75.0" text="Liquidación" />
                         <TableColumn prefWidth="75.0" text="NombreUsuario" />
                         <TableColumn prefWidth="75.0" text="Acción" />
                     </columns>

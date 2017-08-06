@@ -37,6 +37,12 @@
         WHERE idNomina = #{idNomina}
     </select>
 
+    <select id="selectForeighKey" parameterType="int" resultMap="result">
+        SELECT *
+        FROM rrhh.nomina
+        WHERE empleado_cedula = #{FK_cedula_empleado}
+    </select>
+
     <insert id="insert" parameterType="Nomina" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO rrhh.nomina (name) VALUES (#{name});
     </insert>

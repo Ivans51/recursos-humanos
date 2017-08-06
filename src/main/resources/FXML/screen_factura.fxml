@@ -6,6 +6,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,10 +16,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenFactura">
+<AnchorPane fx:id="anchor" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenFactura">
    <children>
-      <ScrollPane prefHeight="507.0" prefWidth="758.0" style="-fx-background-color: #FFF;">
+      <ScrollPane prefHeight="505.0" prefWidth="758.0" style="-fx-background-color: #FFF;">
         <content>
           <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="740.0" style="-fx-background-color: white;">
                <children>
@@ -42,7 +42,7 @@
                                     <Insets left="20.0" top="10.0" />
                                  </padding>
                               </Label>
-                              <JFXButton maxWidth="1.7976931348623157E308" text="Imprimir" GridPane.columnIndex="1">
+                              <JFXButton fx:id="btnImprimir" maxWidth="1.7976931348623157E308" onAction="#onImprimir" text="Imprimir" GridPane.columnIndex="1">
                                  <styleClass>
                                     <String fx:value="button-bold" />
                                     <String fx:value="button-report-padding" />
@@ -74,7 +74,8 @@
                            <children>
                               <Label layoutX="43.0" layoutY="17.0" text="Nombre de la empresa" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0" />
                               <Label layoutX="20.0" layoutY="35.0" text="RIF:j-20579375-1" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="35.0" />
-                              <Label layoutX="538.0" layoutY="10.0" text="01/05/2017 al 15/05/2017" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                              <Label layoutX="538.0" layoutY="10.0" text="Introducir Fecha" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                              <TextField fx:id="txtFechaPago" layoutX="526.0" layoutY="29.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="170.0" promptText="01/05/2017 al 15/05/2017" style="-fx-font-size: 12;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="35.0" />
                            </children>
                         </AnchorPane>
                         <HBox maxWidth="1.7976931348623157E308" spacing="20.0" styleClass="layot-color-four" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
@@ -99,9 +100,9 @@
                               </VBox>
                               <VBox layoutX="30.0" layoutY="20.0" prefHeight="115.0" prefWidth="177.0">
                                  <children>
-                                    <Label text="Oscar Sosa" />
-                                    <Label layoutX="10.0" layoutY="10.0" text="3840248903" />
-                                    <Label layoutX="10.0" layoutY="35.0" text="2167,40" />
+                                    <Label fx:id="lblNombreApellido" text="Oscar Sosa" />
+                                    <Label fx:id="lblCedula" layoutX="10.0" layoutY="10.0" text="3840248903" />
+                                    <Label fx:id="lblSalarioDiario" layoutX="10.0" layoutY="35.0" text="2167,40" />
                                  </children>
                               </VBox>
                               <VBox layoutX="263.0" layoutY="10.0" prefHeight="115.0" prefWidth="166.0">
@@ -113,9 +114,9 @@
                               </VBox>
                               <VBox layoutX="476.0" layoutY="10.0" prefHeight="115.0" prefWidth="195.0">
                                  <children>
-                                    <Label text="Gerente General" />
-                                    <Label layoutX="10.0" layoutY="10.0" text="06/03/2017" />
-                                    <Label layoutX="10.0" layoutY="35.0" text="65.022,00" />
+                                    <Label fx:id="lblCargo" text="Gerente General" />
+                                    <Label fx:id="lblFechaIngreso" layoutX="10.0" layoutY="10.0" text="06/03/2017" />
+                                    <Label fx:id="lblSalarioMensual" layoutX="10.0" layoutY="35.0" text="65.022,00" />
                                  </children>
                               </VBox>
                            </children>
@@ -147,12 +148,10 @@
                               </VBox>
                               <VBox layoutX="30.0" layoutY="20.0" prefHeight="141.0" prefWidth="45.0">
                                  <children>
-                                    <Label text="11" />
-                                    <Label layoutX="10.0" layoutY="10.0" text="4" />
-                                    <Label layoutX="10.0" layoutY="35.0" prefHeight="25.0" prefWidth="20.0" text="0" />
-                                    <Label layoutX="10.0" layoutY="60.0" text="0" />
-                                    <Label layoutX="10.0" layoutY="60.0" text="0" />
-                                    <Label layoutX="10.0" layoutY="85.0" text="0" />
+                                    <Label fx:id="lblDiasHabiles" text="11" />
+                                    <Label fx:id="lblDiasDescanso" layoutX="10.0" layoutY="10.0" text="4" />
+                                    <Label fx:id="lblBonoNocturno" layoutX="10.0" layoutY="35.0" prefHeight="25.0" prefWidth="20.0" text="0" />
+                                    <Label fx:id="lblDiasFeriados" layoutX="10.0" layoutY="85.0" text="0" />
                                  </children>
                                  <HBox.margin>
                                     <Insets top="10.0" />
@@ -160,13 +159,13 @@
                               </VBox>
                               <VBox layoutX="263.0" layoutY="10.0" prefHeight="141.0" prefWidth="138.0">
                                  <children>
-                                    <Label text="23.841,40" />
-                                    <Label layoutX="10.0" layoutY="10.0" text="8.669,60" />
-                                    <Label layoutX="10.0" layoutY="35.0" text="0" />
-                                    <Label layoutX="10.0" layoutY="60.0" text="0" />
-                                    <Label layoutX="10.0" layoutY="60.0" text="0" />
-                                    <Label layoutX="10.0" layoutY="85.0" text="0" />
-                                    <Label layoutX="10.0" layoutY="135.0" text="32.511,00" />
+                                    <Label fx:id="lblDiasHabilesCalc" text="23.841,40" />
+                                    <Label fx:id="lblDiasDescansoCalc" layoutX="10.0" layoutY="10.0" text="8.669,60" />
+                                    <Label fx:id="lblBonoNocturnoCalc" layoutX="10.0" layoutY="35.0" text="0" />
+                                    <Label fx:id="lblBonoLealtadCalc" layoutX="10.0" layoutY="60.0" text="0" />
+                                    <Label fx:id="lblDescansoLaboralCalc" layoutX="10.0" layoutY="60.0" text="0" />
+                                    <Label fx:id="lblDiasFeriadosCalc" layoutX="10.0" layoutY="85.0" text="0" />
+                                    <Label fx:id="lblTotalAsignaciones" layoutX="10.0" layoutY="135.0" text="32.511,00" />
                                  </children>
                                  <HBox.margin>
                                     <Insets left="20.0" top="10.0" />
@@ -188,13 +187,13 @@
                               </VBox>
                               <VBox layoutX="213.0" layoutY="10.0" prefHeight="115.0" prefWidth="177.0">
                                  <children>
-                                    <Label text="325,11" />
-                                    <Label layoutX="10.0" layoutY="10.0" text="1.300,44" />
-                                    <Label layoutX="10.0" layoutY="35.0" text="162,56" />
-                                    <Label layoutX="10.0" layoutY="35.0" text="0" />
-                                    <Label layoutX="10.0" layoutY="60.0" text="0" />
+                                    <Label fx:id="lblFaov" text="325,11" />
+                                    <Label fx:id="lblIVSS" layoutX="10.0" layoutY="10.0" text="1.300,44" />
+                                    <Label fx:id="lblParoForzoso" layoutX="10.0" layoutY="35.0" text="162,56" />
+                                    <Label fx:id="lblPrestamo" layoutX="10.0" layoutY="35.0" text="0" />
+                                    <Label fx:id="lblDiasNoLaborados" layoutX="10.0" layoutY="60.0" text="0" />
                                     <Label layoutX="10.0" layoutY="85.0" />
-                                    <Label layoutX="10.0" layoutY="110.0" text="1.788,11" />
+                                    <Label fx:id="lblTotalDeduciones" layoutX="10.0" layoutY="110.0" text="1.788,11" />
                                  </children>
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" top="10.0" />
@@ -213,7 +212,7 @@
                                  </HBox.margin>
                               </Label>
                               <Label layoutX="40.0" layoutY="15.0" maxWidth="1.7976931348623157E308" text="Total a Cancelar" />
-                              <Label layoutX="573.0" layoutY="15.0" maxWidth="1.7976931348623157E308" text="30.897,704" />
+                              <Label fx:id="lblTotal" layoutX="573.0" layoutY="15.0" maxWidth="1.7976931348623157E308" text="30.897,704" />
                            </children>
                         </HBox>
                      </children>

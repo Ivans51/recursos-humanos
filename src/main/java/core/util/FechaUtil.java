@@ -29,9 +29,12 @@ public class FechaUtil {
         return timestamp;
     }
 
-    public static String getDateFormat() throws ParseException {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        return dateFormat.format(date);
+    public static String getDateFormat(Date date) throws ParseException {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        if (date == null)
+            return dateFormat.format(FechaUtil.date);
+        else
+            return dateFormat.format(date);
     }
 
     public static String getDateFormatTime() {

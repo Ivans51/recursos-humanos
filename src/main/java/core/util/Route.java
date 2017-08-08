@@ -27,8 +27,8 @@ public class Route {
     public static String ScreenTableEmpleados = "/FXML/screen_table_empleados.fxml";
     public static String ScreenTableLiquidacion = "/FXML/screen_liquidacion.fxml";
     public static String ScreenTableUser = "/FXML/screen_table_user.fxml";
-    public static String ScreenTableCapacitacion = "/FXML/screen_table_capacitacion.fxml";
-    public static String ScreenTableSeleccion = "/FXML/screen_table_seleccion_personal.fxml";
+    public static String ScreenTableCapacitacion = "/FXML/screen_tabla_capacitacion.fxml";
+    public static String ScreenTableSeleccion = "/FXML/screen_tabla_seleccion_personal.fxml";
     public static String ScreenUpdateValores = "/FXML/screen_update_valores.fxml";
     public static String ScreenWelcome = "/FXML/screen_welcome.fxml";
     public static String SessionEmpleado = "/FXML/session_empleado.fxml";

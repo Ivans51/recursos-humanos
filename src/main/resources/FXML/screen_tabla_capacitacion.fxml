@@ -101,6 +101,7 @@
                 <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" spacing="30.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <children>
                         <JFXButton fx:id="btnCancelar" layoutX="419.0" layoutY="15.0" onAction="#onClickCancelar" styleClass="button-bold" text="Cancelar" />
+                        <JFXButton fx:id="btnInsert" layoutX="490.0" layoutY="15.0" onAction="#onClickInsert" styleClass="button-bold" text="Insertar" />
                         <JFXButton fx:id="btnActualizar" layoutX="490.0" layoutY="15.0" onAction="#onClickUpdate" styleClass="button-bold" text="Actualizar" />
                     </children>
                     <padding>

@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import core.conexion.connection.MyBatisConnection;
 import core.conexion.dao.SeleccionPersonalDAO;
-import core.conexion.vo.Capacitacion;
 import core.conexion.vo.SeleccionPersonal;
 import core.util.*;
 import javafx.collections.ListChangeListener;
@@ -28,13 +27,13 @@ public class ScreenTablaSeleccionPersonal extends ManagerFXML implements Initial
     public JFXTextField nombreCandidato, txtCedula, txtDireccion, txtTelefono, txtPuesto, txtDisponibillidad;
     public TableView<SeleccionPersonal> tablaSeleccion;
     public TableColumn tbNombre, tbCedula, tbDireccion, tbTelefono, tbPuesto, tbDisponibildad;
-    public JFXButton btnCancelar, btnActualizar;
+    public JFXButton btnCancelar, btnActualizar, btnInsertar;
     public AnchorPane anchorPane;
 
     public TableUtil table;
     private String[] tableS = {"nombreCandidato", "cedula", "direccion", "telefono", "puestoPostulacion", "disponibilidad"};
     private List<SeleccionPersonal> seleccionPersonals;
-    private SeleccionPersonal seleccionPersonal;
+    private SeleccionPersonal seleccionPersonal = new SeleccionPersonal();
     private SeleccionPersonalDAO seleccionPersonalDAO = new SeleccionPersonalDAO(MyBatisConnection.getSqlSessionFactory());
 
     @Override
@@ -55,6 +54,15 @@ public class ScreenTablaSeleccionPersonal extends ManagerFXML implements Initial
         seleccionPersonals = seleccionPersonalDAO.selectAll();
     }
 
+    public void onClickInsert(ActionEvent event) {
+        insertDatos();
+    }
+
+    private void insertDatos() {
+        seleccionPersonalDAO.insert(getContratacionSeleccion());
+        selectCapacitacion();
+        tablaSeleccion.refresh();
+    }
 
     public void onClickUpdate(ActionEvent event) {
         try {
@@ -63,13 +71,12 @@ public class ScreenTablaSeleccionPersonal extends ManagerFXML implements Initial
             myexception.printStackTrace();
         }
     }
-    private void updateDatosSeleccion() throws Myexception{
-        getContratacionSeleccion();
-        seleccionPersonalDAO.update(seleccionPersonal);
+
+    private void updateDatosSeleccion() throws Myexception {
+        seleccionPersonalDAO.update(getContratacionSeleccion());
         selectCapacitacion();
         tablaSeleccion.refresh();
     }
-
 
     private SeleccionPersonal getContratacionSeleccion() {
         seleccionPersonal.setCedula(txtCedula.getText());
@@ -81,11 +88,10 @@ public class ScreenTablaSeleccionPersonal extends ManagerFXML implements Initial
         return seleccionPersonal;
     }
 
-
     @Override
     public void setStatusControls() {
         if (table.getModel() != null) {
-            seleccionPersonal= (SeleccionPersonal) table.getModel();
+            seleccionPersonal = (SeleccionPersonal) table.getModel();
             // Pongo los textFields con los datos correspondientes
             nombreCandidato.setText(seleccionPersonal.getNombreCandidato());
             txtCedula.setText(seleccionPersonal.getCedula());

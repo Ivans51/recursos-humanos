@@ -36,7 +36,9 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
             Route.ScreenContratoEmpleado,
             Route.ScreenGestionEmpleado,
             Route.ScreenTableLiquidacion,
-            Route.ScreenTableEmpleados
+            Route.ScreenTableEmpleados,
+            Route.ScreenTableCapacitacion,
+            Route.ScreenTableSeleccion
     };
 
     private String[] routesReport = {
@@ -48,7 +50,7 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
 
     public JFXButton nombreUsuario;
     public TitledPane titleAdministrar, titleReport, titleAyuda, titleValores;
-    public Label adminAgregar, adminGestion, adminLiquidaciones, adminBuscarEmpleados;
+    public Label adminAgregar, adminGestion, adminLiquidaciones, adminBuscarEmpleados, adminCapacitacion, adminSeleccionPersonal;
     public Label reportFiltrado, reportPagos, reportFactura;
     public MenuItem itemAddEmpleados, itemOpcionesReport, itemOpcionesCerrar,
             itemToolUsuarios, itemToolRegistroSistema, itemToolManual, itemToolEstructura, itemSalir;
@@ -75,7 +77,7 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
         nombreUsuario.setText(Storage.getUsuario().getNombreUsuario());
     }
 
-    /* Panel iquierdo */
+    /* Styles Panel iquierdo */
     public void onHandleEvent(MouseEvent mouseEvent) {
         titleAdministrar.getStyleClass().add("title-click");
     }
@@ -100,8 +102,8 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
 
     public void abrirGestionEmpleado(MouseEvent mouseEvent) {
         cambiarSceneMultiple(mouseEvent, routesEmpleados, loadRoot ->
-                        cambiarEscena(loadRoot, rootPane),
-                adminAgregar, adminGestion, adminLiquidaciones, adminBuscarEmpleados
+                        cambiarEscena(loadRoot, rootPane), adminAgregar, adminGestion,
+                adminLiquidaciones, adminBuscarEmpleados, adminCapacitacion, adminSeleccionPersonal
         );
     }
 

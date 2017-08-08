@@ -55,8 +55,8 @@ public class ScreenGestionEmpleado extends ManagerFXML implements Initializable 
     }
 
     private void startEmpleado() {
-//        /*if (ScreenTableEmpleados.empleado != null)
-//            empleadoG = ScreenTableEmpleados.empleado;*/
+        if (ScreenTableEmpleados.empleado != null)
+            empleadoG = ScreenTableEmpleados.empleado;
         txtCedula.setText(empleadoG.getCedula());
         txtNombreApellido.setText(empleadoG.getNombreEmpleado());
         txtCargo.setText(empleadoG.getCargo());

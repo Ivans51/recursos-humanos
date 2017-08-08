@@ -35,7 +35,7 @@
         FROM rrhh.empleado;
     </select>
 
-    <select id="selectById" parameterType="int" resultMap="result">
+    <select id="selectById" parameterType="string" resultMap="result">
         SELECT *
         FROM rrhh.empleado
         WHERE cedula = #{cedula}

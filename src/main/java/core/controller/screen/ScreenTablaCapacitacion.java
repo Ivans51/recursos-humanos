@@ -30,13 +30,13 @@ public class ScreenTablaCapacitacion extends ManagerFXML implements Initializabl
     public JFXTextField txtInstructor, txTipo, txtCedulaEmpleado, txtNombreEmpleado, txtDuracion;
     public JFXDatePicker dateFechaCulminacion;
     public TableColumn tbInstructor, tbTipo, tbCedula, tdNombre, tbFechaInicio;
-    public JFXButton btnCancelar, btnActualizar;
+    public JFXButton btnCancelar, btnActualizar, btnInsert;
     public AnchorPane anchorPane;
 
     public TableUtil table;
     private String[] tableS = {"instructor", "tipo", "cedulaEmpleado", "nombreEmpleado", "fechaInicio"};
     private List<Capacitacion> capacitacionList;
-    private Capacitacion capacitacion;
+    private Capacitacion capacitacion = new Capacitacion();
     private CapacitacionDAO capacitacionDAO = new CapacitacionDAO(MyBatisConnection.getSqlSessionFactory());
 
     @Override
@@ -71,6 +71,12 @@ public class ScreenTablaCapacitacion extends ManagerFXML implements Initializabl
         }
     }
 
+    public void onClickInsert(ActionEvent event) {
+        capacitacionDAO.insert(getContratacionData());
+        selectCapacitacion();
+        tablaCapacitacion.refresh();
+    }
+
     public void onClickUpdate(ActionEvent event) {
         try {
             updateDatosContratacion();
@@ -80,8 +86,7 @@ public class ScreenTablaCapacitacion extends ManagerFXML implements Initializabl
     }
 
     private void updateDatosContratacion() throws Myexception{
-        getContratacionData();
-        capacitacionDAO.update(capacitacion);
+        capacitacionDAO.update(getContratacionData());
         selectCapacitacion();
         tablaCapacitacion.refresh();
     }

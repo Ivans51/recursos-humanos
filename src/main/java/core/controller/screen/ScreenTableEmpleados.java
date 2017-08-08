@@ -29,7 +29,7 @@ public class ScreenTableEmpleados extends ManagerFXML implements Initializable, 
     public JFXButton btnCerrar, btnBuscar;
     public TableView<EmpleadoContratacion> tableEmpleado;
     public TableColumn tbCedula, tbNombre, tbDireccion, tbFechaNac, tbCargos, tbStatus, tbSueldo, tbIngreso, tbCulminuacion;
-    public Empleado empleado;
+    public static Empleado empleado;
     private List<Empleado> empleados;
     private EmpleadoDAO empleadoDAO = new EmpleadoDAO(MyBatisConnection.getSqlSessionFactory());
     private String[] columS = {"cedula", "nombreEmpleado", "direccion", "fechaNac", "cargo",
@@ -38,7 +38,6 @@ public class ScreenTableEmpleados extends ManagerFXML implements Initializable, 
     private List<EmpleadoContratacion> empleadoContratacions = new ArrayList<>();
     private EmpleadoContratacion empleadoContratacion = new EmpleadoContratacion();
     private TableUtil<EmpleadoContratacion, String> table;
-    public String data;
     public String idCedula;
 
     @Override
@@ -108,10 +107,6 @@ public class ScreenTableEmpleados extends ManagerFXML implements Initializable, 
         }
     }
 
-    private void selectEmpleado(String data){
-        empleado = empleadoDAO.selectById(data);
-    }
-
     @Override
     public void setStatusControls() {
 
@@ -125,7 +120,7 @@ public class ScreenTableEmpleados extends ManagerFXML implements Initializable, 
                     empleadoContratacion = table.getTablaSeleccionada(tableEmpleado);
                     idCedula = empleadoContratacion.getCedula();
                     EmpleadoContratacion rowData = row.getItem();
-                    selectEmpleado(idCedula);
+                    empleado = empleadoDAO.selectById(idCedula);
                     cambiarEscena(Route.ScreenGestionEmpleado, anchorPane);
                     System.out.println(rowData);
                 }

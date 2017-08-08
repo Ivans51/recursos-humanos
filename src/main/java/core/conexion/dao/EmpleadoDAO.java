@@ -74,7 +74,7 @@ public class EmpleadoDAO {
      *
      * @param id the instance to be persisted.
      */
-    public Empleado selectById(int id) {
+    public Empleado selectById(String id) {
         Empleado person = null;
         SqlSession session = sqlSessionFactory.openSession();
         try {

@@ -50,7 +50,7 @@ public class ScreenAddUser extends ManagerFXML implements Initializable, TableUt
         nacionalidad.setItems(listNacionalidadCombo);
 
         // Iniciailizar tabla
-        table = new TableUtil(Usuario.class, tablaUsuarios, null,null);
+        table = new TableUtil(Usuario.class, tablaUsuarios);
         table.inicializarTabla(tableS, tbIdUsuario, tbNombreUsuario, tbCorreo, tbNivelUsuario, tbCedula, tbStatus);
 
         // Seleccionar las tuplas de la tabla de las listTable

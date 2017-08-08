@@ -36,15 +36,15 @@ public class ScreenFactura extends ManagerFXML implements Initializable {
     public Label lblTotalAsignaciones, lblFaov, lblIVSS, lblParoForzoso, lblPrestamo, lblDiasNoLaborados;
     public Label lblTotalDeduciones,  lblTotal;
 
-    EmpleadoDAO empleadoDAO = new EmpleadoDAO(MyBatisConnection.getSqlSessionFactory());
-    Empleado empleado = new Empleado();
-    ContratacionDAO contratacionDAO = new ContratacionDAO(MyBatisConnection.getSqlSessionFactory());
-    Contratacion contratacion = new Contratacion();
-    NominaDAO nominaDAO = new NominaDAO(MyBatisConnection.getSqlSessionFactory());
-    Nomina nomina = new Nomina();
-    ValoresDAO valoresDAO = new ValoresDAO(MyBatisConnection.getSqlSessionFactory());
-    Valores valores = new Valores();
-    CalculoQuincena quincena;
+    private EmpleadoDAO empleadoDAO = new EmpleadoDAO(MyBatisConnection.getSqlSessionFactory());
+    private Empleado empleado = new Empleado();
+    private ContratacionDAO contratacionDAO = new ContratacionDAO(MyBatisConnection.getSqlSessionFactory());
+    private Contratacion contratacion = new Contratacion();
+    private NominaDAO nominaDAO = new NominaDAO(MyBatisConnection.getSqlSessionFactory());
+    private Nomina nomina = new Nomina();
+    private ValoresDAO valoresDAO = new ValoresDAO(MyBatisConnection.getSqlSessionFactory());
+    private Valores valores = new Valores();
+    private CalculoQuincena quincena;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -69,7 +69,7 @@ public class ScreenFactura extends ManagerFXML implements Initializable {
     }
 
     private void hacerConsulta() {
-        empleado = empleadoDAO.selectById(123);
+        empleado = empleadoDAO.selectById("123");
         nomina = nominaDAO.selectForeighKey(123);
         contratacion = contratacionDAO.selectByForeighKey(123);
         valores = valoresDAO.selectByIdLastDate();

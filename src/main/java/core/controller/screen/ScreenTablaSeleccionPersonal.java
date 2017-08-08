@@ -40,7 +40,7 @@ public class ScreenTablaSeleccionPersonal extends ManagerFXML implements Initial
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Iniciailizar tabla
-        table = new TableUtil(SeleccionPersonal.class, tablaSeleccion, null, null);
+        table = new TableUtil(SeleccionPersonal.class, tablaSeleccion);
         table.inicializarTabla(tableS, tbNombre, tbCedula, tbDireccion, tbTelefono, tbPuesto, tbDisponibildad);
 
         // Seleccionar las tuplas de la tabla de las listTable

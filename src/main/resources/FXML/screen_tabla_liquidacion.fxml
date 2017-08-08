@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenTableLiquidacion">
+<AnchorPane fx:id="anchor" prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenTableLiquidacion">
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -40,13 +40,13 @@
         </VBox>
         <AnchorPane prefHeight="421.0" prefWidth="758.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="86.0">
             <children>
-                <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="382.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <TableView fx:id="tablaLiquidacion" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="382.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                        <TableColumn maxWidth="-Infinity" text="Id Usuario" />
-                        <TableColumn prefWidth="75.0" text="Nombre Usuario" />
-                        <TableColumn prefWidth="75.0" text="Correo" />
-                        <TableColumn prefWidth="75.0" text="Nivel Acceso" />
-                        <TableColumn prefWidth="75.0" text="Cédula" />
+                        <TableColumn fx:id="tbIdUsuario" maxWidth="-Infinity" text="Id Usuario" />
+                        <TableColumn fx:id="tbNombreUsuario" prefWidth="75.0" text="Nombre Usuario" />
+                        <TableColumn fx:id="tbCorreo" prefWidth="75.0" text="Correo" />
+                        <TableColumn fx:id="tbNivelAcceso" prefWidth="75.0" text="Nivel Acceso" />
+                        <TableColumn fx:id="tbCedula" prefWidth="75.0" text="Cédula" />
                     </columns>
                     <padding>
                         <Insets left="20.0" right="20.0" top="20.0" />
@@ -56,7 +56,7 @@
         </AnchorPane>
         <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" spacing="30.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <JFXButton layoutX="490.0" layoutY="15.0" styleClass="button-bold" text="Cerrar" />
+                <JFXButton fx:id="btnCerrar" onAction="#onCerrar" layoutX="490.0" layoutY="15.0" styleClass="button-bold" text="Cerrar" />
             </children>
             <padding>
                 <Insets bottom="5.0" left="30.0" right="50.0" top="5.0" />

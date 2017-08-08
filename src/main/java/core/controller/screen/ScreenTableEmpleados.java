@@ -3,27 +3,19 @@ package core.controller.screen;
 import com.jfoenix.controls.JFXButton;
 import core.conexion.connection.MyBatisConnection;
 import core.conexion.dao.EmpleadoDAO;
-import core.conexion.vo.Contratacion;
+import core.conexion.model.EmpleadoContratacion;
 import core.conexion.vo.Empleado;
-import core.conexion.vo.Usuario;
-import core.util.ManagerFXML;
-import core.util.Myexception;
-import core.util.Route;
-import core.util.TableUtil;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
+import core.util.*;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Callback;
 
 import java.net.URL;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -35,50 +27,89 @@ public class ScreenTableEmpleados extends ManagerFXML implements Initializable, 
     public AnchorPane anchorPane;
     public TextField txtBuscarCedula;
     public JFXButton btnCerrar, btnBuscar;
-    public TableView tableEmpleado;
+    public TableView<EmpleadoContratacion> tableEmpleado;
     public TableColumn tbCedula, tbNombre, tbDireccion, tbFechaNac, tbCargos, tbStatus, tbSueldo, tbIngreso, tbCulminuacion;
-    private EmpleadoDAO empleadoDAO = new EmpleadoDAO(MyBatisConnection.getSqlSessionFactory());
-    private String[] columS = {
-            "cedula", "nombreEmpleado", "direccion", "fechaNacimiento", "cargo",
-            "status", "contratacion"};
-
+    public Empleado empleado;
     private List<Empleado> empleados;
-    private TableUtil<Empleado, String, Empleado, Contratacion> table;
-    public static Empleado empleado;
+    private EmpleadoDAO empleadoDAO = new EmpleadoDAO(MyBatisConnection.getSqlSessionFactory());
+    private String[] columS = {"cedula", "nombreEmpleado", "direccion", "fechaNac", "cargo",
+            "statusActual", "sueldo", "fechaIngreso", "fechaCulminacion"};
+
+    private List<EmpleadoContratacion> empleadoContratacions = new ArrayList<>();
+    private EmpleadoContratacion empleadoContratacion = new EmpleadoContratacion();
+    private TableUtil<EmpleadoContratacion, String> table;
+    public String data;
+    public String idCedula;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Iniciailizar tabla
-        table = new TableUtil(Empleado.class, tableEmpleado, Empleado.class, Contratacion.class);
+        table = new TableUtil(EmpleadoContratacion.class, tableEmpleado);
 
-        table.inicializarTablaMultiple(columS, 6, (s, i, startSecondModel, columns) -> {
-            columns[i].setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Empleado, String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<Empleado, String> param) {
-                    String cargo = String.valueOf(param.getValue().getContratacion().getSalario());
-                    return new SimpleStringProperty(cargo);
-                }
-            });
-        }, tbCedula, tbNombre, tbDireccion, tbFechaNac, tbCargos, tbStatus, tbSueldo, tbIngreso, tbCulminuacion);
+        table.inicializarTabla(columS, tbCedula, tbNombre, tbDireccion, tbFechaNac, tbCargos, tbStatus, tbSueldo, tbIngreso, tbCulminuacion);
 
-        final ObservableList<Usuario> tablaSelecionada = tableEmpleado.getSelectionModel().getSelectedItems();
-        tablaSelecionada.addListener((ListChangeListener<Usuario>) c -> table.seleccionarTabla(this));
+        final ObservableList<EmpleadoContratacion> tablaSelecionada = tableEmpleado.getSelectionModel().getSelectedItems();
+        tablaSelecionada.addListener((ListChangeListener<EmpleadoContratacion>) c -> table.seleccionarTabla(this));
         // Llenar Tabla
         selectAllEmpleadoContrato();
-        table.getListTable().addAll(empleados);
+        table.getListTable().addAll(empleadoContratacions);
         doubleClickRow();
     }
 
     private void selectAllEmpleadoContrato() {
         empleados = empleadoDAO.selectAllEmpleadoContrato();
+        for (int i = 0; i < empleados.size(); i++) {
+            try {
+                String fechaNac = FechaUtil.getDateFormat(empleados.get(i).getFechaNacimiento());
+                String fechaIngreso = FechaUtil.getDateFormat(empleados.get(i).getContratacion().getFechaInicio());
+                String fechaCulminacion = FechaUtil.getDateFormat(empleados.get(i).getContratacion().getFechaCulminacion());
+                empleadoContratacion = new EmpleadoContratacion();
+                empleadoContratacion.setCedula(empleados.get(i).getCedula());
+                empleadoContratacion.setNombreEmpleado(empleados.get(i).getNombreEmpleado());
+                empleadoContratacion.setDireccion(empleados.get(i).getDireccion());
+                empleadoContratacion.setFechaNac(fechaNac);
+                empleadoContratacion.setCargo(empleados.get(i).getCargo());
+                empleadoContratacion.setStatusActual(empleados.get(i).getStatus());
+                empleadoContratacion.setSueldo(String.valueOf(empleados.get(i).getContratacion().getSalario()));
+                empleadoContratacion.setFechaIngreso(fechaIngreso);
+                empleadoContratacion.setFechaCulminacion(fechaCulminacion);
+                empleadoContratacions.add(empleadoContratacion);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void onBuscar(ActionEvent event) throws Myexception {
-        table.getListTable().remove(empleados);
+        table.getListTable().removeAll(empleadoContratacions);
         empleado = new Empleado();
         empleado = empleadoDAO.selectByEmpleadoContrato(txtBuscarCedula.getText());
-        table.getListTable().add(empleado);
+        selectEmpleadoContratacion();
+        table.getListTable().add(empleadoContratacion);
         tableEmpleado.refresh();
+    }
+
+    private void selectEmpleadoContratacion() {
+        try {
+            String fechaNac = FechaUtil.getDateFormat(empleado.getFechaNacimiento());
+            String fechaIngreso = FechaUtil.getDateFormat(empleado.getContratacion().getFechaInicio());
+            String fechaCulminacion = FechaUtil.getDateFormat(empleado.getContratacion().getFechaCulminacion());
+            empleadoContratacion.setCedula(empleado.getCedula());
+            empleadoContratacion.setNombreEmpleado(empleado.getNombreEmpleado());
+            empleadoContratacion.setDireccion(empleado.getDireccion());
+            empleadoContratacion.setFechaNac(fechaNac);
+            empleadoContratacion.setCargo(empleado.getCargo());
+            empleadoContratacion.setStatusActual(empleado.getStatus());
+            empleadoContratacion.setSueldo(String.valueOf(empleado.getContratacion().getSalario()));
+            empleadoContratacion.setFechaIngreso(fechaIngreso);
+            empleadoContratacion.setFechaCulminacion(fechaCulminacion);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void selectEmpleado(String data){
+        empleado = empleadoDAO.selectById(data);
     }
 
     @Override
@@ -88,11 +119,13 @@ public class ScreenTableEmpleados extends ManagerFXML implements Initializable, 
 
     private void doubleClickRow() {
         tableEmpleado.setRowFactory(tv -> {
-            TableRow<Empleado> row = new TableRow<>();
+            TableRow<EmpleadoContratacion> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                    empleado = table.getTablaSeleccionada(tableEmpleado);
-                    Empleado rowData = row.getItem();
+                    empleadoContratacion = table.getTablaSeleccionada(tableEmpleado);
+                    idCedula = empleadoContratacion.getCedula();
+                    EmpleadoContratacion rowData = row.getItem();
+                    selectEmpleado(idCedula);
                     cambiarEscena(Route.ScreenGestionEmpleado, anchorPane);
                     System.out.println(rowData);
                 }

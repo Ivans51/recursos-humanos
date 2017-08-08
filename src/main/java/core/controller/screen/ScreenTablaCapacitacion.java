@@ -43,7 +43,7 @@ public class ScreenTablaCapacitacion extends ManagerFXML implements Initializabl
     public void initialize(URL location, ResourceBundle resources) {
 
         // Iniciailizar tabla
-        table = new TableUtil(Capacitacion.class, tablaCapacitacion, null,null);
+        table = new TableUtil(Capacitacion.class, tablaCapacitacion);
         table.inicializarTabla(tableS, tbInstructor, tbTipo, tbCedula, tdNombre, tbFechaInicio);
 
         // Seleccionar las tuplas de la tabla de las listTable

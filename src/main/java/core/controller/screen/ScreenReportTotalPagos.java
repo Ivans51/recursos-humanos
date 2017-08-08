@@ -36,7 +36,7 @@ public class ScreenReportTotalPagos extends ManagerFXML implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Iniciailizar tabla
-        table = new TableUtil(Empleado.class, tablaReportTotal, null, null);
+        table = new TableUtil(Empleado.class, tablaReportTotal);
         table.inicializarTabla(tableS, tbCedula, tbNombre, tbCestaTicke, tbSalarioIntegral,tbQuincena, tbUtitilidades, tbVales, tbLiquidacion);
 
         // Seleccionar las tuplas de la tabla de las listTable

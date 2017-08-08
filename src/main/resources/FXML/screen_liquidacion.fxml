@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="anchor" prefHeight="510.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenLiquidacion">
+    <children>
+      <ScrollPane layoutX="10.0" layoutY="10.0" prefHeight="570.0" prefWidth="740.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="738.0" style="-fx-background-color: white;">
+               <children>
+                  <VBox maxWidth="1.7976931348623157E308" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <GridPane maxWidth="1.7976931348623157E308">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="653.0" minWidth="10.0" prefWidth="622.0" />
+                              <ColumnConstraints maxWidth="226.0" minWidth="10.0" prefWidth="136.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Cars CA">
+                                 <styleClass>
+                                    <String fx:value="label-bold" />
+                                    <String fx:value="label-font-medium" />
+                                 </styleClass>
+                                 <padding>
+                                    <Insets left="20.0" top="10.0" />
+                                 </padding>
+                              </Label>
+                              <JFXButton fx:id="btnImprimir" maxWidth="1.7976931348623157E308" onAction="#onImprimir" text="Imprimir" GridPane.columnIndex="1">
+                                 <styleClass>
+                                    <String fx:value="button-bold" />
+                                    <String fx:value="button-report-padding" />
+                                    <String fx:value="button-black" />
+                                 </styleClass>
+                                 <graphic>
+                                    <ImageView fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons/Print_96px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </GridPane>
+                        <Label layoutX="10.0" layoutY="10.0" text="Imprimia la liquidación del empleado">
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <AnchorPane layoutY="80.0" prefWidth="740.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+                     <children>
+                        <HBox maxWidth="1.7976931348623157E308" spacing="20.0" styleClass="layot-color-four" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets bottom="5.0" left="30.0" top="5.0" />
+                           </padding>
+                           <children>
+                              <Label text="Datos del empleado" />
+                           </children>
+                        </HBox>
+                        <HBox layoutY="105.0" prefHeight="80.0" prefWidth="768.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+                           <children>
+                              <VBox prefHeight="105.0" prefWidth="163.0">
+                                 <children>
+                                    <Label text="Nombre y Apellido" />
+                                    <Label layoutX="10.0" layoutY="10.0" text="Cédula" />
+                                    <Label layoutX="10.0" layoutY="35.0" text="Último Salario" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="20.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <VBox layoutX="30.0" layoutY="20.0" prefHeight="115.0" prefWidth="177.0">
+                                 <children>
+                                    <Label fx:id="lblNombreApellido" text="Oscar Sosa" />
+                                    <Label fx:id="lblCedula" layoutX="10.0" layoutY="10.0" text="3840248903" />
+                                    <Label fx:id="lblUltimoSalario" layoutX="10.0" layoutY="35.0" text="2167,40" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_RIGHT" layoutX="263.0" layoutY="10.0" prefHeight="115.0" prefWidth="166.0">
+                                 <children>
+                                    <Label text="Cargo" />
+                                    <Label layoutX="10.0" layoutY="10.0" text="Fecha de Ingreso" />
+                                    <Label layoutX="10.0" layoutY="35.0" text="Fecha de retiro" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets right="40.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <VBox layoutX="476.0" layoutY="10.0" prefHeight="115.0" prefWidth="195.0">
+                                 <children>
+                                    <Label fx:id="lblCargo" text="Gerente General" />
+                                    <Label fx:id="lblFechaIngreso" layoutX="10.0" layoutY="10.0" text="06/03/2017" />
+                                    <Label fx:id="lblFechaRetiro" layoutX="10.0" layoutY="35.0" text="06/03/2017" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutY="197.0" maxWidth="1.7976931348623157E308" spacing="80.0" styleClass="layot-color-four" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
+                           <padding>
+                              <Insets bottom="5.0" left="30.0" top="5.0" />
+                           </padding>
+                           <children>
+                              <Label text="Descripción" />
+                              <Label layoutX="40.0" layoutY="15.0" maxWidth="1.7976931348623157E308" text="Salario / Deveng." />
+                              <Label layoutX="546.0" layoutY="15.0" maxWidth="1.7976931348623157E308" text="Dias / Alicuota" />
+                              <Label layoutX="714.0" layoutY="15.0" maxWidth="1.7976931348623157E308" text="Total Bs." />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="115.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="155.0">
+                           <children>
+                              <VBox maxWidth="1.7976931348623157E308">
+                                 <children>
+                                    <Label text="Asignaciones" />
+                                    <Label layoutX="10.0" layoutY="10.0" text="Antiguedad" />
+                                    <Label layoutX="10.0" layoutY="10.0" text="Vacaciones" />
+                                    <Label layoutX="10.0" layoutY="35.0" text="Bono Vacacional" />
+                                    <Label layoutX="10.0" layoutY="10.0" text="Utilidades" />
+                                    <Label layoutX="10.0" layoutY="35.0" text="Intereses sobre prestaciones" />
+                                    <Label layoutX="10.0" layoutY="60.0" text="Total Asignaciones" />
+                                    <Label layoutX="10.0" layoutY="135.0" text="Deduciones" />
+                                    <Label layoutX="10.0" layoutY="160.0" text="I.N.C.E" />
+                                    <Label layoutX="10.0" layoutY="185.0" text="Total de Deduciones" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="20.0" top="10.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <VBox alignment="TOP_RIGHT" layoutX="263.0" layoutY="10.0" maxWidth="1.7976931348623157E308">
+                                 <children>
+                                    <Label layoutX="10.0" layoutY="10.0" />
+                                    <Label fx:id="lblAntiguedad" layoutX="10.0" layoutY="10.0" text="501.71" />
+                                    <Label fx:id="lblVacaciones" layoutX="10.0" layoutY="35.0" text="501.71" />
+                                    <Label fx:id="lblBonoVacacional" layoutX="10.0" layoutY="60.0" text="501.71" />
+                                    <Label fx:id="lblUtilidades" layoutX="10.0" layoutY="60.0" text="90111.98" />
+                                    <Label fx:id="lblIntereses" layoutX="10.0" layoutY="85.0" text="51975.36" />
+                                    <Label layoutX="10.0" layoutY="135.0" />
+                                    <Label layoutX="10.0" layoutY="135.0" />
+                                    <Label layoutX="10.0" layoutY="185.0" />
+                                    <Label fx:id="lblTotalDeduciones" layoutX="10.0" layoutY="160.0" text="37.55" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="80.0" top="10.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <VBox alignment="TOP_RIGHT" layoutX="476.0" layoutY="10.0">
+                                 <children>
+                                    <Label />
+                                    <Label fx:id="lblAntiguedadAlicuotas" layoutX="10.0" layoutY="10.0" text="60" />
+                                    <Label fx:id="lblVacacionesAlicuota" layoutX="10.0" layoutY="35.0" text="12.50" />
+                                    <Label fx:id="lblBonoVacacionalAlicuota" layoutX="10.0" layoutY="35.0" text="12.50" />
+                                    <Label fx:id="lblUtilidadesAlicuota" layoutX="10.0" layoutY="60.0" text="0.08333" />
+                                    <Label layoutX="10.0" layoutY="85.0" />
+                                    <Label layoutX="10.0" layoutY="110.0" />
+                                    <Label layoutX="10.0" layoutY="160.0" />
+                                    <Label layoutX="10.0" layoutY="185.0" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="90.0" top="10.0" />
+                                 </HBox.margin>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </VBox>
+                              <VBox alignment="TOP_RIGHT" layoutX="213.0" layoutY="10.0">
+                                 <children>
+                                    <Label />
+                                    <Label fx:id="lblAntiguedadTotal" layoutX="10.0" layoutY="10.0" text="30102.30" />
+                                    <Label fx:id="lblVacacionesTotal" layoutX="10.0" layoutY="35.0" text="6271.31" />
+                                    <Label fx:id="lblBonoVacacionalTotal" layoutX="10.0" layoutY="35.0" text="6271.31" />
+                                    <Label fx:id="lblUtilidadTotal" layoutX="10.0" layoutY="60.0" text="7509.94" />
+                                    <Label fx:id="lblInteresesTotal" layoutX="10.0" layoutY="85.0" text="1.788,11" />
+                                    <Label layoutX="10.0" layoutY="110.0" />
+                                    <Label layoutX="10.0" layoutY="110.0" />
+                                    <Label fx:id="lblINCETotal" layoutX="10.0" layoutY="185.0" text="37.55" />
+                                    <Label fx:id="lblDeducionesTotal" layoutX="10.0" layoutY="210.0" text="37.55" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="20.0" top="10.0" />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" layoutY="337.0" maxWidth="1.7976931348623157E308" spacing="20.0" styleClass="layot-color-four" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <padding>
+                              <Insets bottom="5.0" left="30.0" right="30.0" top="5.0" />
+                           </padding>
+                           <children>
+                              <Label layoutX="40.0" layoutY="15.0" maxWidth="1.7976931348623157E308" text="Total a Cancelar" />
+                              <Label fx:id="lblLiquidacionTotal" layoutX="573.0" layoutY="15.0" maxWidth="1.7976931348623157E308" text="30.897,704" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+                    <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <children>
+                            <JFXButton fx:id="btnCerrar" layoutX="490.0" layoutY="15.0" onAction="#onCerrar" styleClass="button-bold" text="Cerrar" />
+                        </children>
+                        <padding>
+                            <Insets bottom="5.0" left="30.0" right="50.0" top="5.0" />
+                        </padding>
+                    </HBox>
+               </children>
+            </AnchorPane>
+         </content>
+         <stylesheets>
+            <URL value="@../CSS/styles-button.css" />
+            <URL value="@../CSS/styles-input.css" />
+            <URL value="@../CSS/styles-layout.css" />
+            <URL value="@../CSS/styles-label.css" />
+         </stylesheets>
+      </ScrollPane>
+    </children>
+    <stylesheets>
+        <URL value="@../CSS/styles-button.css" />
+        <URL value="@../CSS/styles-layout.css" />
+        <URL value="@../CSS/styles-label.css" />
+        <URL value="@../CSS/styles-input.css" />
+    </stylesheets>
+</AnchorPane>

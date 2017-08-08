@@ -12,21 +12,17 @@ import java.util.List;
 /**
  * Created by Ivans on 8/3/2017.
  */
-public class TableUtil<T, V, S, U> {
+public class TableUtil<T, V> {
 
     public TableColumn[] tableColumns;
     private T model;
-    private S modelMultipleFirst;
-    private U modelSecond;
     private ObservableList<T> listTable;
     private TableView<T> tablaUsuarios;
     private int posicionPersonaEnTabla;
 
-    public TableUtil(T model, TableView<T> tablaUsuarios, @Nullable S modelMultipleFirst, @Nullable U modelSecond) {
+    public TableUtil(T model, TableView<T> tablaUsuarios) {
         this.model = model;
         this.tablaUsuarios = tablaUsuarios;
-        this.modelMultipleFirst = modelMultipleFirst;
-        this.modelSecond = modelSecond;
     }
 
     /**
@@ -38,25 +34,6 @@ public class TableUtil<T, V, S, U> {
     public void inicializarTabla(String[] s, TableColumn... columns) {
         for (int i = 0; i < columns.length; i++) {
             columns[i].setCellValueFactory(new PropertyValueFactory<T, V>(s[i]));
-        }
-        listTable = FXCollections.observableArrayList();
-        this.tablaUsuarios.setItems(listTable);
-    }
-
-    /**
-     * Método para inicializar la tabla
-     *
-     * @param s
-     * @param columns
-     * @param startSecondModel
-     */
-    public void inicializarTablaMultiple(String[] s, int startSecondModel, TableForeignKeig foreignKeig, TableColumn... columns) {
-        tableColumns = columns;
-        for (int i = 0; i < columns.length; i++) {
-            if (i <= startSecondModel)
-                columns[i].setCellValueFactory(new PropertyValueFactory<S, V>(s[i]));
-            else
-                foreignKeig.llenarRelacionTabla(s, i, startSecondModel, columns);
         }
         listTable = FXCollections.observableArrayList();
         this.tablaUsuarios.setItems(listTable);

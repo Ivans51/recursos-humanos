@@ -76,6 +76,7 @@
                                         <Insets bottom="30.0" />
                                     </VBox.margin>
                                 </JFXTextField>
+                        <JFXDatePicker fx:id="dateFechaInicio" />
                         <JFXDatePicker fx:id="dateFechaCulminacion" />
                         <JFXTextField fx:id="txtDuracion" alignment="TOP_LEFT" labelFloat="true" layoutX="40.0" layoutY="262.0" promptText="Duracion" />
                             </children>
@@ -89,7 +90,7 @@
                                 <TableColumn fx:id="tbTipo" prefWidth="75.0" text="Tipo" />
                                 <TableColumn fx:id="tbCedula" prefWidth="75.0" text="Cedula E" />
                                 <TableColumn fx:id="tdNombre" prefWidth="75.0" text="Nombre E" />
-                                <TableColumn fx:id="tbFechaInicio" prefWidth="75.0" text="Fecha I" />
+                                <TableColumn fx:id="tbInicio" prefWidth="75.0" text="Fecha I" />
                                 <TableColumn fx:id="tbDuracion" prefWidth="75.0" text="Duracion" />
                             </columns>
                         </TableView>

@@ -57,17 +57,16 @@ public class SeleccionPersonalDAO {
      * @param seleccionPersonal the instance to be persisted.
      */
     public int insert(SeleccionPersonal seleccionPersonal) {
-        int id = -1;
         SqlSession session = sqlSessionFactory.openSession();
 
         try {
-            id = session.insert("SeleccionPersonal.insert", seleccionPersonal);
+            session.insert("SeleccionPersonal.insert", seleccionPersonal);
         } finally {
             session.commit();
             session.close();
         }
         System.out.println("insert(" + seleccionPersonal + ") --> " + seleccionPersonal.getIdSeleccion());
-        return id;
+        return seleccionPersonal.getIdSeleccion();
     }
 
     /**

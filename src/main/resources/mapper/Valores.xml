@@ -36,7 +36,8 @@
     </select>
 
     <insert id="insert" parameterType="Valores" useGeneratedKeys="true" keyProperty="idvalores">
-        INSERT INTO rrhh.valores (name) VALUES (#{name});
+        INSERT INTO rrhh.valores (salario, precioUnidadTributaria, paroForzoso, IVSS, FAO, fecha, fk_id_usuario)
+        VALUES (#{salario}, #{precioUnidadTributaria}, #{paroForzoso}, #{IVSS}, #{FAO}, #{fecha}, #{fk_id_usuario});
     </insert>
 
     <update id="update" parameterType="Valores">

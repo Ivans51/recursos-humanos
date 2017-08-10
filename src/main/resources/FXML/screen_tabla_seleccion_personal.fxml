@@ -55,7 +55,7 @@
                     <children>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                             <children>
-                                <JFXTextField fx:id="nombreCandidato" alignment="TOP_LEFT" labelFloat="true" promptText="Nombre Candidato">
+                                <JFXTextField fx:id="txtNombreCandidato" alignment="TOP_LEFT" labelFloat="true" promptText="Nombre Candidato">
                                     <VBox.margin>
                                         <Insets bottom="30.0" />
                                     </VBox.margin>

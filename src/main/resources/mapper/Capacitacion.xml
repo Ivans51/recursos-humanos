@@ -26,21 +26,25 @@
     <select id="selectById" parameterType="int" resultMap="result">
         SELECT *
         FROM rrhh.capacitacion
-        WHERE idCapacitacion = #{id}
+        WHERE idCapacitacion = #{idSeleccion}
     </select>
 
-    <insert id="insert" parameterType="Capacitacion" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO rrhh.capacitacion (name) VALUES (#{name});
+    <insert id="insert" parameterType="Capacitacion" useGeneratedKeys="true" keyProperty="idCapacitacion">
+        INSERT INTO rrhh.capacitacion (instructor, tipo, nombreEmpleado, fechaInicio, fechaCulminacion, duracion, empleado_cedula)
+        VALUES (#{instructor}, #{tipo}, #{nombreEmpleado}, #{fechaInicio}, #{fechaCulminacion}, #{duracion},
+                #{FK_cedula_empleado});
     </insert>
 
     <update id="update" parameterType="Capacitacion">
         UPDATE rrhh.capacitacion
-        SET name = #{name}
-        WHERE idCapacitacion = #{id}
+        SET instructor = #{instructor}, tipo = #{tipo}, nombreEmpleado = #{nombreEmpleado},
+            fechaInicio = #{fechaInicio}, fechaCulminacion = #{fechaCulminacion}, duracion = #{duracion},
+            empleado_cedula = #{FK_cedula_empleado}
+            WHERE idCapacitacion = #{idCapacitacion}
     </update>
 
     <delete id="delete" parameterType="int">
         DELETE FROM rrhh.capacitacion
-        WHERE idCapacitacion = #{id}
+        WHERE idCapacitacion = #{idCapacitacion}
     </delete>
 </mapper>

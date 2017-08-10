@@ -6,7 +6,6 @@ import com.jfoenix.controls.JFXTextField;
 import core.conexion.connection.MyBatisConnection;
 import core.conexion.dao.CapacitacionDAO;
 import core.conexion.vo.Capacitacion;
-import core.conexion.vo.Contratacion;
 import core.conexion.vo.Usuario;
 import core.util.*;
 import javafx.collections.ListChangeListener;
@@ -28,13 +27,13 @@ public class ScreenTablaCapacitacion extends ManagerFXML implements Initializabl
 
     public TableView<Capacitacion> tablaCapacitacion;
     public JFXTextField txtInstructor, txTipo, txtCedulaEmpleado, txtNombreEmpleado, txtDuracion;
-    public JFXDatePicker dateFechaCulminacion;
-    public TableColumn tbInstructor, tbTipo, tbCedula, tdNombre, tbFechaInicio;
+    public JFXDatePicker dateFechaCulminacion, dateFechaInicio;
+    public TableColumn tbInstructor, tbTipo, tbCedula, tdNombre, tbInicio, tbDuracion;
     public JFXButton btnCancelar, btnActualizar, btnInsert;
     public AnchorPane anchorPane;
 
     public TableUtil table;
-    private String[] tableS = {"instructor", "tipo", "cedulaEmpleado", "nombreEmpleado", "fechaInicio"};
+    private String[] tableS = {"instructor", "tipo", "FK_cedula_empleado", "nombreEmpleado", "fechaInicio", "duracion"};
     private List<Capacitacion> capacitacionList;
     private Capacitacion capacitacion = new Capacitacion();
     private CapacitacionDAO capacitacionDAO = new CapacitacionDAO(MyBatisConnection.getSqlSessionFactory());
@@ -44,7 +43,7 @@ public class ScreenTablaCapacitacion extends ManagerFXML implements Initializabl
 
         // Iniciailizar tabla
         table = new TableUtil(Capacitacion.class, tablaCapacitacion);
-        table.inicializarTabla(tableS, tbInstructor, tbTipo, tbCedula, tdNombre, tbFechaInicio);
+        table.inicializarTabla(tableS, tbInstructor, tbTipo, tbCedula, tdNombre, tbInicio, tbDuracion);
 
         // Seleccionar las tuplas de la tabla de las listTable
         final ObservableList<Capacitacion> tablaPersonaSel = tablaCapacitacion.getSelectionModel().getSelectedItems();
@@ -72,8 +71,9 @@ public class ScreenTablaCapacitacion extends ManagerFXML implements Initializabl
     }
 
     public void onClickInsert(ActionEvent event) {
-        capacitacionDAO.insert(getContratacionData());
-        selectCapacitacion();
+        int id = capacitacionDAO.insert(getContratacionData());
+        Capacitacion usuarioId = capacitacionDAO.selectById(id);
+        table.getListTable().add(usuarioId);
         tablaCapacitacion.refresh();
     }
 
@@ -93,9 +93,10 @@ public class ScreenTablaCapacitacion extends ManagerFXML implements Initializabl
 
     private Capacitacion getContratacionData() {
         capacitacion.setInstructor(txtInstructor.getText());
-        capacitacion.setTipo(String.valueOf(txTipo));
+        capacitacion.setTipo(txTipo.getText());
         capacitacion.setNombreEmpleado(txtNombreEmpleado.getText());
-        capacitacion.setFechaInicio(FechaUtil.getDatePickentCurrent(dateFechaCulminacion));
+        capacitacion.setFechaInicio(FechaUtil.getDatePickentCurrent(dateFechaInicio));
+        capacitacion.setFechaCulminacion(FechaUtil.getDatePickentCurrent(dateFechaCulminacion));
         capacitacion.setDuracion(txtDuracion.getText());
         capacitacion.setFK_cedula_empleado(txtCedulaEmpleado.getText());
         return capacitacion;

@@ -77,7 +77,7 @@ public class ValoresDAO {
             session.commit();
             session.close();
         }
-        System.out.println("insert(" + estructuraOrganizativa + ") --> " + estructuraOrganizativa.getIdValores());
+        System.out.println("insert(" + estructuraOrganizativa + ") --> " + estructuraOrganizativa.getIdvalores());
         return id;
     }
 

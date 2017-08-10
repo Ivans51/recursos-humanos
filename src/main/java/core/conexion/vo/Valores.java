@@ -7,20 +7,21 @@ import java.util.Date;
  */
 public class Valores {
 
-    private int idValores;
+    private int idvalores;
     private double salario;
     private String precioUnidadTributaria;
     private String paroForzoso;
     private String FAO;
+    private String IVSS;
     private Date fecha;
     private int fk_id_usuario;
 
-    public int getIdValores() {
-        return idValores;
+    public int getIdvalores() {
+        return idvalores;
     }
 
-    public void setIdValores(int idValores) {
-        this.idValores = idValores;
+    public void setIdvalores(int idvalores) {
+        this.idvalores = idvalores;
     }
 
     public double getSalario() {
@@ -55,6 +56,22 @@ public class Valores {
         this.FAO = FAO;
     }
 
+    public String getIVSS() {
+        return IVSS;
+    }
+
+    public void setIVSS(String IVSS) {
+        this.IVSS = IVSS;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
     public int getFk_id_usuario() {
         return fk_id_usuario;
     }
@@ -63,18 +80,15 @@ public class Valores {
         this.fk_id_usuario = fk_id_usuario;
     }
 
-    public Date getFecha() {
-        return fecha;
-    }
-
     @Override
     public String toString() {
         return "Valores{" +
-                "idValores=" + idValores +
-                ", salario='" + salario + '\'' +
+                "idvalores=" + idvalores +
+                ", salario=" + salario +
                 ", precioUnidadTributaria='" + precioUnidadTributaria + '\'' +
                 ", paroForzoso='" + paroForzoso + '\'' +
                 ", FAO='" + FAO + '\'' +
+                ", IVSS='" + IVSS + '\'' +
                 ", fecha=" + fecha +
                 ", fk_id_usuario=" + fk_id_usuario +
                 '}';

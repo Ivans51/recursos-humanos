@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import core.conexion.connection.MyBatisConnection;
 import core.conexion.dao.SeleccionPersonalDAO;
 import core.conexion.vo.SeleccionPersonal;
+import core.conexion.vo.Usuario;
 import core.util.*;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -23,8 +24,7 @@ import java.util.ResourceBundle;
  */
 public class ScreenTablaSeleccionPersonal extends ManagerFXML implements Initializable, TableUtil.StatusControles {
 
-
-    public JFXTextField nombreCandidato, txtCedula, txtDireccion, txtTelefono, txtPuesto, txtDisponibillidad;
+    public JFXTextField txtNombreCandidato, txtCedula, txtDireccion, txtTelefono, txtPuesto, txtDisponibillidad;
     public TableView<SeleccionPersonal> tablaSeleccion;
     public TableColumn tbNombre, tbCedula, tbDireccion, tbTelefono, tbPuesto, tbDisponibildad;
     public JFXButton btnCancelar, btnActualizar, btnInsertar;
@@ -59,8 +59,9 @@ public class ScreenTablaSeleccionPersonal extends ManagerFXML implements Initial
     }
 
     private void insertDatos() {
-        seleccionPersonalDAO.insert(getContratacionSeleccion());
-        selectCapacitacion();
+        int id = seleccionPersonalDAO.insert(getContratacionSeleccion());
+        SeleccionPersonal usuarioId = seleccionPersonalDAO.selectById(id);
+        table.getListTable().add(usuarioId);
         tablaSeleccion.refresh();
     }
 
@@ -80,6 +81,7 @@ public class ScreenTablaSeleccionPersonal extends ManagerFXML implements Initial
 
     private SeleccionPersonal getContratacionSeleccion() {
         seleccionPersonal.setCedula(txtCedula.getText());
+        seleccionPersonal.setNombreCandidato(txtNombreCandidato.getText());
         seleccionPersonal.setDireccion(String.valueOf(txtDireccion.getText()));
         seleccionPersonal.setTelefono(txtTelefono.getText());
         seleccionPersonal.setPuestoPostulacion(txtPuesto.getText());
@@ -93,7 +95,7 @@ public class ScreenTablaSeleccionPersonal extends ManagerFXML implements Initial
         if (table.getModel() != null) {
             seleccionPersonal = (SeleccionPersonal) table.getModel();
             // Pongo los textFields con los datos correspondientes
-            nombreCandidato.setText(seleccionPersonal.getNombreCandidato());
+            txtNombreCandidato.setText(seleccionPersonal.getNombreCandidato());
             txtCedula.setText(seleccionPersonal.getCedula());
             txtDireccion.setText(seleccionPersonal.getDireccion());
             txtTelefono.setText(seleccionPersonal.getTelefono());

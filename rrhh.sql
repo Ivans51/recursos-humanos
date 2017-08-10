@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-08-2017 a las 14:20:31
+-- Tiempo de generación: 10-08-2017 a las 14:02:36
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -49,9 +49,8 @@ INSERT INTO `auditoria` (`idAuditoria`, `fecha`, `hora`, `accion`, `usuario_idUs
 
 CREATE TABLE `capacitacion` (
   `idCapacitacion` int(11) NOT NULL,
-  `intructor` text NOT NULL,
+  `instructor` text NOT NULL,
   `tipo` varchar(45) NOT NULL,
-  `cedulaEmpledo` varchar(45) NOT NULL,
   `nombreEmpleado` text NOT NULL,
   `fechaInicio` date NOT NULL,
   `fechaCulminacion` date NOT NULL,
@@ -63,8 +62,13 @@ CREATE TABLE `capacitacion` (
 -- Volcado de datos para la tabla `capacitacion`
 --
 
-INSERT INTO `capacitacion` (`idCapacitacion`, `intructor`, `tipo`, `cedulaEmpledo`, `nombreEmpleado`, `fechaInicio`, `fechaCulminacion`, `duracion`, `empleado_cedula`) VALUES
-(1, 'sdljf', 'sljf', '1235', 'dfsjkldj', '0000-00-00', '0000-00-00', 'dflskj', '123');
+INSERT INTO `capacitacion` (`idCapacitacion`, `instructor`, `tipo`, `nombreEmpleado`, `fechaInicio`, `fechaCulminacion`, `duracion`, `empleado_cedula`) VALUES
+(1, 'sdljf', 'sljf', 'dfsjkldj', '0000-00-00', '0000-00-00', 'dflskj', '123'),
+(2, 'asdf', 'sdsd', 'sdf', '2017-08-18', '2017-08-17', 'q32', '123'),
+(3, 'Pedro', 'Hockey', 'Juan', '2017-08-18', '2017-08-20', '6', '123'),
+(4, 'Ivans', 'Beisbol', 'Jesus', '2017-08-17', '2017-08-18', '12314', '123'),
+(7, 'Jesus', 'Futbol', 'Pedro', '2017-08-17', '2017-08-11', '213', '123'),
+(8, 'qwerq', '12', 'dfdsfa', '2017-08-16', '2017-08-16', '2314', '123');
 
 -- --------------------------------------------------------
 
@@ -88,8 +92,8 @@ CREATE TABLE `contratacion` (
 --
 
 INSERT INTO `contratacion` (`idContratacion`, `cedula`, `nombre`, `fechaInicio`, `fechaCulminacion`, `cargo`, `salario`, `empleado_cedula`) VALUES
-(1, '14', 'asdf', '0000-00-00', '0000-00-00', 'sdf', 0, '123'),
-(13, '123', 'Juan', '2017-08-02', NULL, 'sdf', 1123, '3456');
+(1, '14', 'asdf', '2017-08-03', '2017-08-04', 'sdf', 12345, '123'),
+(13, '123', 'Juan', '2017-08-02', '2017-08-03', 'sdf', 1123, '3456');
 
 -- --------------------------------------------------------
 
@@ -108,6 +112,7 @@ CREATE TABLE `empleado` (
   `horaInicio` datetime DEFAULT NULL,
   `horasTrabajadas` int(11) NOT NULL DEFAULT '0',
   `statusLaborando` tinyint(1) DEFAULT '0',
+  `diasLaborados` int(11) NOT NULL,
   `FK_id_Usuario` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -115,12 +120,12 @@ CREATE TABLE `empleado` (
 -- Volcado de datos para la tabla `empleado`
 --
 
-INSERT INTO `empleado` (`cedula`, `nombreEmpleado`, `fechaNacimiento`, `direccion`, `cargo`, `status`, `registroSS`, `horaInicio`, `horasTrabajadas`, `statusLaborando`, `FK_id_Usuario`) VALUES
-('123', 'Ivans', '0000-00-00', 'sdfa', '34', 'sdf', '324', '2017-08-03 08:30:05', 0, 1, 14),
-('3456', 'Ivans Del pino', '2017-08-21', 'Calle Santa Rita', 'Lavador', '0', '12324', NULL, 0, 0, 15),
-('asdf', 'asdf', '2017-07-18', 'sadf', 'sdf', '0', 'asdf', NULL, 0, 0, 17),
-('dfasd', 'sdf', '2017-08-08', 'asdas', 'sdf', '0', 'fasd', NULL, 0, 0, 19),
-('gsgsrf', 'sdf', '2017-07-18', 'asdf', 'asdf', '0', 'sdf', '2017-08-03 06:40:08', 1, 1, 18);
+INSERT INTO `empleado` (`cedula`, `nombreEmpleado`, `fechaNacimiento`, `direccion`, `cargo`, `status`, `registroSS`, `horaInicio`, `horasTrabajadas`, `statusLaborando`, `diasLaborados`, `FK_id_Usuario`) VALUES
+('123', 'Ivans Del Pino', '2017-08-10', 'sdfa', 'Aseo', 'Laborando', '324', '2017-08-03 08:30:05', 0, 1, 0, 14),
+('3456', 'Ivans Del pino', '2017-08-21', 'Calle Santa Rita', 'Lavador', '0', '12324', NULL, 0, 0, 0, 15),
+('asdf', 'asdf', '2017-07-18', 'sadf', 'sdf', '0', 'asdf', NULL, 0, 0, 0, 17),
+('dfasd', 'sdf', '2017-08-08', 'asdas', 'sdf', '0', 'fasd', NULL, 0, 0, 0, 19),
+('gsgsrf', 'sdf', '2017-07-18', 'asdf', 'asdf', '0', 'sdf', '2017-08-03 06:40:08', 1, 1, 0, 18);
 
 -- --------------------------------------------------------
 
@@ -163,7 +168,7 @@ CREATE TABLE `nomina` (
   `paroForzoso` double NOT NULL,
   `prestamo` double NOT NULL,
   `diasNoLaborados` int(11) NOT NULL,
-  `totalDeduciones` double NOT NULL,
+  `totalDeducciones` double NOT NULL,
   `salarioTotal` double NOT NULL,
   `cedula` varchar(45) NOT NULL,
   `empleado_cedula` varchar(45) NOT NULL
@@ -173,7 +178,7 @@ CREATE TABLE `nomina` (
 -- Volcado de datos para la tabla `nomina`
 --
 
-INSERT INTO `nomina` (`idNomina`, `nombreEmpleado`, `diasHabiles`, `diasDescanso`, `bonoNocturno`, `bonoLealtad`, `diasFeriados`, `totalAsignaciones`, `faov`, `ivss`, `paroForzoso`, `prestamo`, `diasNoLaborados`, `totalDeduciones`, `salarioTotal`, `cedula`, `empleado_cedula`) VALUES
+INSERT INTO `nomina` (`idNomina`, `nombreEmpleado`, `diasHabiles`, `diasDescanso`, `bonoNocturno`, `bonoLealtad`, `diasFeriados`, `totalAsignaciones`, `faov`, `ivss`, `paroForzoso`, `prestamo`, `diasNoLaborados`, `totalDeducciones`, `salarioTotal`, `cedula`, `empleado_cedula`) VALUES
 (1, 'afsd', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'sdf', '123');
 
 -- --------------------------------------------------------
@@ -189,7 +194,7 @@ CREATE TABLE `seleccion_personal` (
   `direccion` varchar(45) NOT NULL,
   `telefono` varchar(45) NOT NULL,
   `puestoPostulacion` varchar(45) NOT NULL,
-  `disponibilidad` int(11) NOT NULL,
+  `disponibilidad` varchar(45) NOT NULL,
   `usuario_idUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -198,7 +203,11 @@ CREATE TABLE `seleccion_personal` (
 --
 
 INSERT INTO `seleccion_personal` (`idSeleccion`, `nombreCandidato`, `cedula`, `direccion`, `telefono`, `puestoPostulacion`, `disponibilidad`, `usuario_idUsuario`) VALUES
-(1, 'sdf', 'sdf', 'sdf', 'sdf', 'sdf', 0, 14);
+(1, 'sdf', 'sdf', 'sdf', 'sdf', 'sdf', '0', 14),
+(2, 'asdf', '123', 'asdf', '231', '123', '124', 14),
+(3, 'Ivans', '123', 'Santa Rita', '235', 'Fraundelento', '1', 14),
+(4, 'Ivans', '123', 'Santa Rita', '235', 'Fraundelento', '1', 14),
+(5, 'Juan', '234', 'sdf', '123', '124', '123', 14);
 
 -- --------------------------------------------------------
 
@@ -232,7 +241,8 @@ INSERT INTO `usuario` (`idUsuario`, `nombreUsuario`, `clave`, `correo`, `nivelAc
 (18, 'JuanFran', '42ui244', 'sdfsdf', 1, '', '', '', '', '2017-08-02', '42ui244', 3),
 (19, 'Pedro Juan', '123', 'sdfsdf', 1, '', '', '', '', '2017-08-02', 'sdf', 3),
 (20, 'Maria', '12345', 'Maria@gmail.com', 1, '', '', '', '', '2017-08-04', '2048295', 3),
-(21, 'Maria Petra', '204', 'Maria@gmail.com', 1, '', '', '', '', '2017-08-04', '2048295', 3);
+(21, 'Maria Petra', '204', 'Maria@gmail.com', 1, '', '', '', '', '2017-08-04', '2048295', 3),
+(22, 'asdf', 'asdf', 'asdf', 1, '', '', '', '', '2017-08-10', '213124', 0);
 
 -- --------------------------------------------------------
 
@@ -242,13 +252,23 @@ INSERT INTO `usuario` (`idUsuario`, `nombreUsuario`, `clave`, `correo`, `nivelAc
 
 CREATE TABLE `valores` (
   `idvalores` int(11) NOT NULL,
-  `salario` varchar(45) DEFAULT NULL,
+  `salario` double DEFAULT NULL,
   `precioUnidadTributaria` varchar(45) DEFAULT NULL,
   `paroForzoso` varchar(45) DEFAULT NULL,
   `IVSS` varchar(45) DEFAULT NULL,
   `FAO` varchar(45) DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
   `fk_id_usuario` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `valores`
+--
+
+INSERT INTO `valores` (`idvalores`, `salario`, `precioUnidadTributaria`, `paroForzoso`, `IVSS`, `FAO`, `fecha`, `fk_id_usuario`) VALUES
+(1, 1238, '1233', '0.5', '4', '1', '2017-08-03', 14),
+(2, 13454, '1233', '0.5', '4', '1', '2017-08-06', 15),
+(3, 12345, '1233', '0.5', '4', '1', '2017-08-07', 14);
 
 --
 -- Índices para tablas volcadas
@@ -329,7 +349,7 @@ ALTER TABLE `auditoria`
 -- AUTO_INCREMENT de la tabla `capacitacion`
 --
 ALTER TABLE `capacitacion`
-  MODIFY `idCapacitacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idCapacitacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `contratacion`
 --
@@ -349,12 +369,17 @@ ALTER TABLE `nomina`
 -- AUTO_INCREMENT de la tabla `seleccion_personal`
 --
 ALTER TABLE `seleccion_personal`
-  MODIFY `idSeleccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idSeleccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+--
+-- AUTO_INCREMENT de la tabla `valores`
+--
+ALTER TABLE `valores`
+  MODIFY `idvalores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Restricciones para tablas volcadas
 --

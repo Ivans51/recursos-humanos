@@ -25,21 +25,26 @@
     <select id="selectById" parameterType="int" resultMap="result">
         SELECT *
         FROM rrhh.seleccion_personal
-        WHERE idSeleccion = #{id}
+        WHERE idSeleccion = #{idSeleccion}
     </select>
 
-    <insert id="insert" parameterType="SeleccionPersonal" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO rrhh.seleccion_personal (name) VALUES (#{name});
+    <insert id="insert" parameterType="SeleccionPersonal" useGeneratedKeys="true" keyProperty="idSeleccion">
+        INSERT INTO rrhh.seleccion_personal (nombreCandidato, cedula, direccion, telefono, puestoPostulacion, disponibilidad, usuario_idUsuario)
+        VALUES (#{nombreCandidato}, #{cedula}, #{direccion}, #{telefono}, #{puestoPostulacion}, #{disponibilidad},
+                #{FK_idUsuario});
     </insert>
 
     <update id="update" parameterType="SeleccionPersonal">
         UPDATE rrhh.seleccion_personal
-        SET name = #{name}
-        WHERE idSeleccion = #{id}
+        SET nombreCandidato   = #{nombreCandidato}, cedula = #{cedula}, direccion = #{direccion},
+            telefono          = #{telefono}, puestoPostulacion = #{puestoPostulacion},
+            disponibilidad    = #{disponibilidad},
+            usuario_idUsuario = #{FK_idUsuario}
+        WHERE idSeleccion = #{idSeleccion}
     </update>
 
     <delete id="delete" parameterType="int">
         DELETE FROM rrhh.seleccion_personal
-        WHERE idSeleccion = #{id}
+        WHERE idSeleccion = #{idSeleccion}
     </delete>
 </mapper>

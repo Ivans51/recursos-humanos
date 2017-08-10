@@ -57,17 +57,16 @@ public class CapacitacionDAO {
      * @param capacitacion the instance to be persisted.
      */
     public int insert(Capacitacion capacitacion) {
-        int id = -1;
         SqlSession session = sqlSessionFactory.openSession();
 
         try {
-            id = session.insert("Capacitacion.insert", capacitacion);
+            session.insert("Capacitacion.insert", capacitacion);
         } finally {
             session.commit();
             session.close();
         }
         System.out.println("insert(" + capacitacion + ") --> " + capacitacion.getIdCapacitacion());
-        return id;
+        return capacitacion.getIdCapacitacion();
     }
 
     /**

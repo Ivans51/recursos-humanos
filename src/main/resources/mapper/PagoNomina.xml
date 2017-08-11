@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="PagoNomina">
+
+    <resultMap id="result" type="PagoNomina">
+        <!-- property="atributo java" column="columna tabla" -->
+        <result property="idNominaPago" column="idNominaPago"/>
+        <result property="nombreEmpleado" column="nombreEmpleado"/>
+        <result property="diasHabiles" column="diasHabiles"/>
+        <result property="diasDescanso" column="diasDescanso"/>
+        <result property="bonoNocturno" column="bonoNocturno"/>
+        <result property="bonoLealtad" column="bonoLealtad"/>
+        <result property="diasFeriados" column="diasFeriados"/>
+        <result property="totalAsignaciones" column="totalAsignaciones"/>
+        <result property="faov" column="faov"/>
+        <result property="ivss" column="ivss"/>
+        <result property="paroForzoso" column="paroForzoso"/>
+        <result property="prestamo" column="prestamo"/>
+        <result property="diasNoLaborados" column="diasNoLaborados"/>
+        <result property="totalDeduciones" column="totalDeduciones"/>
+        <result property="salarioTotal" column="salarioTotal"/>
+        <result property="fecha" column="fecha"/>
+        <result property="FK_cedula_empleado" column="empleado_cedula"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="result">
+        SELECT *
+        FROM rrhh.pago_nomina;
+    </select>
+
+    <select id="selectById" parameterType="int" resultMap="result">
+        SELECT *
+        FROM rrhh.pago_nomina
+        WHERE idNominaPago = #{idNominaPago}
+    </select>
+
+    <select id="selectForeighKey" parameterType="String" resultMap="result">
+        SELECT *
+        FROM rrhh.pago_nomina
+        WHERE empleado_cedula = #{FK_cedula_empleado}
+    </select>
+
+    <insert id="insert" parameterType="PagoNomina" useGeneratedKeys="true" keyProperty="idNominaPago">
+        INSERT INTO rrhh.pago_nomina (nombreEmpleado, diasHabiles, diasDescanso,
+                                      bonoNocturno, diasFeriados, totalAsignaciones,
+                                      faov, ivss, paroForzoso, prestamo, diasNoLaborados,
+                                      totalDeducciones, salarioTotal, fecha, empleado_cedula)
+        VALUES (#{nombreEmpleado}, #{diasHabiles}, #{diasDescanso},
+                #{bonoNocturno}, #{diasFeriados}, #{totalAsignaciones},
+                #{faov}, #{ivss}, #{paroForzoso}, #{prestamo}, #{diasNoLaborados},
+                #{totalDeducciones}, #{salarioTotal}, #{fecha}, #{FK_cedula_empleado});
+    </insert>
+
+    <update id="update" parameterType="PagoNomina">
+        UPDATE rrhh.pago_nomina
+        SET name = #{name}
+        WHERE idNominaPago = #{idNominaPago}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM rrhh.pago_nomina
+        WHERE idNominaPago = #{idNominaPago}
+    </delete>
+</mapper>

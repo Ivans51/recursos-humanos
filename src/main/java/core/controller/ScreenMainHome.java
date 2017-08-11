@@ -67,7 +67,7 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
 
         Usuario usuario = new Usuario();
         usuario.setNombreUsuario("Ivans");
-        usuario.setIdUsuario(14);
+        usuario.setIdUsuario(23);
         Storage.setUsuario(usuario);
 
         Valores valores = new Valores();

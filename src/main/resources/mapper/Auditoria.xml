@@ -25,8 +25,9 @@
         WHERE idAuditoria = #{id}
     </select>
 
-    <insert id="insert" parameterType="Auditoria" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO rrhh.auditoria (name) VALUES (#{name});
+    <insert id="insert" parameterType="Auditoria" useGeneratedKeys="true" keyProperty="idAuditoria">
+        INSERT INTO rrhh.auditoria (fecha, hora, accion, usuario_idUsuario)
+        VALUES (#{fecha}, #{hora}, #{accion}, #{usuario_idUsuario});
     </insert>
 
     <update id="update" parameterType="Auditoria">

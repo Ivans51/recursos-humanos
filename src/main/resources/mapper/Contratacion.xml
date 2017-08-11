@@ -28,7 +28,7 @@
         WHERE idContratacion = #{id}
     </select>
 
-    <select id="selectByForeighKey" parameterType="int" resultMap="result">
+    <select id="selectByForeighKey" parameterType="String" resultMap="result">
         SELECT *
         FROM rrhh.contratacion
         WHERE empleado_cedula = #{empleado_cedula}

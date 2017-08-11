@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="anchor" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenFactura">
+<AnchorPane fx:id="anchor" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenFactura">
    <children>
       <ScrollPane prefHeight="505.0" prefWidth="758.0" style="-fx-background-color: #FFF;">
         <content>
@@ -138,9 +138,10 @@
                                     <Label layoutX="10.0" layoutY="10.0" text="Días de Descanso" />
                                     <Label layoutX="10.0" layoutY="35.0" text="Bono Nocturno" />
                                     <Label layoutX="10.0" layoutY="60.0" text="Días Feriados Laborados" />
+                                    <Label layoutX="10.0" layoutY="110.0" />
                                     <Label layoutX="10.0" layoutY="135.0" text="Total de Asignaciones">
                                        <VBox.margin>
-                                          <Insets top="50.0" />
+                                          <Insets />
                                        </VBox.margin></Label>
                                  </children>
                                  <HBox.margin>
@@ -154,8 +155,9 @@
                                     <Label fx:id="lblBonoNocturno" layoutX="10.0" layoutY="35.0" prefHeight="25.0" prefWidth="20.0" />
                                     <Label fx:id="lblDiasFeriados" layoutX="10.0" layoutY="85.0">
                                        <VBox.margin>
-                                          <Insets top="50.0" />
+                                          <Insets />
                                        </VBox.margin></Label>
+                                    <Label layoutX="10.0" layoutY="85.0" />
                                     <Label fx:id="lblTotalAsignaciones" layoutX="10.0" layoutY="110.0" />
                                  </children>
                                  <HBox.margin>
@@ -167,8 +169,6 @@
                                     <Label fx:id="lblDiasHabilesCalc" />
                                     <Label fx:id="lblDiasDescansoCalc" layoutX="10.0" layoutY="10.0" />
                                     <Label fx:id="lblBonoNocturnoCalc" layoutX="10.0" layoutY="35.0" />
-                                    <Label fx:id="lblBonoLealtadCalc" layoutX="10.0" layoutY="60.0" />
-                                    <Label fx:id="lblDescansoLaboralCalc" layoutX="10.0" layoutY="60.0" />
                                     <Label fx:id="lblDiasFeriadosCalc" layoutX="10.0" layoutY="85.0" />
                                     <Label fx:id="lblTotalAsignaciones" layoutX="10.0" layoutY="135.0" />
                                  </children>
@@ -183,7 +183,6 @@
                                     <Label layoutX="10.0" layoutY="35.0" text="Paro Forzoso 0.5%" />
                                     <Label layoutX="10.0" layoutY="35.0" text="Prestamo" />
                                     <Label layoutX="10.0" layoutY="60.0" text="Días no Laborados" />
-                                    <Label layoutX="10.0" layoutY="85.0" />
                                     <Label layoutX="10.0" layoutY="110.0" text="Total Deducciones" />
                                  </children>
                                  <HBox.margin>
@@ -196,8 +195,7 @@
                                     <Label fx:id="lblIVSS" layoutX="10.0" layoutY="10.0" />
                                     <Label fx:id="lblParoForzoso" layoutX="10.0" layoutY="35.0" />
                                     <Label fx:id="lblPrestamo" layoutX="10.0" layoutY="35.0" />
-                                    <Label fx:id="lblDiasNoLaborados" layoutX="10.0" layoutY="60.0" />
-                                    <Label layoutX="10.0" layoutY="85.0" />
+                                    <Label fx:id="lblDiasNoLaboradosCalc" layoutX="10.0" layoutY="60.0" />
                                     <Label fx:id="lblTotalDeduciones" layoutX="10.0" layoutY="110.0" text="1.788,11" />
                                  </children>
                                  <HBox.margin>

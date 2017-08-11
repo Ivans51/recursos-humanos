@@ -10,10 +10,7 @@ import core.conexion.vo.Contratacion;
 import core.conexion.vo.Empleado;
 import core.conexion.vo.Nomina;
 import core.conexion.vo.Valores;
-import core.util.CalculoQuincena;
-import core.util.FechaUtil;
-import core.util.ManagerFXML;
-import core.util.Myexception;
+import core.util.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -30,11 +27,11 @@ public class ScreenFactura extends ManagerFXML implements Initializable {
 
     public JFXButton btnImprimir;
     public TextField txtFechaPago;
-    public Label lblNombreApellido, lblCedula, lblSalarioDiario, lblCargo, lblFechaIngreso, lblSalarioMensual, lblDiasHabiles;
-    public Label lblDiasDescanso, lblBonoNocturno, lblDiasFeriados, lblDiasHabilesCalc;
-    public Label lblDiasDescansoCalc, lblBonoNocturnoCalc, lblBonoLealtadCalc, lblDescansoLaboralCalc, lblDiasFeriadosCalc;
+    public Label lblNombreApellido, lblCedula, lblSalarioDiario, lblCargo, lblFechaIngreso, lblSalarioMensual;
+    public Label lblDiasDescanso, lblBonoNocturno, lblDiasFeriados, lblDiasHabilesCalc, lblDiasHabiles;
+    public Label lblDiasDescansoCalc, lblBonoNocturnoCalc, lblDiasNoLaboradosCalc;
     public Label lblTotalAsignaciones, lblFaov, lblIVSS, lblParoForzoso, lblPrestamo, lblDiasNoLaborados;
-    public Label lblTotalDeduciones,  lblTotal;
+    public Label lblTotalDeduciones,  lblTotal, lblDiasFeriadosCalc;
 
     private EmpleadoDAO empleadoDAO = new EmpleadoDAO(MyBatisConnection.getSqlSessionFactory());
     private Empleado empleado = new Empleado();
@@ -61,18 +58,18 @@ public class ScreenFactura extends ManagerFXML implements Initializable {
         }
     }
 
-    private void getCalcQuincena(){
-        quincena = new CalculoQuincena(valores.getSalario());
-        quincena.setAsignaciones(nomina.getBonoNocturno(), nomina.getDiasFeriados());
-        quincena.setDeduciones(nomina.getDiasNoLaborados(), nomina.getFaov(), nomina.getIvss(),
-                nomina.getParoForzoso(), nomina.getPrestamo());
-    }
-
     private void hacerConsulta() {
         empleado = empleadoDAO.selectById("123");
-        nomina = nominaDAO.selectForeighKey(123);
-        contratacion = contratacionDAO.selectByForeighKey(123);
+        nomina = nominaDAO.selectForeighKey("123");
+        contratacion = contratacionDAO.selectByForeighKey("123");
         valores = valoresDAO.selectByIdLastDate();
+    }
+
+    private void getCalcQuincena(){
+        quincena = new CalculoQuincena(valores.getSalario());
+        quincena.setAsignaciones(nomina.getDiasHabiles(), nomina.getBonoNocturno(), nomina.getDiasFeriados());
+        quincena.setDeduciones(nomina.getDiasNoLaborados(), valores.getFAO(), valores.getIVSS(),
+                valores.getParoForzoso(), nomina.getPrestamo());
     }
 
     private void setEmpleado() throws ParseException {
@@ -80,12 +77,12 @@ public class ScreenFactura extends ManagerFXML implements Initializable {
         lblCedula.setText(empleado.getCedula());
         lblCargo.setText(empleado.getCargo());
         lblFechaIngreso.setText(FechaUtil.getDateFormat(contratacion.getFechaInicio()));
-        int diasNoLaborados = 11 - empleado.getDiasLaborados();
-        lblDiasNoLaborados.setText(String.valueOf(diasNoLaborados));
     }
 
     private void setNomina() throws Myexception {
         try {
+            String calcDiasNoLaborados = String.valueOf(nomina.getDiasNoLaborados()) + "    " + quincena.getDiasNoLaborados();
+            lblDiasNoLaboradosCalc.setText(calcDiasNoLaborados);
             lblDiasHabiles.setText(String.valueOf(nomina.getDiasHabiles()));
             lblDiasDescanso.setText(String.valueOf(nomina.getDiasDescanso()));
             lblBonoNocturno.setText(String.valueOf(nomina.getBonoNocturno()));
@@ -112,7 +109,13 @@ public class ScreenFactura extends ManagerFXML implements Initializable {
     }
 
     public void onImprimir(ActionEvent event) {
-        getDatosEmpleado();
+        try {
+            Validar.campoVacio(txtFechaPago);
+            getDatosEmpleado();
+        } catch (Myexception myexception) {
+            new AlertUtil(Estado.ERROR, "Campo Vacío");
+            myexception.printStackTrace();
+        }
     }
 
     private void getDatosEmpleado() {

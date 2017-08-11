@@ -9,7 +9,7 @@ public class Auditoria {
 
     private int idAuditoria;
     private Date fecha;
-    private Date hora;
+    private int hora;
     private String accion;
     private int FK_idUsuario;
 
@@ -29,11 +29,11 @@ public class Auditoria {
         this.fecha = fecha;
     }
 
-    public Date getHora() {
+    public int getHora() {
         return hora;
     }
 
-    public void setHora(Date hora) {
+    public void setHora(int hora) {
         this.hora = hora;
     }
 

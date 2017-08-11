@@ -1,6 +1,7 @@
 package core.util;
 
 import javafx.event.EventHandler;
+import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyEvent;
@@ -34,6 +35,11 @@ public class Validar {
             throw new Myexception("Erro message");
     }
 
+    public static void hideControl(Control... control){
+        for (Control ctr : control) {
+            ctr.setVisible(false);
+        }
+    }
 
     public static void disableControl(TextInputControl... txt) {
         for (TextInputControl txtInput : txt)

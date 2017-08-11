@@ -5,6 +5,7 @@ package core.util;
  */
 public class CalculoQuincena {
 
+    public double diasLaborados;
     public double diasNocturno;
     public double diasFeriados;
     public double diasNoLaborados;
@@ -18,7 +19,8 @@ public class CalculoQuincena {
         this.sueldoBasico = sueldoBasico;
     }
 
-    public void setAsignaciones(double diasNocturno, double diasFeriados) {
+    public void setAsignaciones(double diasLaborados, double diasNocturno, double diasFeriados) {
+        this.diasLaborados = diasLaborados;
         this.diasNocturno = diasNocturno;
         this.diasFeriados = diasFeriados;
     }
@@ -38,7 +40,7 @@ public class CalculoQuincena {
     }
 
     public double getDiasHabiles() throws Myexception {
-        return 11 * getSalarioDiario();
+        return diasLaborados * getSalarioDiario();
     }
 
     public double getDiasDescanso() throws Myexception {
@@ -73,15 +75,15 @@ public class CalculoQuincena {
     }
 
     public double getFAOV() throws Myexception {
-        return FAOV * getTotalAsignaciones();
+        return FAOV * getTotalAsignaciones() / 100;
     }
 
     public double getIVSS() throws Myexception {
-        return IVSS * getTotalAsignaciones();
+        return IVSS * getTotalAsignaciones() / 100;
     }
 
     public double getParoForzoso() throws Myexception {
-        return paroForzoso * getTotalAsignaciones();
+        return paroForzoso * getTotalAsignaciones() / 100;
     }
 
     public double getDiasNoLaborados() throws Myexception {

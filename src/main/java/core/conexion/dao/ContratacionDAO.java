@@ -51,7 +51,7 @@ public class ContratacionDAO {
         return person;
     }
 
-    public Contratacion selectByForeighKey(int id) {
+    public Contratacion selectByForeighKey(String id) {
         Contratacion person = null;
         SqlSession session = sqlSessionFactory.openSession();
         try {

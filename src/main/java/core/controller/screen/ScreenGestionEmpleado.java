@@ -6,8 +6,10 @@ import com.jfoenix.controls.JFXTextField;
 import core.conexion.connection.MyBatisConnection;
 import core.conexion.dao.EmpleadoDAO;
 import core.conexion.dao.NominaDAO;
+import core.conexion.dao.ValoresDAO;
 import core.conexion.vo.Empleado;
 import core.conexion.vo.Nomina;
+import core.conexion.vo.Valores;
 import core.util.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -24,13 +26,15 @@ public class ScreenGestionEmpleado extends ManagerFXML implements Initializable 
     public JFXTextField txtCedula, txtNombreApellido, txtCargo, txtEstatus;
     public JFXDatePicker txtDateFecha;
     public JFXButton btnModificaEMpleado, btnActualizarTodos, btnActualizarDeduciones;
-    public Spinner txtDiasHabiles, txtBonosNocturno, txtBonoLealtad, txtDiasDescanso, txtDiasFeriados, txtDiasNoLaborados;
+    public Spinner txtDiasHabiles, txtBonosNocturno, txtDiasDescanso, txtDiasFeriados, txtDiasNoLaborados;
     public JFXTextField txtFaov, txtIVSS, txtParoForzoso, txtPrestamo;
 
     private EmpleadoDAO empleadoDAO = new EmpleadoDAO(MyBatisConnection.getSqlSessionFactory());
     private NominaDAO nominaDAO = new NominaDAO(MyBatisConnection.getSqlSessionFactory());
+    private ValoresDAO valoresDAO = new ValoresDAO(MyBatisConnection.getSqlSessionFactory());
     private Empleado empleadoG;
     private Nomina nomina;
+    private Valores valores;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -38,20 +42,8 @@ public class ScreenGestionEmpleado extends ManagerFXML implements Initializable 
         Validar.entradaNumerica(txtPrestamo);
         startNomina();
         startEmpleado();
+        startValores();
         startSpinner();
-    }
-
-    private void startSpinner() {
-        int[] iniciarValor = {
-                nomina.getDiasHabiles(),
-                (int) nomina.getBonoNocturno(),
-                (int) nomina.getBonoLealtad(),
-                nomina.getDiasDescanso(),
-                nomina.getDiasFeriados(),
-                nomina.getDiasNoLaborados()
-        };
-        ControlUtil.spinnerValue(iniciarValor, txtDiasHabiles, txtBonosNocturno, txtBonoLealtad, txtDiasDescanso,
-                txtDiasFeriados, txtDiasNoLaborados);
     }
 
     private void startEmpleado() {
@@ -65,11 +57,27 @@ public class ScreenGestionEmpleado extends ManagerFXML implements Initializable 
     }
 
     private void startNomina() {
-        nomina = nominaDAO.selectById(1);
-        txtFaov.setText(String.valueOf(nomina.getFaov()));
-        txtIVSS.setText(String.valueOf(nomina.getIvss()));
-        txtParoForzoso.setText(String.valueOf(nomina.getParoForzoso()));
+        nomina = nominaDAO.selectForeighKey("123");
         txtPrestamo.setText(String.valueOf(nomina.getPrestamo()));
+    }
+
+    private void startValores() {
+        valoresDAO.selectByIdLastDate();
+        txtFaov.setText(String.valueOf(valores.getFAO()));
+        txtIVSS.setText(String.valueOf(valores.getIVSS()));
+        txtParoForzoso.setText(String.valueOf(valores.getParoForzoso()));
+    }
+
+    private void startSpinner() {
+        int[] iniciarValor = {
+                nomina.getDiasHabiles(),
+                nomina.getBonoNocturno(),
+                nomina.getDiasDescanso(),
+                nomina.getDiasFeriados(),
+                nomina.getDiasNoLaborados()
+        };
+        ControlUtil.spinnerValue(iniciarValor, txtDiasHabiles, txtBonosNocturno, txtDiasDescanso,
+                txtDiasFeriados, txtDiasNoLaborados);
     }
 
     public void onModificarEmpleado(ActionEvent event) throws Myexception {
@@ -102,9 +110,7 @@ public class ScreenGestionEmpleado extends ManagerFXML implements Initializable 
         nomina.setDiasHabiles((int) txtDiasHabiles.getValue());
         nomina.setDiasDescanso((int) txtDiasDescanso.getValue());
         nomina.setBonoNocturno((int) txtBonosNocturno.getValue());
-        nomina.setBonoLealtad((int) txtBonoLealtad.getValue());
         nomina.setDiasFeriados((int) txtDiasFeriados.getValue());
-        nomina.setCedula(empleadoG.getCedula());
         nominaDAO.updateAsignaciones(nomina);
     }
 
@@ -120,11 +126,7 @@ public class ScreenGestionEmpleado extends ManagerFXML implements Initializable 
 
     private void getDatosDeduciones() {
         nomina = new Nomina();
-        nomina.setFaov(Double.parseDouble(txtFaov.getText()));
-        nomina.setIvss(Double.parseDouble(txtIVSS.getText()));
-        nomina.setParoForzoso(Double.parseDouble(txtParoForzoso.getText()));
         nomina.setPrestamo(Double.parseDouble(txtPrestamo.getText()));
-        nomina.setCedula(empleadoG.getCedula());
         nominaDAO.updateAsignaciones(nomina);
     }
 }

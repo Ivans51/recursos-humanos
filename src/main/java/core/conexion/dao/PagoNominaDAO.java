@@ -1,31 +1,31 @@
 package core.conexion.dao;
 
-import core.conexion.vo.Nomina;
+import core.conexion.vo.PagoNomina;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.List;
 
-public class NominaDAO {
+public class PagoNominaDAO {
 
     private SqlSessionFactory sqlSessionFactory = null;
 
-    public NominaDAO(SqlSessionFactory sqlSessionFactory) {
+    public PagoNominaDAO(SqlSessionFactory sqlSessionFactory) {
         this.sqlSessionFactory = sqlSessionFactory;
     }
 
     /**
-     * Returns the list of all Nomina instances from the database.
+     * Returns the list of all PagoNomina instances from the database.
      *
-     * @return the list of all Nomina instances from the database.
+     * @return the list of all PagoNomina instances from the database.
      */
     @SuppressWarnings("unchecked")
-    public List<Nomina> selectAll() {
-        List<Nomina> list = null;
+    public List<PagoNomina> selectAll() {
+        List<PagoNomina> list = null;
         SqlSession session = sqlSessionFactory.openSession();
 
         try {
-            list = session.selectList("Nomina.selectAll");
+            list = session.selectList("PagoNomina.selectAll");
         } finally {
             session.close();
         }
@@ -35,30 +35,30 @@ public class NominaDAO {
     }
 
     /**
-     * Select instance of Nomina from the database.
+     * Select instance of PagoNomina from the database.
      *
      * @param id the instance to be persisted.
      */
-    public Nomina selectById(int id) {
-        Nomina person = null;
+    public PagoNomina selectById(int id) {
+        PagoNomina person = null;
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            person = session.selectOne("Nomina.selectById", id);
+            person = session.selectOne("PagoNomina.selectById", id);
         } finally {
             session.close();
         }
         System.out.println("selectById(" + id + ") --> " + person);
         return person;
     }/**
-     * Select instance of Nomina from the database.
+     * Select instance of PagoNomina from the database.
      *
      * @param id the instance to be persisted.
      */
-    public Nomina selectForeighKey(String id) {
-        Nomina person = null;
+    public PagoNomina selectForeighKey(String id) {
+        PagoNomina person = null;
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            person = session.selectOne("Nomina.selectForeighKey", id);
+            person = session.selectOne("PagoNomina.selectForeighKey", id);
         } finally {
             session.close();
         }
@@ -67,35 +67,35 @@ public class NominaDAO {
     }
 
     /**
-     * Insert an instance of Nomina into the database.
+     * Insert an instance of PagoNomina into the database.
      *
      * @param nomina the instance to be persisted.
      */
-    public int insert(Nomina nomina) {
+    public int insert(PagoNomina nomina) {
         int id = -1;
         SqlSession session = sqlSessionFactory.openSession();
 
         try {
-            id = session.insert("Nomina.insert", nomina);
+            id = session.insert("PagoNomina.insert", nomina);
         } finally {
             session.commit();
             session.close();
         }
-        System.out.println("insert(" + nomina + ") --> " + nomina.getIdNomina());
+        System.out.println("insert(" + nomina + ") --> " + nomina.getIdNominaPago());
         return id;
     }
 
     /**
-     * Update an instance of Nomina into the database.
+     * Update an instance of PagoNomina into the database.
      *
      * @param nomina the instance to be persisted.
      */
-    public void update(Nomina nomina) {
+    public void update(PagoNomina nomina) {
         int id = -1;
         SqlSession session = sqlSessionFactory.openSession();
 
         try {
-            id = session.update("Nomina.update", nomina);
+            id = session.update("PagoNomina.update", nomina);
 
         } finally {
             session.commit();
@@ -103,12 +103,12 @@ public class NominaDAO {
         }
         System.out.println("update(" + nomina + ") --> updated");
     }
-    public void updateDeduciones(Nomina nomina) {
+    public void updateDeduciones(PagoNomina nomina) {
         int id = -1;
         SqlSession session = sqlSessionFactory.openSession();
 
         try {
-            id = session.update("Nomina.updateDeduciones", nomina);
+            id = session.update("PagoNomina.updateDeduciones", nomina);
 
         } finally {
             session.commit();
@@ -116,12 +116,12 @@ public class NominaDAO {
         }
         System.out.println("update(" + nomina + ") --> updated");
     }
-    public void updateAsignaciones(Nomina nomina) {
+    public void updateAsignaciones(PagoNomina nomina) {
         int id = -1;
         SqlSession session = sqlSessionFactory.openSession();
 
         try {
-            id = session.update("Nomina.updateAsignaciones", nomina);
+            id = session.update("PagoNomina.updateAsignaciones", nomina);
 
         } finally {
             session.commit();
@@ -131,7 +131,7 @@ public class NominaDAO {
     }
 
     /**
-     * Delete an instance of Nomina from the database.
+     * Delete an instance of PagoNomina from the database.
      *
      * @param id value of the instance to be deleted.
      */
@@ -140,7 +140,7 @@ public class NominaDAO {
         SqlSession session = sqlSessionFactory.openSession();
 
         try {
-            session.delete("Nomina.delete", id);
+            session.delete("PagoNomina.delete", id);
         } finally {
             session.commit();
             session.close();

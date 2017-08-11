@@ -16,6 +16,7 @@
         <typeAlias type="core.conexion.vo.Usuario" alias="Usuario"/>
         <typeAlias type="core.conexion.vo.SeleccionPersonal" alias="SeleccionPersonal"/>
         <typeAlias type="core.conexion.vo.Valores" alias="Valores"/>
+        <typeAlias type="core.conexion.vo.PagoNomina" alias="PagoNomina"/>
     </typeAliases>
 
     <environments default="development">
@@ -41,6 +42,7 @@
         <mapper resource="mapper/SeleccionPersonal.xml"/>
         <mapper resource="mapper/Usuario.xml"/>
         <mapper resource="mapper/Valores.xml"/>
+        <mapper resource="mapper/PagoNomina.xml"/>
     </mappers>
 
 </configuration>

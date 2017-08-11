@@ -12,17 +12,9 @@
         <result property="diasHabiles" column="diasHabiles"/>
         <result property="diasDescanso" column="diasDescanso"/>
         <result property="bonoNocturno" column="bonoNocturno"/>
-        <result property="bonoLealtad" column="bonoLealtad"/>
         <result property="diasFeriados" column="diasFeriados"/>
-        <result property="totalAsignaciones" column="totalAsignaciones"/>
-        <result property="faov" column="faov"/>
-        <result property="ivss" column="ivss"/>
-        <result property="paroForzoso" column="paroForzoso"/>
         <result property="prestamo" column="prestamo"/>
         <result property="diasNoLaborados" column="diasNoLaborados"/>
-        <result property="totalDeduciones" column="totalDeduciones"/>
-        <result property="salarioTotal" column="salarioTotal"/>
-        <result property="cedula" column="cedula"/>
         <result property="FK_cedula_empleado" column="empleado_cedula"/>
     </resultMap>
 
@@ -37,7 +29,7 @@
         WHERE idNomina = #{idNomina}
     </select>
 
-    <select id="selectForeighKey" parameterType="int" resultMap="result">
+    <select id="selectForeighKey" parameterType="String" resultMap="result">
         SELECT *
         FROM rrhh.nomina
         WHERE empleado_cedula = #{FK_cedula_empleado}
@@ -55,16 +47,14 @@
 
     <update id="updateDeduciones" parameterType="Nomina">
         UPDATE rrhh.nomina
-        SET faov = #{faov}, ivss = #{ivss},
-            paroForsozo = #{paroForsozo}, prestamo = #{prestamo}
+        SET prestamo = #{prestamo}
         WHERE empleado_cedula = #{empleado_cedula}
     </update>
 
     <update id="updateAsignaciones" parameterType="Nomina">
         UPDATE rrhh.nomina
         SET diasHabiles = #{diasHabiles}, diasDescanso = #{diasDescanso},
-            bonoNocturno = #{bonoNocturno}, bonoLealtad = #{bonoLealtad},
-            diasFeriados = #{diasFeriados}
+            bonoNocturno = #{bonoNocturno}, diasFeriados = #{diasFeriados}
         WHERE empleado_cedula = #{FK_cedula_empleado}
     </update>
 

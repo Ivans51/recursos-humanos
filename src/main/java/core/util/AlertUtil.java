@@ -10,11 +10,11 @@ import javafx.stage.StageStyle;
  */
 public class AlertUtil extends ManagerFXML {
 
-    private int tipo;
+    private int eleccion;
     private String title;
 
-    public AlertUtil(int tipo, String title) {
-        this.tipo = tipo;
+    public AlertUtil(int eleccion, String title) {
+        this.eleccion = eleccion;
         this.title = title;
         dilog();
     }
@@ -26,7 +26,7 @@ public class AlertUtil extends ManagerFXML {
     }
 
     private void elegir() {
-        AlertModel alertModel = new AlertModel(tipo, title);
+        AlertModel alertModel = new AlertModel(eleccion, title);
         AlertDialog dialog = ManagerFXML.getFxmlLoader().getController();
         dialog.initData(alertModel);
     }

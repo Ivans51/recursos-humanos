@@ -1,6 +1,7 @@
 package core.util;
 
 import com.jfoenix.controls.JFXDatePicker;
+import org.joda.time.DateTime;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -27,6 +28,13 @@ public class FechaUtil {
     public static Date getCurrentDate() throws ParseException {
         Timestamp timestamp = new Timestamp(date.getTime());
         return timestamp;
+    }
+
+    public static int getHourMinutes() throws ParseException {
+        DateTime dt = new DateTime();
+        int hours = dt.getHourOfDay();
+        int minutes = dt.getMinuteOfDay();
+        return hours + minutes;
     }
 
     public static String getDateFormat(Date date) throws ParseException {

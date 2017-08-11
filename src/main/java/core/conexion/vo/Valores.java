@@ -9,10 +9,10 @@ public class Valores {
 
     private int idvalores;
     private double salario;
-    private String precioUnidadTributaria;
-    private String paroForzoso;
-    private String FAO;
-    private String IVSS;
+    private double precioUnidadTributaria;
+    private double paroForzoso;
+    private double FAO;
+    private double IVSS;
     private Date fecha;
     private int fk_id_usuario;
 
@@ -32,35 +32,35 @@ public class Valores {
         this.salario = salario;
     }
 
-    public String getPrecioUnidadTributaria() {
+    public double getPrecioUnidadTributaria() {
         return precioUnidadTributaria;
     }
 
-    public void setPrecioUnidadTributaria(String precioUnidadTributaria) {
+    public void setPrecioUnidadTributaria(double precioUnidadTributaria) {
         this.precioUnidadTributaria = precioUnidadTributaria;
     }
 
-    public String getParoForzoso() {
+    public double getParoForzoso() {
         return paroForzoso;
     }
 
-    public void setParoForzoso(String paroForzoso) {
+    public void setParoForzoso(double paroForzoso) {
         this.paroForzoso = paroForzoso;
     }
 
-    public String getFAO() {
+    public double getFAO() {
         return FAO;
     }
 
-    public void setFAO(String FAO) {
+    public void setFAO(double FAO) {
         this.FAO = FAO;
     }
 
-    public String getIVSS() {
+    public double getIVSS() {
         return IVSS;
     }
 
-    public void setIVSS(String IVSS) {
+    public void setIVSS(double IVSS) {
         this.IVSS = IVSS;
     }
 
@@ -85,10 +85,10 @@ public class Valores {
         return "Valores{" +
                 "idvalores=" + idvalores +
                 ", salario=" + salario +
-                ", precioUnidadTributaria='" + precioUnidadTributaria + '\'' +
-                ", paroForzoso='" + paroForzoso + '\'' +
-                ", FAO='" + FAO + '\'' +
-                ", IVSS='" + IVSS + '\'' +
+                ", precioUnidadTributaria=" + precioUnidadTributaria +
+                ", paroForzoso=" + paroForzoso +
+                ", FAO=" + FAO +
+                ", IVSS=" + IVSS +
                 ", fecha=" + fecha +
                 ", fk_id_usuario=" + fk_id_usuario +
                 '}';

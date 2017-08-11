@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-08-2017 a las 14:02:36
+-- Tiempo de generación: 11-08-2017 a las 14:35:18
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -34,13 +34,6 @@ CREATE TABLE `auditoria` (
   `usuario_idUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `auditoria`
---
-
-INSERT INTO `auditoria` (`idAuditoria`, `fecha`, `hora`, `accion`, `usuario_idUsuario`) VALUES
-(9, '2017-07-08', '2017-07-30 14:47:26', '234', 14);
-
 -- --------------------------------------------------------
 
 --
@@ -63,12 +56,7 @@ CREATE TABLE `capacitacion` (
 --
 
 INSERT INTO `capacitacion` (`idCapacitacion`, `instructor`, `tipo`, `nombreEmpleado`, `fechaInicio`, `fechaCulminacion`, `duracion`, `empleado_cedula`) VALUES
-(1, 'sdljf', 'sljf', 'dfsjkldj', '0000-00-00', '0000-00-00', 'dflskj', '123'),
-(2, 'asdf', 'sdsd', 'sdf', '2017-08-18', '2017-08-17', 'q32', '123'),
-(3, 'Pedro', 'Hockey', 'Juan', '2017-08-18', '2017-08-20', '6', '123'),
-(4, 'Ivans', 'Beisbol', 'Jesus', '2017-08-17', '2017-08-18', '12314', '123'),
-(7, 'Jesus', 'Futbol', 'Pedro', '2017-08-17', '2017-08-11', '213', '123'),
-(8, 'qwerq', '12', 'dfdsfa', '2017-08-16', '2017-08-16', '2314', '123');
+(9, 'Pedro', '1', 'Juan', '2017-08-10', '2017-08-11', '23', '123');
 
 -- --------------------------------------------------------
 
@@ -86,14 +74,6 @@ CREATE TABLE `contratacion` (
   `salario` double NOT NULL,
   `empleado_cedula` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `contratacion`
---
-
-INSERT INTO `contratacion` (`idContratacion`, `cedula`, `nombre`, `fechaInicio`, `fechaCulminacion`, `cargo`, `salario`, `empleado_cedula`) VALUES
-(1, '14', 'asdf', '2017-08-03', '2017-08-04', 'sdf', 12345, '123'),
-(13, '123', 'Juan', '2017-08-02', '2017-08-03', 'sdf', 1123, '3456');
 
 -- --------------------------------------------------------
 
@@ -121,11 +101,7 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`cedula`, `nombreEmpleado`, `fechaNacimiento`, `direccion`, `cargo`, `status`, `registroSS`, `horaInicio`, `horasTrabajadas`, `statusLaborando`, `diasLaborados`, `FK_id_Usuario`) VALUES
-('123', 'Ivans Del Pino', '2017-08-10', 'sdfa', 'Aseo', 'Laborando', '324', '2017-08-03 08:30:05', 0, 1, 0, 14),
-('3456', 'Ivans Del pino', '2017-08-21', 'Calle Santa Rita', 'Lavador', '0', '12324', NULL, 0, 0, 0, 15),
-('asdf', 'asdf', '2017-07-18', 'sadf', 'sdf', '0', 'asdf', NULL, 0, 0, 0, 17),
-('dfasd', 'sdf', '2017-08-08', 'asdas', 'sdf', '0', 'fasd', NULL, 0, 0, 0, 19),
-('gsgsrf', 'sdf', '2017-07-18', 'asdf', 'asdf', '0', 'sdf', '2017-08-03 06:40:08', 1, 1, 0, 18);
+('123', 'Juan', '2017-08-10', 'Santa Rita', 'Aseo', '1', '1242', '2017-08-11 08:02:11', 2, 1, 11, 23);
 
 -- --------------------------------------------------------
 
@@ -146,7 +122,7 @@ CREATE TABLE `estructura_organizativa` (
 --
 
 INSERT INTO `estructura_organizativa` (`idEstrutura`, `departamento`, `funcion`, `jefeInmediato`, `usuario_idUsuario`) VALUES
-(1, 'fsdf', 'sdf', 'sdfsdf', 14);
+(2, 'Ventas', 'Gerente', 'Juan', 23);
 
 -- --------------------------------------------------------
 
@@ -157,20 +133,12 @@ INSERT INTO `estructura_organizativa` (`idEstrutura`, `departamento`, `funcion`,
 CREATE TABLE `nomina` (
   `idNomina` int(11) NOT NULL,
   `nombreEmpleado` text NOT NULL,
-  `diasHabiles` int(11) NOT NULL,
-  `diasDescanso` int(11) NOT NULL,
-  `bonoNocturno` double NOT NULL,
-  `bonoLealtad` double NOT NULL,
-  `diasFeriados` int(11) NOT NULL,
-  `totalAsignaciones` double NOT NULL,
-  `faov` double NOT NULL,
-  `ivss` double NOT NULL,
-  `paroForzoso` double NOT NULL,
+  `diasHabiles` int(11) NOT NULL DEFAULT '11',
+  `diasDescanso` int(11) NOT NULL DEFAULT '4',
+  `bonoNocturno` double NOT NULL DEFAULT '0',
+  `diasFeriados` int(11) NOT NULL DEFAULT '0',
   `prestamo` double NOT NULL,
-  `diasNoLaborados` int(11) NOT NULL,
-  `totalDeducciones` double NOT NULL,
-  `salarioTotal` double NOT NULL,
-  `cedula` varchar(45) NOT NULL,
+  `diasNoLaborados` int(11) NOT NULL DEFAULT '0',
   `empleado_cedula` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -178,8 +146,33 @@ CREATE TABLE `nomina` (
 -- Volcado de datos para la tabla `nomina`
 --
 
-INSERT INTO `nomina` (`idNomina`, `nombreEmpleado`, `diasHabiles`, `diasDescanso`, `bonoNocturno`, `bonoLealtad`, `diasFeriados`, `totalAsignaciones`, `faov`, `ivss`, `paroForzoso`, `prestamo`, `diasNoLaborados`, `totalDeducciones`, `salarioTotal`, `cedula`, `empleado_cedula`) VALUES
-(1, 'afsd', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'sdf', '123');
+INSERT INTO `nomina` (`idNomina`, `nombreEmpleado`, `diasHabiles`, `diasDescanso`, `bonoNocturno`, `diasFeriados`, `prestamo`, `diasNoLaborados`, `empleado_cedula`) VALUES
+(2, 'Juan', 9, 4, 2, 2, 1000, 2, '123');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pago_nomina`
+--
+
+CREATE TABLE `pago_nomina` (
+  `idNominaPago` int(11) NOT NULL,
+  `nombreEmpleado` text NOT NULL,
+  `diasHabiles` int(11) NOT NULL DEFAULT '11',
+  `diasDescanso` int(11) NOT NULL DEFAULT '4',
+  `bonoNocturno` double NOT NULL DEFAULT '0',
+  `diasFeriados` int(11) NOT NULL DEFAULT '0',
+  `totalAsignaciones` double NOT NULL,
+  `faov` double NOT NULL,
+  `ivss` double NOT NULL,
+  `paroForzoso` double NOT NULL,
+  `prestamo` double NOT NULL,
+  `diasNoLaborados` int(11) NOT NULL DEFAULT '0',
+  `totalDeducciones` double NOT NULL,
+  `salarioTotal` double NOT NULL,
+  `fecha` date NOT NULL,
+  `empleado_cedula` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -197,17 +190,6 @@ CREATE TABLE `seleccion_personal` (
   `disponibilidad` varchar(45) NOT NULL,
   `usuario_idUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `seleccion_personal`
---
-
-INSERT INTO `seleccion_personal` (`idSeleccion`, `nombreCandidato`, `cedula`, `direccion`, `telefono`, `puestoPostulacion`, `disponibilidad`, `usuario_idUsuario`) VALUES
-(1, 'sdf', 'sdf', 'sdf', 'sdf', 'sdf', '0', 14),
-(2, 'asdf', '123', 'asdf', '231', '123', '124', 14),
-(3, 'Ivans', '123', 'Santa Rita', '235', 'Fraundelento', '1', 14),
-(4, 'Ivans', '123', 'Santa Rita', '235', 'Fraundelento', '1', 14),
-(5, 'Juan', '234', 'sdf', '123', '124', '123', 14);
 
 -- --------------------------------------------------------
 
@@ -235,14 +217,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `nombreUsuario`, `clave`, `correo`, `nivelAcceso`, `pregunta1`, `respuesta1`, `pregunta2`, `respuesta2`, `fechaCreacion`, `cedula`, `status`) VALUES
-(14, 'Ivans', '12345', 'sdlfkj', 0, 'sdfjkl', '1', 'sdñf', '2', '2017-07-31', 'dsjlfkj', 1),
-(15, 'Juan', '12354', 'sdfsdf', 1, '', '', '', '', '2017-07-30', 'sdf', 3),
-(17, 'sdf', 'sdf', 'asdf', 1, '', '', '', '', '2017-08-02', 'asdf', 0),
-(18, 'JuanFran', '42ui244', 'sdfsdf', 1, '', '', '', '', '2017-08-02', '42ui244', 3),
-(19, 'Pedro Juan', '123', 'sdfsdf', 1, '', '', '', '', '2017-08-02', 'sdf', 3),
-(20, 'Maria', '12345', 'Maria@gmail.com', 1, '', '', '', '', '2017-08-04', '2048295', 3),
-(21, 'Maria Petra', '204', 'Maria@gmail.com', 1, '', '', '', '', '2017-08-04', '2048295', 3),
-(22, 'asdf', 'asdf', 'asdf', 1, '', '', '', '', '2017-08-10', '213124', 0);
+(23, 'Ivans', '1234', 'Ivans@gmail.com', 1, 'Vacion', 'si', 'Vacion', 'No', '2017-08-10', '123', 1);
 
 -- --------------------------------------------------------
 
@@ -266,9 +241,7 @@ CREATE TABLE `valores` (
 --
 
 INSERT INTO `valores` (`idvalores`, `salario`, `precioUnidadTributaria`, `paroForzoso`, `IVSS`, `FAO`, `fecha`, `fk_id_usuario`) VALUES
-(1, 1238, '1233', '0.5', '4', '1', '2017-08-03', 14),
-(2, 13454, '1233', '0.5', '4', '1', '2017-08-06', 15),
-(3, 12345, '1233', '0.5', '4', '1', '2017-08-07', 14);
+(8, 54000, '300', '1', '4', '0.5', '2017-08-10', 23);
 
 --
 -- Índices para tablas volcadas
@@ -317,6 +290,13 @@ ALTER TABLE `nomina`
   ADD KEY `fk_nomina_empleado1_idx` (`empleado_cedula`);
 
 --
+-- Indices de la tabla `pago_nomina`
+--
+ALTER TABLE `pago_nomina`
+  ADD PRIMARY KEY (`idNominaPago`,`empleado_cedula`),
+  ADD KEY `fk_nomina_empleado1_idx` (`empleado_cedula`);
+
+--
 -- Indices de la tabla `seleccion_personal`
 --
 ALTER TABLE `seleccion_personal`
@@ -349,7 +329,7 @@ ALTER TABLE `auditoria`
 -- AUTO_INCREMENT de la tabla `capacitacion`
 --
 ALTER TABLE `capacitacion`
-  MODIFY `idCapacitacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idCapacitacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `contratacion`
 --
@@ -359,12 +339,17 @@ ALTER TABLE `contratacion`
 -- AUTO_INCREMENT de la tabla `estructura_organizativa`
 --
 ALTER TABLE `estructura_organizativa`
-  MODIFY `idEstrutura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idEstrutura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `nomina`
 --
 ALTER TABLE `nomina`
-  MODIFY `idNomina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idNomina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT de la tabla `pago_nomina`
+--
+ALTER TABLE `pago_nomina`
+  MODIFY `idNominaPago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `seleccion_personal`
 --
@@ -374,12 +359,12 @@ ALTER TABLE `seleccion_personal`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT de la tabla `valores`
 --
 ALTER TABLE `valores`
-  MODIFY `idvalores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idvalores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- Restricciones para tablas volcadas
 --
@@ -419,6 +404,12 @@ ALTER TABLE `estructura_organizativa`
 --
 ALTER TABLE `nomina`
   ADD CONSTRAINT `fk_nomina_empleado1` FOREIGN KEY (`empleado_cedula`) REFERENCES `empleado` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `pago_nomina`
+--
+ALTER TABLE `pago_nomina`
+  ADD CONSTRAINT `fk_nomina_empleado10` FOREIGN KEY (`empleado_cedula`) REFERENCES `empleado` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `seleccion_personal`

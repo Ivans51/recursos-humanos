@@ -1,10 +1,11 @@
 package core.util;
 
 import javafx.event.EventHandler;
-import javafx.scene.control.Control;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputControl;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
+
+import java.text.ParseException;
+import java.util.Date;
 
 /**
  * Created by WAMS-10 on 26/07/2017.
@@ -21,7 +22,7 @@ public class Validar {
         if (esValido)
             return esValido;
         else
-            throw new Myexception("Erro message");
+            throw new Myexception("Campo Vacío");
     }
 
     public static boolean limmpiarCampos(TextField... txt) throws Myexception {
@@ -35,7 +36,27 @@ public class Validar {
             throw new Myexception("Erro message");
     }
 
-    public static void hideControl(Control... control){
+    /**
+     * Validar una sola palabra
+     */
+    public static void unaPalabra(String... txt) throws Myexception {
+        for (String s : txt) {
+            if (s.contains(" ")) {
+                String[] parts = s.split(" ");
+                String part2 = parts[1];
+                if (part2 != null) throw new Myexception("Campo tiene mas de una palabra");
+            }
+        }
+    }
+
+    public static String recuperarSegundaPalabra(String regex, String frase) throws Myexception {
+        String[] parts = frase.split(regex);
+        String part2 = parts[1];
+        if (part2 == null) throw new Myexception("Error recuperando segundo valor");
+        else return part2;
+    }
+
+    public static void hideControl(Control... control) {
         for (Control ctr : control) {
             ctr.setVisible(false);
         }
@@ -54,7 +75,7 @@ public class Validar {
         }
     }
 
-    private static void inputNumber(TextInputControl txt, String newValue){
+    private static void inputNumber(TextInputControl txt, String newValue) {
         if (!newValue.matches("\\d*")) {
             txt.setText(newValue.replaceAll("[^\\d]", ""));
         }
@@ -85,6 +106,27 @@ public class Validar {
                 throw new Myexception("Los valores no son iguales");
     }
 
+    public static void comboBoxVacio(ComboBox... comboBoxes) throws Myexception {
+        for (ComboBox comboBox : comboBoxes) {
+            boolean isMyComboBoxEmpty = comboBox.getSelectionModel().isEmpty();
+            if (isMyComboBoxEmpty)
+                throw new Myexception("Selecciona una opcion");
+        }
+    }
+
+    public static void datePickerVacio(DatePicker... datePickers) throws Myexception {
+        for (DatePicker datePicker : datePickers) {
+            if (datePicker.getValue() == null)
+                throw new Myexception("Fecha No correcta");
+        }
+    }
+
+    public static void datePickerRango(Date value) throws Myexception, ParseException {
+        int years = FechaUtil.getYears(value);
+        if (years <= 18 || years >= 50)
+            throw new Myexception("Debe tener una edad entre 18 y 50");
+    }
+
     public static void compararStringIguales(String[] valorUno, TextField... valorDos) throws Myexception {
         for (int i = 0; i < valorUno.length; i++) {
             String text = valorDos[i].getText();
@@ -97,7 +139,7 @@ public class Validar {
         return txt.getText().replaceAll("\\s+", "");
     }
 
-    public static void validarSoloNumero(TextInputControl txt) throws Myexception {
+    private static void soloNumero(TextInputControl txt) throws Myexception {
         txt.textProperty().addListener((observable, oldValue, newValue) -> {
             // if (!newValue.matches("\\d*")) {
             if (!newValue.matches("[0-9]*")) {
@@ -106,7 +148,7 @@ public class Validar {
         });
     }
 
-    private static void validarNumerico(TextInputControl txt) throws Myexception {
+    private static void isNumerico(TextInputControl txt) throws Myexception {
         txt.focusedProperty().addListener((arg0, oldValue, newValue) -> {
             if (!newValue) { // when focus lost
                 if (!txt.getText().matches("[1-5](\\.[0-9]{1,2}){0,1}|6(\\.0{1,2}){0,1}")) {
@@ -116,6 +158,31 @@ public class Validar {
                 }
             }
         });
+    }
+
+    public static void isNumber(String... number) throws Myexception {
+        for (String s : number) {
+            if (!s.matches("[0-9]+")) {
+                throw new Myexception("El campo no puede contener texto");
+            }
+        }
+    }
+
+    public static void isLetter(String... name) throws Myexception {
+        for (String s : name) {
+            if (!s.matches("^[\\p{L} .'-]+$"))
+                throw new Myexception("El campo no puede contener numeros");
+        }
+    }
+
+    public static void isLetterSpeed(String... name) throws Myexception {
+        for (String s : name) {
+            char[] chars = s.toCharArray();
+            for (char c : chars) {
+                if (Character.isLetter(c))
+                    throw new Myexception("El campo no puede contener numeros");
+            }
+        }
     }
 
     /* Numeric Validation Limit the  characters to maxLengh AND to ONLY DigitS *************************************/

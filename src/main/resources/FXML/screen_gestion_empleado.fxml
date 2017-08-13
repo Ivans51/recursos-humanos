@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import java.lang.Integer?>
-<AnchorPane prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenGestionEmpleado">
+<AnchorPane fx:id="anchor" prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenGestionEmpleado">
     <children>
         <HBox maxWidth="1.7976931348623157E308" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -80,6 +80,7 @@
                                         </ImageView>
                                     </graphic>
                                 </JFXButton>
+                                <JFXButton fx:id="btnCancelar" onAction="#onCancelar" styleClass="button-bold" text="Cancelar"/>
                             </children>
                             <padding>
                                 <Insets left="30.0" right="30.0" top="40.0" />

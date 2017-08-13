@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import core.conexion.connection.MyBatisConnection;
 import core.conexion.dao.UsuarioDAO;
+import core.conexion.vo.Empleado;
 import core.conexion.vo.Usuario;
 import core.util.*;
 import javafx.collections.FXCollections;
@@ -33,21 +34,23 @@ public class ScreenAddUser extends ManagerFXML implements Initializable, TableUt
     public TableColumn tbIdUsuario, tbNombreUsuario, tbCorreo, tbNivelUsuario, tbCedula, tbStatus;
     public TableView<Usuario> tablaUsuarios;
     public TableUtil table;
-
+    public Empleado empleado;
+    public String activar = "Activar";
+    public String desactivar = "Desactivar";
     private String[] tableS = {"idUsuario", "nombreUsuario", "correo", "nivelAcceso", "cedula", "status"};
     private ObservableList<String> listUserCombo = FXCollections.observableArrayList("1", "2", "3");
     private ObservableList<String> listNacionalidadCombo = FXCollections.observableArrayList("V", "E");
-
     private List<Usuario> usuarios;
     private Usuario usuario;
-
     private UsuarioDAO usuarioDAO = new UsuarioDAO(MyBatisConnection.getSqlSessionFactory());
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        initData();
         // Combobox
         nivelUsuario.setItems(listUserCombo);
         nacionalidad.setItems(listNacionalidadCombo);
+        btnActualizar.setDisable(true);
 
         // Iniciailizar tabla
         table = new TableUtil(Usuario.class, tablaUsuarios);
@@ -62,6 +65,21 @@ public class ScreenAddUser extends ManagerFXML implements Initializable, TableUt
         table.getListTable().addAll(usuarios);
     }
 
+    private void initData() {
+        if (ScreenAddEmpleado.empleado != null) {
+            try {
+                empleado = ScreenAddEmpleado.empleado;
+                String cedulaValue = Validar.recuperarSegundaPalabra("-", empleado.getCedula());
+                nacionalidad.setValue(cedulaValue);
+                nivelUsuario.setValue(3);
+                nacionalidad.setDisable(true);
+                nivelUsuario.setDisable(true);
+            } catch (Myexception myexception) {
+                myexception.printStackTrace();
+            }
+        }
+    }
+
     /**
      * Llenar la tabla
      */
@@ -72,9 +90,12 @@ public class ScreenAddUser extends ManagerFXML implements Initializable, TableUt
     public void onClickGuardar(ActionEvent event) throws ParseException {
         try {
             Validar.campoVacio(nombreUsuario, claveUsuario, correoUsuario, cedula);
+            Validar.isNumber(cedula.getText());
+            Validar.comboBoxVacio(nacionalidad, nivelUsuario);
             insertUsuario();
         } catch (Myexception myexception) {
             myexception.printStackTrace();
+            new AlertUtil(Estado.ERROR, myexception.getMessage());
         }
     }
 
@@ -97,15 +118,19 @@ public class ScreenAddUser extends ManagerFXML implements Initializable, TableUt
     @Override
     public void setStatusControls() {
         if (table.getModel() != null) {
+            if (usuario.getStatus() == 3)
+                btnEliminar.setText(activar);
+            else if (usuario.getStatus() == 1)
+                btnEliminar.setText(desactivar);
+            else
+                btnEliminar.setDisable(false);
+            btnActualizar.setDisable(false);
+            btnGuardar.setDisable(true);
             usuario = (Usuario) table.getModel();
-            // Pongo los textFields con los datos correspondientes
             nombreUsuario.setText(usuario.getNombreUsuario());
             claveUsuario.setText(usuario.getClave());
             correoUsuario.setText(usuario.getCorreo());
             cedula.setText(usuario.getCedula());
-            /*Image image = new Image(path);
-            imagen.setImage(image);*/
-            // Pongo los botones en su estado correspondiente
             btnGuardar.setDisable(false);
         }
     }
@@ -121,6 +146,7 @@ public class ScreenAddUser extends ManagerFXML implements Initializable, TableUt
     private void updateDatosUsuario() throws Myexception {
         getUsuarioData();
         usuarioDAO.updateDatosUsuarios(usuario);
+        Validar.limmpiarCampos(nombreUsuario, claveUsuario, correoUsuario, cedula);
         selectUsuario();
         tablaUsuarios.refresh();
     }
@@ -129,9 +155,10 @@ public class ScreenAddUser extends ManagerFXML implements Initializable, TableUt
         usuario.setNombreUsuario(nombreUsuario.getText());
         usuario.setClave(claveUsuario.getText());
         usuario.setCorreo(correoUsuario.getText());
-        //usuario.setNivelAcceso(Integer.parseInt(nivelUsuario.getSelectionModel().getSelectedItem().toString()));
-        usuario.setNivelAcceso(1);
-        usuario.setCedula(cedula.getText());
+        Integer nivelAcceso = Integer.valueOf(nivelUsuario.getSelectionModel().getSelectedItem().toString());
+        usuario.setNivelAcceso(nivelAcceso);
+        String cedulaTxt = nacionalidad.getSelectionModel().getSelectedItem().toString() + cedula.getText();
+        usuario.setCedula(cedulaTxt);
         return usuario;
     }
 
@@ -145,9 +172,13 @@ public class ScreenAddUser extends ManagerFXML implements Initializable, TableUt
     }
 
     private void updateStatusUsuario() throws Myexception {
-        usuario.setStatus(3);
+        if (btnEliminar.getText().equals(activar))
+            usuario.setStatus(3);
+        else if (btnEliminar.getText().equals(desactivar))
+            usuario.setStatus(1);
         usuarioDAO.updateStatus(usuario);
-        selectUsuario();
+        usuarios = usuarioDAO.selectAll();
+        table.getListTable().addAll(usuarios);
         tablaUsuarios.refresh();
     }
 

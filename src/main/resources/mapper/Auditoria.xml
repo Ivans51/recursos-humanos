@@ -11,6 +11,7 @@
         <result property="fecha" column="fecha"/>
         <result property="hora" column="hora"/>
         <result property="accion" column="accion"/>
+        <result property="nombreUsuario" column="nombreUsuario"/>
         <result property="FK_idUsuario" column="usuario_idUsuario"/>
     </resultMap>
 
@@ -22,22 +23,22 @@
     <select id="selectById" parameterType="int" resultMap="result">
         SELECT *
         FROM rrhh.auditoria
-        WHERE idAuditoria = #{id}
+        WHERE idAuditoria = #{idAuditoria}
     </select>
 
     <insert id="insert" parameterType="Auditoria" useGeneratedKeys="true" keyProperty="idAuditoria">
-        INSERT INTO rrhh.auditoria (fecha, hora, accion, usuario_idUsuario)
-        VALUES (#{fecha}, #{hora}, #{accion}, #{usuario_idUsuario});
+        INSERT INTO rrhh.auditoria (fecha, hora, accion, nombreUsuario usuario_idUsuario)
+        VALUES (#{fecha}, #{hora}, #{accion}, #{nombreUsuario}, #{usuario_idUsuario});
     </insert>
 
     <update id="update" parameterType="Auditoria">
         UPDATE rrhh.auditoria
         SET name = #{name}
-        WHERE idAuditoria = #{id}
+        WHERE idAuditoria = #{idAuditoria}
     </update>
 
     <delete id="delete" parameterType="int">
         DELETE FROM rrhh.auditoria
-        WHERE idAuditoria = #{id}
+        WHERE idAuditoria = #{idAuditoria}
     </delete>
 </mapper>

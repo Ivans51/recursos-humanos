@@ -32,6 +32,12 @@
         WHERE idUsuario = #{idUsuario}
     </select>
 
+    <select id="selectByCorreo" parameterType="Usuario" resultMap="result">
+        SELECT *
+        FROM rrhh.usuario
+        WHERE nombreUsuario = #{nombreUsuario} AND correo = #{correo}
+    </select>
+
     <select id="login" parameterType="Usuario" resultMap="result">
         SELECT *
         FROM rrhh.usuario

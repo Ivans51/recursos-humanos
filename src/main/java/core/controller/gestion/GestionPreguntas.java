@@ -45,6 +45,8 @@ public class GestionPreguntas extends ManagerFXML implements Initializable {
         else {
             try {
                 Validar.campoVacio(respuestaDos, respuestaUno);
+                Validar.unaPalabra(respuestaDos.getText(), respuestaUno.getText());
+                Validar.comboBoxVacio(preguntaDos, preguntaUno);
                 iniciarSession();
                 abrirStage(Route.SessionUsuario, "Inicio de Session", btnEnviar, null);
             } catch (Myexception ex) {

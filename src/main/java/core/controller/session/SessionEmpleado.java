@@ -49,6 +49,7 @@ public class SessionEmpleado extends ManagerFXML implements Initializable {
             statusEmpleado();
         } catch (Myexception myexception) {
             myexception.printStackTrace();
+            empleado.setStatuSession(true);
         } finally {
             abrirStage(Route.SessionEmpleadoGestion, "Gestion de la cuenta empleado", acceder, () -> {
                 SessionEmpleadoGestion display = getFxmlLoader().getController();
@@ -72,6 +73,7 @@ public class SessionEmpleado extends ManagerFXML implements Initializable {
         empleado.setStatusLaborando(1);
         empleado.setHorasTrabajadas(horasTrabajadas);
         empleado.setFK_id_Usuario(idUsuario);
+        empleado.setStatuSession(false);
         empleadoDAO.updateStatusTrabajo(empleado);
     }
 

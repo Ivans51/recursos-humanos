@@ -2,6 +2,7 @@ package core.util;
 
 import com.jfoenix.controls.JFXDatePicker;
 import org.joda.time.DateTime;
+import org.joda.time.Years;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -73,6 +74,11 @@ public class FechaUtil {
     private static String getCalendarFormatTimeString() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         return dateFormat.format(cal.getTime());
+    }
+    public static int getYears(Date time){
+        DateTime now = DateTime.now();
+        DateTime then = new DateTime(time.getTime());
+        return Years.yearsBetween(then, now).getYears();
     }
 
     public static void getDifference(String dateStart) {

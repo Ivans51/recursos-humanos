@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import core.conexion.connection.MyBatisConnection;
 import core.conexion.dao.EmpleadoDAO;
 import core.conexion.vo.Empleado;
-import core.conexion.vo.Usuario;
 import core.util.FechaUtil;
 import core.util.ManagerFXML;
 import core.util.Route;
@@ -13,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
-import java.text.ParseException;
 import java.util.ResourceBundle;
 
 /**
@@ -34,10 +32,11 @@ public class SessionEmpleadoGestion extends ManagerFXML implements Initializable
     }
 
 
-    public void initData(Empleado empleado){
+    public void initData(Empleado empleado) {
         this.empleado = empleado;
         String text = empleado.getNombreEmpleado() + " registrado el " + empleado.getHoraInicio();
         labelRegistroEmpleado.setText(text);
+        terminarJornada.setVisible(empleado.isStatuSession());
     }
 
     public void onTerminar(MouseEvent mouseEvent) {

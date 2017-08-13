@@ -13,6 +13,7 @@
         <result property="paroForzoso" column="paroForzoso"/>
         <result property="IVSS" column="IVSS"/>
         <result property="FAO" column="FAO"/>
+        <result property="diasUtilidades" column="diasUtilidades"/>
         <result property="fecha" column="fecha"/>
         <result property="fk_id_usuario" column="fk_id_usuario"/>
     </resultMap>

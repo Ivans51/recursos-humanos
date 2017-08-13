@@ -51,6 +51,16 @@ public class UsuarioDAO {
         System.out.println("selectById(" + id + ") --> " + person);
         return person;
     }
+    public Usuario selectByCorreo(Usuario usuario) {
+        Usuario person = null;
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            person = session.selectOne("Usuario.selectByCorreo", usuario);
+        } finally {
+            session.close();
+        }
+        return person;
+    }
 
     /**
      * Select instance of Usuario from the database.

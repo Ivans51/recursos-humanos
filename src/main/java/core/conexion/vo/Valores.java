@@ -14,6 +14,7 @@ public class Valores {
     private double FAO;
     private double IVSS;
     private Date fecha;
+    private int diasUtilidades;
     private int fk_id_usuario;
 
     public int getIdvalores() {
@@ -80,6 +81,14 @@ public class Valores {
         this.fk_id_usuario = fk_id_usuario;
     }
 
+    public int getDiasUtilidades() {
+        return diasUtilidades;
+    }
+
+    public void setDiasUtilidades(int diasUtilidades) {
+        this.diasUtilidades = diasUtilidades;
+    }
+
     @Override
     public String toString() {
         return "Valores{" +
@@ -90,6 +99,7 @@ public class Valores {
                 ", FAO=" + FAO +
                 ", IVSS=" + IVSS +
                 ", fecha=" + fecha +
+                ", diasUtilidades=" + diasUtilidades +
                 ", fk_id_usuario=" + fk_id_usuario +
                 '}';
     }

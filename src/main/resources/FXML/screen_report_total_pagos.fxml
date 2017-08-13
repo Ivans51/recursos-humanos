@@ -29,7 +29,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Label text="Reporte de Auditoria">
+                        <Label text="Reporte de empleados">
                             <styleClass>
                                 <String fx:value="label-bold" />
                                 <String fx:value="label-font-medium" />
@@ -38,7 +38,7 @@
                                 <Insets left="20.0" top="10.0" />
                             </padding>
                         </Label>
-                        <JFXButton fx:id="btnImprimir" maxWidth="1.7976931348623157E308" text="Imprimir" GridPane.columnIndex="1" onAction="#onImprimir">
+                        <JFXButton fx:id="btnImprimir" maxWidth="1.7976931348623157E308" onAction="#onImprimir" text="Imprimir" GridPane.columnIndex="1">
                             <styleClass>
                                 <String fx:value="button-bold" />
                                 <String fx:value="button-report-padding" />
@@ -62,7 +62,7 @@
                         <Insets bottom="5.0" left="30.0" top="5.0" />
                     </padding>
                     <children>
-                        <Label text="Datos de la auditoria" />
+                        <Label text="Reporte de todos los pagos a los empleados" />
                     </children>
                 </HBox>
             </children>
@@ -78,9 +78,6 @@
                         <TableColumn fx:id="tbQuincena" prefWidth="36.0" text="Quincena" />
                         <TableColumn fx:id="tbUtitilidades" prefWidth="49.0" text="Utilidades" />
                         <TableColumn fx:id="tbVales" prefWidth="75.0" text="Vales" />
-                        <TableColumn fx:id="tbLiquidacion" prefWidth="75.0" text="Liquidación" />
-                        <TableColumn prefWidth="75.0" text="NombreUsuario" />
-                        <TableColumn prefWidth="75.0" text="Acción" />
                     </columns>
                     <padding>
                         <Insets left="20.0" right="20.0" top="20.0" />
@@ -90,7 +87,7 @@
         </AnchorPane>
         <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" spacing="30.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <JFXButton layoutX="490.0" layoutY="15.0" styleClass="button-bold" text="Cerrar" />
+                <JFXButton layoutX="490.0" layoutY="15.0" onAction="#onCerrar" styleClass="button-bold" text="Cerrar" />
             </children>
             <padding>
                 <Insets bottom="5.0" left="30.0" right="50.0" top="5.0" />

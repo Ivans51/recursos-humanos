@@ -11,6 +11,7 @@ public class Auditoria {
     private Date fecha;
     private int hora;
     private String accion;
+    private String nombreUsuario;
     private int FK_idUsuario;
 
     public int getIdAuditoria() {
@@ -53,6 +54,14 @@ public class Auditoria {
         this.FK_idUsuario = FK_idUsuario;
     }
 
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
     @Override
     public String toString() {
         return "Auditoria{" +
@@ -60,6 +69,7 @@ public class Auditoria {
                 ", fecha=" + fecha +
                 ", hora=" + hora +
                 ", accion='" + accion + '\'' +
+                ", nombreUsuario='" + nombreUsuario + '\'' +
                 ", FK_idUsuario=" + FK_idUsuario +
                 '}';
     }

@@ -14,6 +14,7 @@ import core.util.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Spinner;
+import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,6 +24,7 @@ import java.util.ResourceBundle;
  */
 public class ScreenGestionEmpleado extends ManagerFXML implements Initializable {
 
+    public AnchorPane anchor;
     public JFXTextField txtCedula, txtNombreApellido, txtCargo, txtEstatus;
     public JFXDatePicker txtDateFecha;
     public JFXButton btnModificaEMpleado, btnActualizarTodos, btnActualizarDeduciones;
@@ -47,13 +49,13 @@ public class ScreenGestionEmpleado extends ManagerFXML implements Initializable 
     }
 
     private void startEmpleado() {
-        if (ScreenTableEmpleados.empleado != null)
+        if (ScreenTableEmpleados.empleado != null) {
             empleadoG = ScreenTableEmpleados.empleado;
-        txtCedula.setText(empleadoG.getCedula());
-        txtNombreApellido.setText(empleadoG.getNombreEmpleado());
-        txtCargo.setText(empleadoG.getCargo());
+            txtCedula.setText(empleadoG.getCedula());
+            txtNombreApellido.setText(empleadoG.getNombreEmpleado());
+            txtCargo.setText(empleadoG.getCargo());
+        }
         // txtDateFecha.set
-        txtEstatus.setText(empleadoG.getStatus());
     }
 
     private void startNomina() {
@@ -62,7 +64,7 @@ public class ScreenGestionEmpleado extends ManagerFXML implements Initializable 
     }
 
     private void startValores() {
-        valoresDAO.selectByIdLastDate();
+        valores = valoresDAO.selectByIdLastDate();
         txtFaov.setText(String.valueOf(valores.getFAO()));
         txtIVSS.setText(String.valueOf(valores.getIVSS()));
         txtParoForzoso.setText(String.valueOf(valores.getParoForzoso()));
@@ -97,7 +99,6 @@ public class ScreenGestionEmpleado extends ManagerFXML implements Initializable 
         empleadoG.setNombreEmpleado(txtNombreApellido.getText());
         empleadoG.setFechaNacimiento(FechaUtil.getDatePickentCurrent(txtDateFecha));
         empleadoG.setCargo(txtCargo.getText());
-        empleadoG.setStatus(txtEstatus.getText());
         empleadoDAO.updateDatosEmpleado(empleadoG);
     }
 
@@ -128,5 +129,9 @@ public class ScreenGestionEmpleado extends ManagerFXML implements Initializable 
         nomina = new Nomina();
         nomina.setPrestamo(Double.parseDouble(txtPrestamo.getText()));
         nominaDAO.updateAsignaciones(nomina);
+    }
+
+    public void onCancelar(ActionEvent event) {
+        cambiarEscena(Route.ScreenHomeBackground, anchor);
     }
 }

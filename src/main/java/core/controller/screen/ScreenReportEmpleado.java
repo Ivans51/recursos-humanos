@@ -1,20 +1,26 @@
 package core.controller.screen;
 
+import com.itextpdf.text.DocumentException;
 import com.jfoenix.controls.JFXButton;
 import core.conexion.connection.MyBatisConnection;
+import core.conexion.dao.ContratacionDAO;
 import core.conexion.dao.EmpleadoDAO;
-import core.conexion.vo.Capacitacion;
+import core.conexion.dao.NominaDAO;
+import core.conexion.dao.ValoresDAO;
+import core.conexion.model.EmpleadoPago;
+import core.conexion.vo.Contratacion;
 import core.conexion.vo.Empleado;
-import core.util.ManagerFXML;
-import core.util.TableUtil;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
+import core.conexion.vo.Nomina;
+import core.conexion.vo.Valores;
+import core.util.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 
+import javax.annotation.Nullable;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -22,67 +28,115 @@ import java.util.ResourceBundle;
 /**
  * Created by Ivans on 7/18/2017.
  */
-public class ScreenReportEmpleado extends ManagerFXML implements Initializable, TableUtil.StatusControles {
+public class ScreenReportEmpleado extends ManagerFXML implements Initializable, PDFCreator.PDFTabla {
 
     public AnchorPane anchor;
-    public JFXButton btnCesta, btnSalarioIntegral, btnSalarioQuincenal, btnUtilidades, btnVales, btnLiquidacion, btnCerrar;
-    public TableColumn tbCedula, tbNombre, tbDireccion, tbFechaNac, tbCargos, tbStatus, tbSueldo, tbIngreso, tbFechaCulm;
-    public TableView tablaReportTotal;
+    public JFXButton btnCesta, btnSalarioIntegral, btnSalarioQuincenal, btnUtilidades, btnVales, btnCerrar;
+    public TableColumn tbCedula, tbNombre, tbDireccion, tbFechaNac, tbCargos, tbStatus, tbSueldo, tbIngreso, tbMonto;
+    public TableView<EmpleadoPago> tablaReportTotal;
 
     public TableUtil table;
-    private String[] tableS = {"cedula", "nombreEmpleado", "direccion", "fechaNacimiento", "cargo", "status"};
+    public EmpleadoPago empleadoPago;
+    public CalculoLiquidacion calculoLiquidacion;
+
+    private String[] tableS = {"cedula", "nombreEmpleado", "direccion", "fechaNacimiento", "cargo",
+            "statusLaborando", "salario", "fechaInicio", "monto"};
     private List<Empleado> empleadoList;
-    private Empleado empleado;
+    private List<Contratacion> contratacionnList;
+    private List<EmpleadoPago> empleadoPagoList;
+    private List<Nomina> nominaList;
+    private Valores valores;
+
     private EmpleadoDAO empleadoDAO = new EmpleadoDAO(MyBatisConnection.getSqlSessionFactory());
+    private ContratacionDAO contratacionDAO = new ContratacionDAO(MyBatisConnection.getSqlSessionFactory());
+    private ValoresDAO valoresDAO = new ValoresDAO(MyBatisConnection.getSqlSessionFactory());
+    private NominaDAO nominaDAO = new NominaDAO(MyBatisConnection.getSqlSessionFactory());
+    public PDFCreator pdfCreator;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Iniciailizar tabla
-        table = new TableUtil(Empleado.class, tablaReportTotal);
-        table.inicializarTabla(tableS, tbCedula, tbNombre, tbDireccion, tbFechaNac, tbCargos, tbStatus, tbSueldo, tbIngreso, tbFechaCulm);
+        table = new TableUtil(EmpleadoPago.class, tablaReportTotal);
+        table.inicializarTabla(tableS, tbCedula, tbNombre, tbDireccion, tbFechaNac, tbCargos, tbStatus, tbSueldo, tbIngreso, tbMonto);
 
-        // Seleccionar las tuplas de la tabla de las listTable
-        final ObservableList<Empleado> tablaPersonaSel = tablaReportTotal.getSelectionModel().getSelectedItems();
-        tablaPersonaSel.addListener((ListChangeListener<Empleado>) c -> table.seleccionarTabla(this));
-
-        selectCapacitacion();
-        table.getListTable().addAll(empleadoList);
+        selectValores();
+        calculoLiquidacion = new CalculoLiquidacion(valores.getSalario(), valores.getDiasUtilidades());
+        setDataTable(calculoLiquidacion.cestaTicket(valores.getPrecioUnidadTributaria()), null);
+        table.getListTable().addAll(empleadoPagoList);
     }
 
-    private void selectCapacitacion() {
+    private void selectValores() {
+        valores = valoresDAO.selectByIdLastDate();
         empleadoList = empleadoDAO.selectAll();
+        contratacionnList = contratacionDAO.selectAll();
+        nominaList = nominaDAO.selectAll();
     }
 
-    @Override
-    public void setStatusControls() {
-
+    private void setDataTable(@Nullable double monto, @Nullable List<Nomina> nominaList) {
+        for (int i = 0; i < empleadoList.size(); i++) {
+            empleadoPago = new EmpleadoPago();
+            empleadoPago.setCedula(empleadoList.get(i).getCedula());
+            empleadoPago.setNombreEmpleado(empleadoList.get(i).getNombreEmpleado());
+            empleadoPago.setDireccion(empleadoList.get(i).getDireccion());
+            empleadoPago.setFechaNacimiento(empleadoList.get(i).getFechaNacimiento());
+            empleadoPago.setCargo(contratacionnList.get(i).getCargo());
+            empleadoPago.setStatusLaborando(empleadoList.get(i).getStatusLaborando());
+            empleadoPago.setSalario(contratacionnList.get(i).getSalario());
+            empleadoPago.setFechaInicio(contratacionnList.get(i).getFechaInicio());
+            if (nominaList != null)
+                empleadoPago.setMonto(nominaList.get(i).getPrestamo());
+            else
+                empleadoPago.setMonto(monto);
+            empleadoPagoList.add(empleadoPago);
+        }
     }
 
     public void onCesta(ActionEvent event) {
-
+        setDataTable(calculoLiquidacion.cestaTicket(valores.getPrecioUnidadTributaria()), null);
+        tablaReportTotal.refresh();
     }
 
-    public void onSalarioIntegral(ActionEvent event) {
-
+    public void onSalarioIntegral(ActionEvent event) throws Myexception {
+        setDataTable(calculoLiquidacion.salarioIntegral(), null);
+        tablaReportTotal.refresh();
     }
 
-    public void onSalarioQuincenal(ActionEvent event) {
-
+    public void onSalarioQuincenal(ActionEvent event) throws Myexception {
+        CalculoQuincena calculoQuincena = new CalculoQuincena(valores.getSalario());
+        double totalQuincena = calculoQuincena.getTotalQuincena();
+        setDataTable(totalQuincena, null);
     }
 
-    public void onUtilidades(ActionEvent event) {
-
+    public void onUtilidades(ActionEvent event) throws Myexception {
+        setDataTable(calculoLiquidacion.utilidades(), null);
+        tablaReportTotal.refresh();
     }
 
     public void onVales(ActionEvent event) {
-
-    }
-
-    public void onLiquidaciones(ActionEvent event) {
-
+        setDataTable(Double.parseDouble(null), nominaList);
     }
 
     public void onCerrar(ActionEvent event) {
+        cambiarEscena(Route.ScreenHomeBackground, anchor);
+    }
 
+    public void onImprimir(ActionEvent event) throws FileNotFoundException, DocumentException {
+        pdfCreator = new PDFCreator();
+        pdfCreator.crearPDF("Reporte de los empleados", "Lista de los empleados", 9, this);
+    }
+
+    @Override
+    public void addCellTable() {
+        for (EmpleadoPago pago : empleadoPagoList) {
+            pdfCreator.getTabla().addCell(pago.getCedula());
+            pdfCreator.getTabla().addCell(pago.getNombreEmpleado());
+            pdfCreator.getTabla().addCell(pago.getDireccion());
+            pdfCreator.getTabla().addCell(String.valueOf(pago.getFechaNacimiento()));
+            pdfCreator.getTabla().addCell(pago.getCargo());
+            pdfCreator.getTabla().addCell(String.valueOf(pago.getStatusLaborando()));
+            pdfCreator.getTabla().addCell(String.valueOf(pago.getSalario()));
+            pdfCreator.getTabla().addCell(String.valueOf(pago.getFechaInicio()));
+            pdfCreator.getTabla().addCell(String.valueOf(pago.getMonto()));
+        }
     }
 }

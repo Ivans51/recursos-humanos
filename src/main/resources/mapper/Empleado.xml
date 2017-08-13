@@ -12,7 +12,6 @@
         <result property="fechaNacimiento" column="fechaNacimiento"/>
         <result property="direccion" column="direccion"/>
         <result property="cargo" column="cargo"/>
-        <result property="status" column="status"/>
         <result property="registroSS" column="registroSS"/>
         <result property="horaInicio" column="horaInicio"/>
         <result property="horasTrabajadas" column="horasTrabajadas"/>
@@ -43,7 +42,7 @@
 
     <select id="selectByEmpleadoContrato" parameterType="string" resultMap="result">
         SELECT
-            a.cedula, a.nombreEmpleado, a.fechaNacimiento, a.direccion, a.direccion, a.cargo, a.status,
+            a.cedula, a.nombreEmpleado, a.fechaNacimiento, a.direccion, a.direccion, a.cargo,
             b.salario, b.fechaInicio, b.fechaCulminacion
         FROM rrhh.empleado a INNER JOIN contratacion b
             ON a.cedula = b.empleado_cedula
@@ -52,7 +51,7 @@
 
     <select id="selectAllEmpleadoContrato" parameterType="string" resultMap="result">
         SELECT
-            a.cedula, a.nombreEmpleado, a.fechaNacimiento, a.direccion, a.direccion, a.cargo, a.status,
+            a.cedula, a.nombreEmpleado, a.fechaNacimiento, a.direccion, a.direccion, a.cargo,
             b.salario, b.fechaInicio, b.fechaCulminacion
         FROM rrhh.empleado a INNER JOIN contratacion b
             ON a.cedula = b.empleado_cedula
@@ -73,8 +72,8 @@
     </insert>
 
     <insert id="insertEmpleado" parameterType="Empleado" useGeneratedKeys="true" keyProperty="cedula">
-        INSERT INTO rrhh.empleado (cedula, nombreEmpleado, fechaNacimiento, direccion, cargo, status, registroSS, FK_id_Usuario)
-        VALUES (#{cedula}, #{nombreEmpleado}, #{fechaNacimiento}, #{direccion}, #{cargo}, #{status}, #{registroSS},
+        INSERT INTO rrhh.empleado (cedula, nombreEmpleado, fechaNacimiento, direccion, cargo, statusLaborando, registroSS, FK_id_Usuario)
+        VALUES (#{cedula}, #{nombreEmpleado}, #{fechaNacimiento}, #{direccion}, #{cargo}, #{statusLaborando}, #{registroSS},
                 #{FK_id_Usuario});
     </insert>
 
@@ -93,7 +92,7 @@
     <update id="updateDatosEmpleado" parameterType="Empleado">
         UPDATE rrhh.empleado
         SET nombreEmpleado = #{nombreEmpleado}, fechaNacimiento = #{fechaNacimiento},
-            cargo = #{cargo}, status = #{status}
+            cargo = #{cargo}, statusLaborando = #{statusLaborando}
         WHERE cedula = #{cedula}
     </update>
 

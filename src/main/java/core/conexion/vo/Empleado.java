@@ -13,7 +13,6 @@ public class Empleado {
     private Date fechaNacimiento;
     private String direccion;
     private String cargo;
-    private String status;
     private String registroSS;
     private String horaInicio;
     private int horasTrabajadas;
@@ -23,6 +22,7 @@ public class Empleado {
     private Contratacion contratacion;
     private List<Contratacion> contratacions;
     private double calculo;
+    private boolean statuSession;
 
     public String getCedula() {
         return cedula;
@@ -62,14 +62,6 @@ public class Empleado {
 
     public void setCargo(String cargo) {
         this.cargo = cargo;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getRegistroSS() {
@@ -144,6 +136,14 @@ public class Empleado {
         this.diasLaborados = diasLaborados;
     }
 
+    public boolean isStatuSession() {
+        return statuSession;
+    }
+
+    public void setStatuSession(boolean statuSession) {
+        this.statuSession = statuSession;
+    }
+
     @Override
     public String toString() {
         return "Empleado{" +
@@ -152,7 +152,6 @@ public class Empleado {
                 ", fechaNacimiento=" + fechaNacimiento +
                 ", direccion='" + direccion + '\'' +
                 ", cargo='" + cargo + '\'' +
-                ", status='" + status + '\'' +
                 ", registroSS='" + registroSS + '\'' +
                 ", horaInicio='" + horaInicio + '\'' +
                 ", horasTrabajadas=" + horasTrabajadas +

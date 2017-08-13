@@ -1,5 +1,6 @@
 package core.controller.gestion;
 
+import com.jfoenix.controls.JFXButton;
 import core.conexion.model.SessionModel;
 import core.util.ManagerFXML;
 import core.util.Myexception;
@@ -15,10 +16,9 @@ import java.util.ResourceBundle;
 /**
  * Created by Ivans on 7/16/2017.
  */
-public class GestionUserController extends ManagerFXML implements Initializable{
+public class GestionUserController extends ManagerFXML implements Initializable {
 
-    @FXML
-    private Button recuperarClave, cambioClave, salir;
+    public JFXButton recuperarClave, cambioClave, regresar, salir;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -32,6 +32,8 @@ public class GestionUserController extends ManagerFXML implements Initializable{
             openFXMLUserParent(1, "Recuperación de clave", recuperarClave);
         else if (event.getSource() == cambioClave)
             openFXMLUserParent(2, "Recuperación nombre de usuario", cambioClave);
+        else if (event.getSource() == regresar)
+            abrirStage(Route.SessionUsuario, "Gestion de Usuario", regresar, null);
         else if (event.getSource() == salir)
             cerrarStage(salir);
     }

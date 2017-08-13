@@ -68,7 +68,7 @@ public class ScreenTableEmpleados extends ManagerFXML implements Initializable, 
                 empleadoContratacion.setDireccion(empleados.get(i).getDireccion());
                 empleadoContratacion.setFechaNac(fechaNac);
                 empleadoContratacion.setCargo(empleados.get(i).getCargo());
-                empleadoContratacion.setStatusActual(empleados.get(i).getStatus());
+                empleadoContratacion.setStatusActual(String.valueOf(empleados.get(i).getStatusLaborando()));
                 empleadoContratacion.setSueldo(String.valueOf(empleados.get(i).getContratacion().getSalario()));
                 empleadoContratacion.setFechaIngreso(fechaIngreso);
                 empleadoContratacion.setFechaCulminacion(fechaCulminacion);
@@ -98,7 +98,7 @@ public class ScreenTableEmpleados extends ManagerFXML implements Initializable, 
             empleadoContratacion.setDireccion(empleado.getDireccion());
             empleadoContratacion.setFechaNac(fechaNac);
             empleadoContratacion.setCargo(empleado.getCargo());
-            empleadoContratacion.setStatusActual(empleado.getStatus());
+            empleadoContratacion.setStatusActual(String.valueOf(empleado.getStatusLaborando()));
             empleadoContratacion.setSueldo(String.valueOf(empleado.getContratacion().getSalario()));
             empleadoContratacion.setFechaIngreso(fechaIngreso);
             empleadoContratacion.setFechaCulminacion(fechaCulminacion);

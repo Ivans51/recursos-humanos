@@ -29,7 +29,7 @@
                           <Insets bottom="5.0" />
                       </padding>
                   </Label>
-                  <TextField layoutX="60.0" layoutY="195.0">
+                  <TextField fx:id="txtNombreUsuario" layoutX="60.0" layoutY="195.0">
                       <VBox.margin>
                           <Insets bottom="15.0" />
                       </VBox.margin>
@@ -42,8 +42,8 @@
           </VBox>
         <HBox alignment="CENTER" prefWidth="800.0" spacing="60.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <JFXButton text="Guardar" />
-                <JFXButton layoutX="647.0" layoutY="54.0" text="Cancelar" />
+                <JFXButton fx:id="btnSend" text="Guardar" onAction="#onSend" />
+                <JFXButton fx:id="btnCancelar" layoutX="647.0" layoutY="54.0" text="Cancelar" onAction="#onCancelar" />
             </children>
             <padding>
                 <Insets top="50.0" />

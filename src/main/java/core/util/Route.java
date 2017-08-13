@@ -15,7 +15,6 @@ public class Route {
     public static String ScrenAbout = "/FXML/screen_about.fxml";
     public static String ScreenAddEmpleados = "/FXML/screen_add_empleado.fxml";
     public static String ScreenAddUser = "/FXML/screen_add_user.fxml";
-    public static String ScreenCapacitacion = "/FXML/screen_capacitacion.fxml";
     public static String ScreenContratoEmpleado = "/FXML/screen_contrato_empleado.fxml";
     public static String ScreenFactura = "/FXML/screen_factura.fxml";
     public static String ScreenGestionEmpleado = "/FXML/screen_gestion_empleado.fxml";
@@ -23,13 +22,12 @@ public class Route {
     public static String ScreenReportAuditoria = "/FXML/screen_report_auditoria.fxml";
     public static String ScreenReportEmpleado = "/FXML/screen_report_empleado.fxml";
     public static String ScreenReportTotalPagos = "/FXML/screen_report_total_pagos.fxml";
-    public static String ScreenSeleccionPersonal = "/FXML/screen_seleccion_personal.fxml";
     public static String ScreenTableEmpleados = "/FXML/screen_table_empleados.fxml";
     public static String ScreenTableLiquidacion = "/FXML/screen_liquidacion.fxml";
     public static String ScreenTableUser = "/FXML/screen_table_user.fxml";
     public static String ScreenTableCapacitacion = "/FXML/screen_tabla_capacitacion.fxml";
     public static String ScreenTableSeleccion = "/FXML/screen_tabla_seleccion_personal.fxml";
-    public static String ScreenUpdateValores = "/FXML/screen_update_valores.fxml";
+    public static String ScreenInsertValores = "/FXML/screen_table_insert_valores.fxml";
     public static String ScreenWelcome = "/FXML/screen_welcome.fxml";
     public static String SessionEmpleado = "/FXML/session_empleado.fxml";
     public static String SessionEmpleadoGestion = "/FXML/session_empleado_gestion.fxml";

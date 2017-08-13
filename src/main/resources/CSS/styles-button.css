@@ -11,6 +11,16 @@
     -fx-cursor: hand;
 }
 
+.button-disabled{
+    -fx-background-color: #7a7a7a;
+    -fx-cursor: default;
+}
+
+.button-disable{
+    -fx-background-color: #5DB8F1;
+    -fx-cursor: hand;
+}
+
 .button-font-medium {
     -fx-font-size: 20;
 }

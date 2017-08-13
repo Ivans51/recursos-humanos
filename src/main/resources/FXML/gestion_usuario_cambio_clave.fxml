@@ -109,7 +109,7 @@
                 </VBox.margin>
             </TextField>
             <VBox alignment="CENTER">
-                <JFXButton alignment="CENTER" styleClass="button-bold" text="Verificar"/>
+                <JFXButton fx:id="btnVerificar" alignment="CENTER" styleClass="button-bold" text="Verificar" onAction="#onVerificar"/>
             </VBox>
         </VBox>
     </GridPane>

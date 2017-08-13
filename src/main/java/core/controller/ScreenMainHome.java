@@ -115,7 +115,7 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
     }
 
     public void abrirActualizarValores(MouseEvent mouseEvent) {
-        cambiarEscena(Route.ScreenUpdateValores, rootPane);
+        cambiarEscena(Route.ScreenInsertValores, rootPane);
     }
 
     public void abrirAyuda(MouseEvent mouseEvent) {

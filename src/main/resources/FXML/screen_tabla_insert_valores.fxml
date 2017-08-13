@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.lang.String?>
 <?import java.net.URL?>
@@ -16,13 +15,13 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenAddUser" fx:id="anchorPane">
+<AnchorPane fx:id="anchorPane" prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenInsertValores">
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <HBox maxWidth="1.7976931348623157E308">
                     <children>
-                        <Label text="Registro de Usuario">
+                        <Label text="Actualizar Valores">
                             <styleClass>
                                 <String fx:value="label-bold" />
                                 <String fx:value="label-font-medium" />
@@ -35,7 +34,7 @@
                 </HBox>
                 <HBox maxWidth="1.7976931348623157E308" styleClass="layot-color-four">
                     <children>
-                        <Label styleClass="label-bold" text="Llene los campos para registrar un usuario" />
+                        <Label styleClass="label-bold" text="Llene los campos para actualizar" />
                     </children>
                     <padding>
                         <Insets bottom="5.0" left="30.0" top="5.0" />
@@ -56,53 +55,41 @@
                     <children>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                             <children>
-                                <JFXTextField disable="true" alignment="TOP_LEFT" labelFloat="true" promptText="Código de usuario">
+                                <JFXTextField fx:id="txtSalario" alignment="TOP_LEFT" labelFloat="true" promptText="Salario">
                                     <VBox.margin>
                                         <Insets bottom="30.0" />
                                     </VBox.margin>
                                 </JFXTextField>
-                                <JFXTextField fx:id="nombreUsuario" alignment="TOP_LEFT" labelFloat="true" promptText="Nombre de usuario">
+                                <JFXTextField fx:id="txtPrecioUnidad" alignment="TOP_LEFT" labelFloat="true" promptText="PrecioUnidadTributaria">
                                     <VBox.margin>
                                         <Insets bottom="30.0" />
                                     </VBox.margin>
                                 </JFXTextField>
-                                <JFXTextField fx:id="claveUsuario" alignment="TOP_LEFT" labelFloat="true" layoutX="40.0" layoutY="75.0" promptText="Clave">
+                                <JFXTextField fx:id="txtParoForzoso" alignment="TOP_LEFT" labelFloat="true" layoutX="40.0" layoutY="75.0" promptText="Paro Forzoso">
                                     <VBox.margin>
                                         <Insets bottom="30.0" />
                                     </VBox.margin>
                                 </JFXTextField>
-                                <JFXTextField fx:id="correoUsuario" alignment="TOP_LEFT" labelFloat="true" layoutX="40.0" layoutY="120.0" promptText="Correo">
+                                <JFXTextField fx:id="txtIVSS" alignment="TOP_LEFT" labelFloat="true" layoutX="40.0" layoutY="120.0" promptText="IVSS">
                                     <VBox.margin>
                                         <Insets bottom="30.0" />
                                     </VBox.margin>
                                 </JFXTextField>
-                                <JFXComboBox fx:id="nivelUsuario" maxWidth="1.7976931348623157E308" minWidth="-Infinity" promptText="Nivel de Acceso">
-                                    <VBox.margin>
-                                        <Insets bottom="30.0" />
-                                    </VBox.margin>
-                                </JFXComboBox>
-                                <HBox prefHeight="29.0" prefWidth="232.0">
-                                    <children>
-                                        <JFXComboBox fx:id="nacionalidad" prefHeight="25.0" promptText="V. " />
-                                        <JFXTextField fx:id="cedula" promptText="Código de Empleado" />
-                                    </children>
-                                    <padding>
-                                        <Insets left="20.0" />
-                                    </padding>
-                                </HBox>
+                        <JFXTextField fx:id="txtFAOV" alignment="TOP_LEFT" labelFloat="true" layoutX="40.0" layoutY="199.0" promptText="FAOV" />
+                        <JFXTextField fx:id="txtDiasUtilidades" alignment="TOP_LEFT" labelFloat="true" layoutX="40.0" layoutY="262.0" promptText="Dias Utilidades" />
                             </children>
                             <padding>
                                 <Insets left="30.0" right="20.0" />
                             </padding>
                         </VBox>
-                        <TableView fx:id="tablaUsuarios" GridPane.columnIndex="1">
+                        <TableView fx:id="tablaValores" GridPane.columnIndex="1">
                             <columns>
-                                <TableColumn fx:id="tbIdUsuario" maxWidth="1.7976931348623157E308" text="Id Usuario" />
-                                <TableColumn fx:id="tbNombreUsuario" prefWidth="75.0" text="Nombre Usuario" />
-                                <TableColumn fx:id="tbCorreo" prefWidth="75.0" text="Correo" />
-                                <TableColumn fx:id="tbNivelUsuario" prefWidth="75.0" text="Nivel Acceso" />
-                                <TableColumn fx:id="tbCedula" prefWidth="75.0" text="Cédula" />
-                                <TableColumn fx:id="tbStatus" prefWidth="75.0" text="Status" />
+                                <TableColumn fx:id="tbSalario" maxWidth="1.7976931348623157E308" text="Salario" />
+                                <TableColumn fx:id="tbPrecioUnidad" prefWidth="75.0" text="PrecioUnidad" />
+                                <TableColumn fx:id="tbParoForzoso" prefWidth="75.0" text="Paro Forzoso" />
+                                <TableColumn fx:id="tbIVSS" prefWidth="75.0" text="IVSS" />
+                                <TableColumn fx:id="tbFAOV" prefWidth="75.0" text="FAOV" />
+                                <TableColumn fx:id="tbDiasUtilidades" prefWidth="75.0" text="DiasUtilidades" />
                             </columns>
                         </TableView>
                     </children>
@@ -112,10 +99,9 @@
                 </GridPane>
                 <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" spacing="30.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <children>
-                        <JFXButton fx:id="btnGuardar" onAction="#onClickGuardar" styleClass="button-bold" text="Guardar" />
-                        <JFXButton fx:id="btnCancelar" onAction="#onClickCancelar" layoutX="419.0" layoutY="15.0" styleClass="button-bold" text="Cancelar" />
-                        <JFXButton fx:id="btnEliminar" onAction="#onClickUpdateStatus" layoutX="490.0" layoutY="15.0" styleClass="button-bold" text="Desactivar" />
-                        <JFXButton fx:id="btnActualizar" onAction="#onClickUpdate" layoutX="490.0" layoutY="15.0" styleClass="button-bold" text="Actualizar" />
+                        <JFXButton fx:id="btnCancelar" layoutX="419.0" layoutY="15.0" onAction="#onClickCancelar" styleClass="button-bold" text="Cancelar" />
+                        <JFXButton fx:id="btnInsertar" layoutX="490.0" layoutY="15.0" onAction="#onClickInsert" styleClass="button-bold" text="Agregar" />
+                        <JFXButton fx:id="btnActualizar" layoutX="490.0" layoutY="15.0" onAction="#onClickUpdate" styleClass="button-bold" text="Actualizar" />
                     </children>
                     <padding>
                         <Insets bottom="5.0" left="30.0" top="5.0" />

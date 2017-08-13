@@ -9,12 +9,12 @@ import java.io.FileOutputStream;
 
 public class PDFCreator {
 
-    public static PdfPTable tabla;
-    public String segundoParrafo = "Este es el segundo y tiene una fuente rara";
-    public String arial = "arial";
-    public int tamaño = 22;
-    public int estilo = Font.ITALIC;
-    public BaseColor color = BaseColor.CYAN;
+    private PdfPTable tabla;
+    private String segundoParrafo = "Este es el segundo y tiene una fuente rara";
+    private String arial = "arial";
+    private int tamaño = 22;
+    private int estilo = Font.ITALIC;
+    private BaseColor color = BaseColor.DARK_GRAY;
 
     public PDFCreator() {
     }
@@ -50,7 +50,7 @@ public class PDFCreator {
         void addCellTable();
     }
 
-    public static PdfPTable getTabla() {
+    public PdfPTable getTabla() {
         return tabla;
     }
 

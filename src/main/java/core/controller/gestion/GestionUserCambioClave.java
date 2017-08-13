@@ -4,10 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import core.conexion.connection.MyBatisConnection;
 import core.conexion.dao.UsuarioDAO;
 import core.conexion.vo.Usuario;
-import core.util.ManagerFXML;
-import core.util.Myexception;
-import core.util.Route;
-import core.util.Validar;
+import core.util.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -22,27 +19,25 @@ public class GestionUserCambioClave extends ManagerFXML implements Initializable
 
     public TextField txtNombreUsuaio, txtPreguntaUna, txtRespuesta1, txtPreguntaDos, txtRespuesta2,
             txtNuevaClave, txtVerifiqueClave;
-    public JFXButton btnValidarNombre, btnCancelar, btnGuardar;
+    public JFXButton btnValidarNombre, btnCancelar, btnGuardar, btnVerificar;
 
-    public UsuarioDAO usuarioDAO;
-    public Usuario usuario;
-
+    private UsuarioDAO usuarioDAO = new UsuarioDAO(MyBatisConnection.getSqlSessionFactory());
+    private Usuario usuario;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        btnGuardar.setDisable(true);
+        btnGuardar.getStyleClass().add("button-disabled");
     }
 
     public void onValidarNombre(ActionEvent event) throws Myexception {
-        if (event.getSource() == btnValidarNombre) {
-            try {
-                validarNombre();
-                txtPreguntaUna.setText(usuario.getPregunta1());
-                txtPreguntaDos.setText(usuario.getPregunta2());
-            } catch (Myexception ex) {
-                System.out.println(ex.getMessage());
-                txtNombreUsuaio.setText("No existe el usuario");
-            }
+        try {
+            validarNombre();
+            txtPreguntaUna.setText(usuario.getPregunta1());
+            txtPreguntaDos.setText(usuario.getPregunta2());
+        } catch (Myexception ex) {
+            System.out.println(ex.getMessage());
+            txtNombreUsuaio.setText("No existe el usuario");
         }
     }
 
@@ -56,19 +51,25 @@ public class GestionUserCambioClave extends ManagerFXML implements Initializable
         }
     }
 
-    public void onGuardar(ActionEvent event) throws Myexception {
+    public void onVerificar(ActionEvent event) {
         try {
             String[] valorToCompare = {usuario.getRespuesta1(), usuario.getRespuesta2(), txtNuevaClave.getText()};
             Validar.compararStringIguales(valorToCompare, txtRespuesta1, txtRespuesta2, txtVerifiqueClave);
-            updateClave();
-            abrirStage(Route.SessionUsuario, "Session Usuario", btnGuardar, null);
+            btnGuardar.setDisable(false);
+            btnGuardar.getStyleClass().remove("button-disabled");
+            btnGuardar.getStyleClass().add("button");
         } catch (Myexception ex) {
             System.out.println(ex.getMessage());
+            new AlertUtil(Estado.ERROR, ex.getMessage());
         }
     }
 
+    public void onGuardar(ActionEvent event) throws Myexception {
+        updateClave();
+        abrirStage(Route.SessionUsuario, "Session Usuario", btnGuardar, null);
+    }
+
     private void updateClave() throws Myexception {
-        usuarioDAO = new UsuarioDAO(MyBatisConnection.getSqlSessionFactory());
         int idUsuario = usuario.getIdUsuario();
         usuario = new Usuario();
         usuario.setIdUsuario(idUsuario);

@@ -17,6 +17,7 @@ public class AuditoriaUtil {
         auditoria.setAccion(accion);
         auditoria.setFecha(FechaUtil.getCurrentDate());
         auditoria.setHora(FechaUtil.getHourMinutes());
+        auditoria.setNombreUsuario(Storage.getUsuario().getNombreUsuario());
         auditoria.setFK_idUsuario(Storage.getUsuario().getIdUsuario());
         auditoriaDAO.insert(auditoria);
     }

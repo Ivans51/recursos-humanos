@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenReportAuditoria">
+<AnchorPane fx:id="anchor" prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenReportAuditoria">
     <children>
       <VBox layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -38,7 +38,7 @@
                         <Insets left="20.0" top="10.0" />
                      </padding>
                   </Label>
-                  <JFXButton maxWidth="1.7976931348623157E308" text="Imprimir" GridPane.columnIndex="1">
+                  <JFXButton fx:id="btnImprimir" onAction="#onImprimir" maxWidth="1.7976931348623157E308" text="Imprimir" GridPane.columnIndex="1">
                      <styleClass>
                         <String fx:value="button-bold" />
                         <String fx:value="button-report-padding" />
@@ -74,17 +74,14 @@
       </VBox>
         <AnchorPane layoutY="102.0" prefHeight="400.0" prefWidth="758.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="102.0">
             <children>
-                <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <TableView fx:id="tableAuditoria" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                        <TableColumn prefWidth="36.0" text="Cédula" />
-                        <TableColumn prefWidth="49.0" text="Nombre" />
-                        <TableColumn prefWidth="75.0" text="Dirección" />
-                        <TableColumn prefWidth="75.0" text="Fecha Nac." />
-                        <TableColumn prefWidth="75.0" text="Cargos" />
-                        <TableColumn prefWidth="75.0" text="Status Actual" />
-                        <TableColumn prefWidth="75.0" text="Sueldo" />
-                        <TableColumn prefWidth="75.0" text="F. Ingreso" />
-                        <TableColumn prefWidth="75.0" text="F. Culminación" />
+                        <TableColumn fx:id="tbIdAuditoria" prefWidth="36.0" text="idAuditoria" />
+                        <TableColumn fx:id="tbFecha" prefWidth="49.0" text="Fecha" />
+                        <TableColumn fx:id="tbHora" prefWidth="75.0" text="Hora" />
+                        <TableColumn fx:id="tbIdUsuario" prefWidth="75.0" text="idUsuario" />
+                        <TableColumn fx:id="tbNombreUsuario" prefWidth="75.0" text="Nombre Usuario" />
+                        <TableColumn fx:id="tbAccion" prefWidth="75.0" text="Accion" />
                     </columns>
                     <padding>
                         <Insets left="20.0" right="20.0" top="20.0" />
@@ -94,7 +91,7 @@
         </AnchorPane>
         <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" spacing="30.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <JFXButton layoutX="490.0" layoutY="15.0" styleClass="button-bold" text="Cerrar" />
+                <JFXButton fx:id="btnCerrar" onAction="#onCerrrar" layoutX="490.0" layoutY="15.0" styleClass="button-bold" text="Cerrar" />
             </children>
             <padding>
                 <Insets bottom="5.0" left="30.0" right="50.0" top="5.0" />

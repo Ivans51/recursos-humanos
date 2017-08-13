@@ -65,39 +65,37 @@ public class ValoresDAO {
     /**
      * Insert an instance of Valores into the database.
      *
-     * @param estructuraOrganizativa the instance to be persisted.
+     * @param valores the instance to be persisted.
      */
-    public int insert(Valores estructuraOrganizativa) {
-        int id = -1;
+    public int insert(Valores valores) {
         SqlSession session = sqlSessionFactory.openSession();
-
         try {
-            id = session.insert("Valores.insert", estructuraOrganizativa);
+            session.insert("Valores.insert", valores);
         } finally {
             session.commit();
             session.close();
         }
-        System.out.println("insert(" + estructuraOrganizativa + ") --> " + estructuraOrganizativa.getIdvalores());
-        return id;
+        System.out.println("insert(" + valores + ") --> " + valores.getIdvalores());
+        return valores.getIdvalores();
     }
 
     /**
      * Update an instance of Valores into the database.
      *
-     * @param estructuraOrganizativa the instance to be persisted.
+     * @param valores the instance to be persisted.
      */
-    public void update(Valores estructuraOrganizativa) {
+    public void update(Valores valores) {
         int id = -1;
         SqlSession session = sqlSessionFactory.openSession();
 
         try {
-            id = session.update("Valores.update", estructuraOrganizativa);
+            id = session.update("Valores.update", valores);
 
         } finally {
             session.commit();
             session.close();
         }
-        System.out.println("update(" + estructuraOrganizativa + ") --> updated");
+        System.out.println("update(" + valores + ") --> updated");
     }
 
     /**

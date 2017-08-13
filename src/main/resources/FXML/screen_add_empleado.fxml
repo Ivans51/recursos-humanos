@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.lang.String?>
@@ -40,36 +41,26 @@
         </VBox>
         <AnchorPane prefHeight="421.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
             <children>
-                <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                <VBox prefHeight="200.0" prefWidth="100.0" spacing="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <children>
-                        <JFXTextField fx:id="cedula" alignment="TOP_LEFT" promptText="Cédula" styleClass="text-field-medium">
-                            <VBox.margin>
-                                <Insets bottom="35.0" />
-                            </VBox.margin>
-                        </JFXTextField>
                         <JFXTextField fx:id="registroSS" alignment="TOP_LEFT" labelFloat="true" promptText="Registro SS" styleClass="text-field-medium">
                             <VBox.margin>
-                                <Insets bottom="35.0" />
+                                <Insets />
                             </VBox.margin>
                         </JFXTextField>
                         <JFXTextField fx:id="direccion" alignment="TOP_LEFT" labelFloat="true" promptText="Direccion" styleClass="text-field-medium">
                             <VBox.margin>
-                                <Insets bottom="35.0" />
+                                <Insets />
                             </VBox.margin>
                         </JFXTextField>
                         <JFXDatePicker fx:id="fechaNacimiento" maxWidth="1.7976931348623157E308" minWidth="-Infinity">
                             <VBox.margin>
-                                <Insets bottom="35.0" />
+                                <Insets />
                             </VBox.margin>
                         </JFXDatePicker>
                         <JFXTextField fx:id="cargo" alignment="TOP_LEFT" labelFloat="true" layoutX="40.0" layoutY="120.0" promptText="Cargo" styleClass="text-field-medium">
                             <VBox.margin>
-                                <Insets bottom="35.0" />
-                            </VBox.margin>
-                        </JFXTextField>
-                        <JFXTextField fx:id="status" alignment="TOP_LEFT" labelFloat="true" layoutX="110.0" layoutY="215.0" promptText="Estatus" styleClass="text-field-medium">
-                            <VBox.margin>
-                                <Insets bottom="35.0" />
+                                <Insets />
                             </VBox.margin>
                         </JFXTextField>
                     </children>

@@ -26,7 +26,7 @@ public class ScreenTableEmpleados extends ManagerFXML implements Initializable, 
 
     public AnchorPane anchorPane;
     public TextField txtBuscarCedula;
-    public JFXButton btnCerrar, btnBuscar;
+    public JFXButton btnCerrar, btnBuscar, btnDetalles, btnLiquidar;
     public TableView<EmpleadoContratacion> tableEmpleado;
     public TableColumn tbCedula, tbNombre, tbDireccion, tbFechaNac, tbCargos, tbStatus, tbSueldo, tbIngreso, tbCulminuacion;
     public static Empleado empleado;
@@ -42,17 +42,16 @@ public class ScreenTableEmpleados extends ManagerFXML implements Initializable, 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Iniciailizar tabla
+        stateButton(true, "button-disabled", "button-disabled");
         table = new TableUtil(EmpleadoContratacion.class, tableEmpleado);
-
         table.inicializarTabla(columS, tbCedula, tbNombre, tbDireccion, tbFechaNac, tbCargos, tbStatus, tbSueldo, tbIngreso, tbCulminuacion);
 
         final ObservableList<EmpleadoContratacion> tablaSelecionada = tableEmpleado.getSelectionModel().getSelectedItems();
         tablaSelecionada.addListener((ListChangeListener<EmpleadoContratacion>) c -> table.seleccionarTabla(this));
-        // Llenar Tabla
+
         selectAllEmpleadoContrato();
         table.getListTable().addAll(empleadoContratacions);
-        doubleClickRow();
+        // doubleClickRow();
     }
 
     private void selectAllEmpleadoContrato() {
@@ -107,26 +106,31 @@ public class ScreenTableEmpleados extends ManagerFXML implements Initializable, 
         }
     }
 
-    @Override
-    public void setStatusControls() {
-
+    private void stateButton(boolean value, String removeClass, String addClass) {
+        btnDetalles.setDisable(value);
+        btnLiquidar.setDisable(value);
+        ClassUtil.removeClass(removeClass, btnDetalles, btnLiquidar);
+        ClassUtil.addClass(addClass, btnDetalles, btnLiquidar);
     }
 
-    private void doubleClickRow() {
-        tableEmpleado.setRowFactory(tv -> {
-            TableRow<EmpleadoContratacion> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                    empleadoContratacion = table.getTablaSeleccionada(tableEmpleado);
-                    idCedula = empleadoContratacion.getCedula();
-                    EmpleadoContratacion rowData = row.getItem();
-                    empleado = empleadoDAO.selectById(idCedula);
-                    cambiarEscena(Route.ScreenGestionEmpleado, anchorPane);
-                    System.out.println(rowData);
-                }
-            });
-            return row;
-        });
+    @Override
+    public void setStatusControls() {
+        stateButton(false, "button-disabled", "button-disabled");
+    }
+
+    public void onDetalles(ActionEvent event) {
+        abrirSceneByEmpleado(Route.ScreenGestionEmpleado);
+    }
+
+    public void onLiquidar(ActionEvent event) {
+        abrirSceneByEmpleado(Route.ScreenTableLiquidacion);
+    }
+
+    private void abrirSceneByEmpleado(String loadRoot) {
+        empleadoContratacion = table.getTablaSeleccionada(tableEmpleado);
+        idCedula = empleadoContratacion.getCedula();
+        empleado = empleadoDAO.selectById(idCedula);
+        cambiarEscena(loadRoot, anchorPane);
     }
 
     public void onCerrar(ActionEvent event) {

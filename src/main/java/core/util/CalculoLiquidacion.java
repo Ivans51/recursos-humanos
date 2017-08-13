@@ -11,9 +11,11 @@ public class CalculoLiquidacion {
     private Integer diasUtilidades;
     private int mesesTrabajados;
 
-    public CalculoLiquidacion(Double sueldoBasico, Integer diasUtilidades) {
+    public CalculoLiquidacion(Double sueldoBasico, Integer diasUtilidades, int mesesTrabajados) {
         this.sueldoBasico = sueldoBasico;
         this.diasUtilidades = diasUtilidades;
+        this.mesesTrabajados = mesesTrabajados;
+        elegirMetodoPS();
     }
 
     public void setAñosServicios(Integer añosServicios) {
@@ -47,13 +49,20 @@ public class CalculoLiquidacion {
         return salarioDiario() + utilidades() + vacaciones();
     }
 
+    public Double totalAsignaciones() throws Myexception{
+        return vacaciones() + bonoVacacional() + utilidades();
+    }
+
+    public Double totalDeduciones() throws Myexception{
+        return 0.0;
+    }
+
     public Double bonoVacacional() {
         añosServicios = añosServicios + 7;
         return sueldoBasico * añosServicios;
     }
 
-    public int elegirMetodoPrestacionSocial(int mesesTrabajados) {
-        this.mesesTrabajados = mesesTrabajados;
+    public int elegirMetodoPS() {
         if (mesesTrabajados < 3)
             diasSalarioIntegral = getDiasSalarioIntegralMeses();
         else if (mesesTrabajados >= 3 && mesesTrabajados <= 12)
@@ -93,18 +102,22 @@ public class CalculoLiquidacion {
         return diasSalarioIntegral;
     }
 
+    public Double total() throws Myexception {
+        return totalAsignaciones() - totalDeduciones();
+    }
+
     public Double antiguedadDespido() throws Myexception {
         getPagoAño();
-        Double antiguadadDespido = null;
+        Double antiguedadDespido = null;
         Double meses = null;
         if (meses >= 3 && meses <= 6) {
-            antiguadadDespido = getPagoAño() + (salarioDiario() * 15);
+            antiguedadDespido = getPagoAño() + (salarioDiario() * 15);
         } else if (meses >= 7 && meses <= 12) {
-            antiguadadDespido = getPagoAño() + (salarioDiario() * 45);
+            antiguedadDespido = getPagoAño() + (salarioDiario() * 45);
         } else if (meses > 12) {
-            antiguadadDespido = getPagoAño() + (salarioDiario() * 60);
+            antiguedadDespido = getPagoAño() + (salarioDiario() * 60);
         }
-        return antiguadadDespido;
+        return antiguedadDespido;
     }
 
     private Double getPagoAño() throws Myexception {

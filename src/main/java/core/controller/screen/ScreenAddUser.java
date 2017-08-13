@@ -66,18 +66,18 @@ public class ScreenAddUser extends ManagerFXML implements Initializable, TableUt
     }
 
     private void initData() {
-        if (ScreenAddEmpleado.empleado != null) {
             try {
-                empleado = ScreenAddEmpleado.empleado;
-                String cedulaValue = Validar.recuperarSegundaPalabra("-", empleado.getCedula());
-                nacionalidad.setValue(cedulaValue);
-                nivelUsuario.setValue(3);
-                nacionalidad.setDisable(true);
-                nivelUsuario.setDisable(true);
+                if (ScreenAddEmpleado.empleado.getCedula() != null) {
+                    empleado = ScreenAddEmpleado.empleado;
+                    String cedulaValue = Validar.recuperarSegundaPalabra("-", empleado.getCedula());
+                    nacionalidad.setValue(cedulaValue);
+                    nivelUsuario.setValue(3);
+                    nacionalidad.setDisable(true);
+                    nivelUsuario.setDisable(true);
+                }
             } catch (Myexception myexception) {
                 myexception.printStackTrace();
             }
-        }
     }
 
     /**
@@ -118,6 +118,7 @@ public class ScreenAddUser extends ManagerFXML implements Initializable, TableUt
     @Override
     public void setStatusControls() {
         if (table.getModel() != null) {
+            usuario = (Usuario) table.getModel();
             if (usuario.getStatus() == 3)
                 btnEliminar.setText(activar);
             else if (usuario.getStatus() == 1)
@@ -126,7 +127,6 @@ public class ScreenAddUser extends ManagerFXML implements Initializable, TableUt
                 btnEliminar.setDisable(false);
             btnActualizar.setDisable(false);
             btnGuardar.setDisable(true);
-            usuario = (Usuario) table.getModel();
             nombreUsuario.setText(usuario.getNombreUsuario());
             claveUsuario.setText(usuario.getClave());
             correoUsuario.setText(usuario.getCorreo());

@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.HBox?>
 <AnchorPane prefHeight="550.0" prefWidth="450.0" style="-fx-background-color: #333645;" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.session.SesionUser">
     <VBox layoutX="82.0" spacing="40.0" style="-fx-background-color: #333645;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Respuestos Cart S 21 C.A." textAlignment="CENTER" textFill="WHITE">
@@ -35,10 +36,22 @@
                 <Font size="18.0" />
             </font>
         </JFXTextField>
-        <AnchorPane>
+        <HBox spacing="10">
             <JFXButton fx:id="bthAcceder" onMouseClicked="#clickLogin" text="Acceder" textFill="WHITE" AnchorPane.leftAnchor="20.0">
                 <font>
-                    <Font name="Segoe UI Bold" size="18.0" />
+                    <Font name="Segoe UI Bold" size="14.0" />
+                </font>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <styleClass>
+                    <String fx:value="button-bold" />
+                    <String fx:value="button-font-medium" />
+                </styleClass>
+            </JFXButton>
+            <JFXButton fx:id="btnRegresar" onMouseClicked="#onRegresar" text="Regresar" textFill="WHITE" AnchorPane.leftAnchor="20.0">
+                <font>
+                    <Font name="Segoe UI Bold" size="14.0" />
                 </font>
                 <cursor>
                     <Cursor fx:constant="HAND" />
@@ -50,7 +63,7 @@
             </JFXButton>
             <JFXButton fx:id="btnCancelar" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" onMouseClicked="#clickClose" style="-fx-background-color: #5DB8F1;" text="Salir" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                 <font>
-                    <Font name="Segoe UI Bold" size="18.0" />
+                    <Font name="Segoe UI Bold" size="14.0" />
                 </font>
                 <cursor>
                     <Cursor fx:constant="HAND" />
@@ -60,7 +73,7 @@
                     <String fx:value="button-font-medium" />
                 </styleClass>
             </JFXButton>
-        </AnchorPane>
+        </HBox>
         <Label fx:id="txtGestionUsuario" alignment="CENTER" layoutX="60.0" layoutY="110.0" maxWidth="1.7976931348623157E308" onMouseClicked="#clickGestionUsuario" text="Gestión de cuentas de usuarios" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font name="Segoe UI Bold" size="20.0" />

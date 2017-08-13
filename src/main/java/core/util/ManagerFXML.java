@@ -110,6 +110,7 @@ public class ManagerFXML {
         stage.setTitle(title);
         try {
             stage.setScene(new Scene(fxmlLoader.load()));
+            stage.sizeToScene();
         } catch (IOException e) {
             e.printStackTrace();
         }

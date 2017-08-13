@@ -55,7 +55,6 @@ public class ScreenGestionEmpleado extends ManagerFXML implements Initializable 
             txtNombreApellido.setText(empleadoG.getNombreEmpleado());
             txtCargo.setText(empleadoG.getCargo());
         }
-        // txtDateFecha.set
     }
 
     private void startNomina() {
@@ -132,6 +131,6 @@ public class ScreenGestionEmpleado extends ManagerFXML implements Initializable 
     }
 
     public void onCancelar(ActionEvent event) {
-        cambiarEscena(Route.ScreenHomeBackground, anchor);
+        cambiarEscena(Route.ScreenTableEmpleados, anchor);
     }
 }

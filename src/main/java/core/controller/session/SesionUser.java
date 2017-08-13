@@ -1,5 +1,6 @@
 package core.controller.session;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import core.conexion.vo.Usuario;
 import core.consultas.LoginUser;
@@ -21,8 +22,9 @@ public class SesionUser extends ManagerFXML implements Initializable {
     private final LoginUser loginUser = new LoginUser();
     @FXML
     public JFXTextField nombre, clave;
-    public Button bthAcceder, btnCancelar;
     public Label txtGestionUsuario;
+    public JFXButton btnRegresar, bthAcceder, btnCancelar;
+
     private Usuario usuario;
     private String sessionLoading = Route.SessionLoading;
     private String preguntas = Route.GestionUsuarioPreguntas;
@@ -61,5 +63,9 @@ public class SesionUser extends ManagerFXML implements Initializable {
 
     public void clickClose(MouseEvent mouseEvent) {
         cerrarStage(btnCancelar);
+    }
+
+    public void onRegresar(MouseEvent mouseEvent) {
+        abrirStage(Route.ScreenMainHome, "Respuestos Cart S 21 C.A.", btnRegresar, null);
     }
 }

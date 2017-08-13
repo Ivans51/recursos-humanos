@@ -1,12 +1,11 @@
 package core.util;
 
+import com.sun.istack.internal.Nullable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import javax.annotation.Nullable;
 import java.util.List;
 
 /**

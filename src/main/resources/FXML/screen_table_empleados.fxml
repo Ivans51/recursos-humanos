@@ -1,91 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import java.lang.String?>
 <?import java.net.URL?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="507.0" prefWidth="758.0" fx:id="anchorPane"
-            xmlns="http://javafx.com/javafx/8.0.112" fx:controller="core.controller.screen.ScreenTableEmpleados">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="507.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenTableEmpleados">
     <children>
-        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <VBox>
                     <children>
                         <Label text="Administrador de empleados">
                             <styleClass>
-                                <String fx:value="label-bold"/>
-                                <String fx:value="label-font-medium"/>
+                                <String fx:value="label-bold" />
+                                <String fx:value="label-font-medium" />
                             </styleClass>
                         </Label>
-                        <Label layoutX="10.0" layoutY="10.0" text="Seleccione un empleado"/>
+                        <Label layoutX="10.0" layoutY="10.0" text="Seleccione un empleado" />
                     </children>
                     <VBox.margin>
-                        <Insets/>
+                        <Insets />
                     </VBox.margin>
                     <padding>
-                        <Insets bottom="10.0" left="30.0" top="10.0"/>
+                        <Insets bottom="10.0" left="30.0" top="10.0" />
                     </padding>
                 </VBox>
                 <HBox maxWidth="1.7976931348623157E308" styleClass="layot-color-four">
                     <children>
-                        <Label styleClass="label-bold" text="Resultados de la búsqueda"/>
-                        <TextField fx:id="txtBuscarCedula">
+                        <Label styleClass="label-bold" text="Resultados de la búsqueda" />
+                        <TextField fx:id="txtBuscarCedula" style="-fx-font-size: 12;">
                             <HBox.margin>
-                                <Insets left="10.0"/>
+                                <Insets left="10.0" />
                             </HBox.margin>
                         </TextField>
                         <JFXButton fx:id="btnBuscar" mnemonicParsing="false" onAction="#onBuscar" text="Buscar Cedula">
                             <HBox.margin>
-                                <Insets left="10.0"/>
+                                <Insets left="10.0" />
                             </HBox.margin>
                         </JFXButton>
                     </children>
                     <padding>
-                        <Insets bottom="5.0" left="30.0" top="5.0"/>
+                        <Insets bottom="5.0" left="30.0" top="5.0" />
                     </padding>
                 </HBox>
             </children>
         </VBox>
-        <AnchorPane layoutY="111.0" prefHeight="400.0" prefWidth="758.0" AnchorPane.bottomAnchor="100.0"
-                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="111.0">
+        <AnchorPane layoutY="110.0" prefHeight="300.0" prefWidth="758.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
             <children>
-                <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-                           minWidth="-Infinity" prefWidth="382.0" AnchorPane.bottomAnchor="0.0"
-                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" fx:id="tableEmpleado">
+                <TableView fx:id="tableEmpleado" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                        <TableColumn prefWidth="36.0" text="Cédula" fx:id="tbCedula"/>
-                        <TableColumn prefWidth="49.0" text="Nombre" fx:id="tbNombre"/>
-                        <TableColumn prefWidth="75.0" text="Dirección" fx:id="tbDireccion"/>
-                        <TableColumn prefWidth="75.0" text="Fecha Nac." fx:id="tbFechaNac"/>
-                        <TableColumn prefWidth="75.0" text="Cargos" fx:id="tbCargos"/>
-                        <TableColumn prefWidth="75.0" text="Status Actual" fx:id="tbStatus"/>
-                        <TableColumn prefWidth="75.0" text="Sueldo" fx:id="tbSueldo"/>
-                        <TableColumn prefWidth="75.0" text="F. Ingreso" fx:id="tbIngreso"/>
-                        <TableColumn prefWidth="75.0" text="F. Culminación" fx:id="tbCulminuacion"/>
+                        <TableColumn fx:id="tbCedula" maxWidth="1.7976931348623157E308" minWidth="-1.0" text="Cédula" />
+                        <TableColumn fx:id="tbNombre" maxWidth="1.7976931348623157E308" minWidth="-Infinity" text="Nombre" />
+                        <TableColumn fx:id="tbDireccion" text="Dirección" />
+                        <TableColumn fx:id="tbFechaNac" text="Fecha Nac." />
+                        <TableColumn fx:id="tbCargos" text="Cargos" />
+                        <TableColumn fx:id="tbStatus" text="Status Actual" />
+                        <TableColumn fx:id="tbSueldo" text="Sueldo" />
+                        <TableColumn fx:id="tbIngreso" text="F. Ingreso" />
+                        <TableColumn fx:id="tbCulminuacion" text="F. Culminación" />
                     </columns>
                     <padding>
-                        <Insets left="20.0" right="20.0" top="20.0"/>
+                        <Insets left="20.0" right="20.0" top="20.0" />
                     </padding>
                 </TableView>
             </children>
         </AnchorPane>
-        <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" spacing="30.0" AnchorPane.bottomAnchor="30.0"
-              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" spacing="30.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <JFXButton layoutX="490.0" layoutY="15.0" styleClass="button-bold" text="Cerrar" fx:id="btnCerrar" onAction="#onCerrar"/>
+                <JFXButton fx:id="btnDetalles" layoutX="490.0" layoutY="15.0" onAction="#onDetalles" styleClass="button-bold" text="Detalles" />
+            <JFXButton fx:id="btnLiquidar" layoutX="611.0" layoutY="15.0" onAction="#onLiquidar" styleClass="button-bold" text="Liquidar" />
+            <JFXButton fx:id="btnCerrar" layoutX="611.0" layoutY="15.0" onAction="#onCerrar" styleClass="button-bold" text="Cerrar" />
             </children>
             <padding>
-                <Insets bottom="5.0" left="30.0" right="50.0" top="5.0"/>
+                <Insets bottom="5.0" left="30.0" right="50.0" top="5.0" />
             </padding>
         </HBox>
     </children>
     <stylesheets>
-        <URL value="@../CSS/styles-button.css"/>
-        <URL value="@../CSS/styles-layout.css"/>
-        <URL value="@../CSS/styles-label.css"/>
-        <URL value="@../CSS/styles-input.css"/>
+        <URL value="@../CSS/styles-button.css" />
+        <URL value="@../CSS/styles-layout.css" />
+        <URL value="@../CSS/styles-label.css" />
+        <URL value="@../CSS/styles-input.css" />
     </stylesheets>
 </AnchorPane>

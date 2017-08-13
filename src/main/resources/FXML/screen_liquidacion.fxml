@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="anchor" prefHeight="510.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenLiquidacion">
+<AnchorPane fx:id="anchor" prefHeight="510.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.screen.ScreenLiquidacion">
     <children>
       <ScrollPane layoutX="10.0" layoutY="10.0" prefHeight="570.0" prefWidth="740.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
@@ -60,7 +60,7 @@
                               <Insets bottom="10.0" right="10.0" top="10.0" />
                            </padding>
                         </GridPane>
-                        <Label layoutX="10.0" layoutY="10.0" text="Imprimia la liquidación del empleado">
+                        <Label layoutX="10.0" layoutY="10.0" text="Imprima la liquidación del empleado">
                            <padding>
                               <Insets left="20.0" />
                            </padding>
@@ -91,9 +91,9 @@
                               </VBox>
                               <VBox layoutX="30.0" layoutY="20.0" prefHeight="115.0" prefWidth="177.0">
                                  <children>
-                                    <Label fx:id="lblNombreApellido" text="Oscar Sosa" />
-                                    <Label fx:id="lblCedula" layoutX="10.0" layoutY="10.0" text="3840248903" />
-                                    <Label fx:id="lblUltimoSalario" layoutX="10.0" layoutY="35.0" text="2167,40" />
+                                    <Label fx:id="lblNombreApellido" />
+                                    <Label fx:id="lblCedula" layoutX="10.0" layoutY="10.0" />
+                                    <Label fx:id="lblUltimoSalario" layoutX="10.0" layoutY="35.0" />
                                  </children>
                               </VBox>
                               <VBox alignment="TOP_RIGHT" layoutX="263.0" layoutY="10.0" prefHeight="115.0" prefWidth="166.0">
@@ -111,9 +111,9 @@
                               </VBox>
                               <VBox layoutX="476.0" layoutY="10.0" prefHeight="115.0" prefWidth="195.0">
                                  <children>
-                                    <Label fx:id="lblCargo" text="Gerente General" />
-                                    <Label fx:id="lblFechaIngreso" layoutX="10.0" layoutY="10.0" text="06/03/2017" />
-                                    <Label fx:id="lblFechaRetiro" layoutX="10.0" layoutY="35.0" text="06/03/2017" />
+                                    <Label fx:id="lblCargo" />
+                                    <Label fx:id="lblFechaIngreso" layoutX="10.0" layoutY="10.0" />
+                                    <Label fx:id="lblFechaRetiro" layoutX="10.0" layoutY="35.0" />
                                  </children>
                               </VBox>
                            </children>
@@ -148,54 +148,54 @@
                                     <Insets left="20.0" right="20.0" top="10.0" />
                                  </HBox.margin>
                               </VBox>
-                              <VBox alignment="TOP_RIGHT" layoutX="263.0" layoutY="10.0" maxWidth="1.7976931348623157E308">
+                              <VBox alignment="TOP_RIGHT" layoutX="263.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefWidth="80.0">
                                  <children>
                                     <Label layoutX="10.0" layoutY="10.0" />
-                                    <Label fx:id="lblAntiguedad" layoutX="10.0" layoutY="10.0" text="501.71" />
-                                    <Label fx:id="lblVacaciones" layoutX="10.0" layoutY="35.0" text="501.71" />
-                                    <Label fx:id="lblBonoVacacional" layoutX="10.0" layoutY="60.0" text="501.71" />
-                                    <Label fx:id="lblUtilidades" layoutX="10.0" layoutY="60.0" text="90111.98" />
-                                    <Label fx:id="lblIntereses" layoutX="10.0" layoutY="85.0" text="51975.36" />
+                                    <Label fx:id="lblAntiguedad" layoutX="10.0" layoutY="10.0" />
+                                    <Label fx:id="lblVacaciones" layoutX="10.0" layoutY="35.0" />
+                                    <Label fx:id="lblBonoVacacional" layoutX="10.0" layoutY="60.0" />
+                                    <Label fx:id="lblUtilidades" layoutX="10.0" layoutY="60.0" />
+                                    <Label fx:id="lblIntereses" layoutX="10.0" layoutY="85.0" />
                                     <Label layoutX="10.0" layoutY="135.0" />
                                     <Label layoutX="10.0" layoutY="135.0" />
                                     <Label layoutX="10.0" layoutY="185.0" />
-                                    <Label fx:id="lblTotalDeduciones" layoutX="10.0" layoutY="160.0" text="37.55" />
+                                    <Label fx:id="lblTotalDeduciones" layoutX="10.0" layoutY="160.0" />
                                  </children>
                                  <HBox.margin>
                                     <Insets left="20.0" right="80.0" top="10.0" />
                                  </HBox.margin>
                               </VBox>
-                              <VBox alignment="TOP_RIGHT" layoutX="476.0" layoutY="10.0">
+                              <VBox alignment="TOP_RIGHT" layoutX="476.0" layoutY="10.0" prefWidth="80.0">
                                  <children>
                                     <Label />
-                                    <Label fx:id="lblAntiguedadAlicuotas" layoutX="10.0" layoutY="10.0" text="60" />
-                                    <Label fx:id="lblVacacionesAlicuota" layoutX="10.0" layoutY="35.0" text="12.50" />
-                                    <Label fx:id="lblBonoVacacionalAlicuota" layoutX="10.0" layoutY="35.0" text="12.50" />
-                                    <Label fx:id="lblUtilidadesAlicuota" layoutX="10.0" layoutY="60.0" text="0.08333" />
+                                    <Label fx:id="lblAntiguedadAlicuotas" layoutX="10.0" layoutY="10.0" />
+                                    <Label fx:id="lblVacacionesAlicuota" layoutX="10.0" layoutY="35.0" />
+                                    <Label fx:id="lblBonoVacacionalAlicuota" layoutX="10.0" layoutY="35.0" />
+                                    <Label fx:id="lblUtilidadesAlicuota" layoutX="10.0" layoutY="60.0" />
                                     <Label layoutX="10.0" layoutY="85.0" />
                                     <Label layoutX="10.0" layoutY="110.0" />
                                     <Label layoutX="10.0" layoutY="160.0" />
                                     <Label layoutX="10.0" layoutY="185.0" />
                                  </children>
                                  <HBox.margin>
-                                    <Insets left="20.0" right="90.0" top="10.0" />
+                                    <Insets left="20.0" right="40.0" top="10.0" />
                                  </HBox.margin>
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </VBox>
-                              <VBox alignment="TOP_RIGHT" layoutX="213.0" layoutY="10.0">
+                              <VBox alignment="TOP_RIGHT" layoutX="213.0" layoutY="10.0" prefWidth="80.0">
                                  <children>
                                     <Label />
-                                    <Label fx:id="lblAntiguedadTotal" layoutX="10.0" layoutY="10.0" text="30102.30" />
-                                    <Label fx:id="lblVacacionesTotal" layoutX="10.0" layoutY="35.0" text="6271.31" />
-                                    <Label fx:id="lblBonoVacacionalTotal" layoutX="10.0" layoutY="35.0" text="6271.31" />
-                                    <Label fx:id="lblUtilidadTotal" layoutX="10.0" layoutY="60.0" text="7509.94" />
-                                    <Label fx:id="lblInteresesTotal" layoutX="10.0" layoutY="85.0" text="1.788,11" />
+                                    <Label fx:id="lblAntiguedadTotal" layoutX="10.0" layoutY="10.0" />
+                                    <Label fx:id="lblVacacionesTotal" layoutX="10.0" layoutY="35.0" />
+                                    <Label fx:id="lblBonoVacacionalTotal" layoutX="10.0" layoutY="35.0" />
+                                    <Label fx:id="lblUtilidadTotal" layoutX="10.0" layoutY="60.0" />
+                                    <Label fx:id="lblInteresesTotal" layoutX="10.0" layoutY="85.0" />
                                     <Label layoutX="10.0" layoutY="110.0" />
                                     <Label layoutX="10.0" layoutY="110.0" />
-                                    <Label fx:id="lblINCETotal" layoutX="10.0" layoutY="185.0" text="37.55" />
-                                    <Label fx:id="lblDeducionesTotal" layoutX="10.0" layoutY="210.0" text="37.55" />
+                                    <Label fx:id="lblINCETotal" layoutX="10.0" layoutY="185.0" />
+                                    <Label fx:id="lblDeducionesTotal" layoutX="10.0" layoutY="210.0" />
                                  </children>
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" top="10.0" />
@@ -212,7 +212,7 @@
                            </padding>
                            <children>
                               <Label layoutX="40.0" layoutY="15.0" maxWidth="1.7976931348623157E308" text="Total a Cancelar" />
-                              <Label fx:id="lblLiquidacionTotal" layoutX="573.0" layoutY="15.0" maxWidth="1.7976931348623157E308" text="30.897,704" />
+                              <Label fx:id="lblLiquidacionTotal" layoutX="573.0" layoutY="15.0" maxWidth="1.7976931348623157E308" />
                            </children>
                         </HBox>
                      </children>

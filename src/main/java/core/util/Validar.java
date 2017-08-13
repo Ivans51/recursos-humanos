@@ -122,7 +122,7 @@ public class Validar {
     }
 
     public static void datePickerRango(Date value) throws Myexception, ParseException {
-        int years = FechaUtil.getYears(value);
+        int years = FechaUtil.getYearsDiff(value);
         if (years <= 18 || years >= 50)
             throw new Myexception("Debe tener una edad entre 18 y 50");
     }

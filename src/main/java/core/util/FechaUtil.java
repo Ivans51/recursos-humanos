@@ -2,6 +2,7 @@ package core.util;
 
 import com.jfoenix.controls.JFXDatePicker;
 import org.joda.time.DateTime;
+import org.joda.time.Months;
 import org.joda.time.Years;
 
 import java.sql.Timestamp;
@@ -75,10 +76,22 @@ public class FechaUtil {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         return dateFormat.format(cal.getTime());
     }
-    public static int getYears(Date time){
+
+    public static int getYearsDiff(Date time) {
         DateTime now = DateTime.now();
         DateTime then = new DateTime(time.getTime());
         return Years.yearsBetween(then, now).getYears();
+    }
+
+    public static int getMesesLaborando(Date time) {
+        int months = getMonthsDiff(time);
+        return (months <= 12) ? months : (getYearsDiff(time) * 12);
+    }
+
+    private static int getMonthsDiff(Date time) {
+        DateTime now = DateTime.now();
+        DateTime then = new DateTime(time.getTime());
+        return Months.monthsBetween(then, now).getMonths();
     }
 
     public static void getDifference(String dateStart) {

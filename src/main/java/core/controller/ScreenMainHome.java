@@ -29,13 +29,13 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
             Route.MainNivelUsuario,
             Route.ScreenTableUser,
             Route.ScreenAddUser,
-            Route.ScrenAbout
+            Route.ScrenAbout,
+            Route.ScrenEstructuraOrganizativa
     };
 
     private String[] routesEmpleados = {
             Route.ScreenContratoEmpleado,
             Route.ScreenGestionEmpleado,
-            Route.ScreenTableLiquidacion,
             Route.ScreenTableEmpleados,
             Route.ScreenTableCapacitacion,
             Route.ScreenTableSeleccion
@@ -50,7 +50,7 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
 
     public JFXButton nombreUsuario;
     public TitledPane titleAdministrar, titleReport, titleAyuda, titleValores;
-    public Label adminAgregar, adminGestion, adminLiquidaciones, adminBuscarEmpleados, adminCapacitacion, adminSeleccionPersonal;
+    public Label adminAgregar, adminGestion, adminBuscarEmpleados, adminCapacitacion, adminSeleccionPersonal;
     public Label reportFiltrado, reportPagos, reportFactura;
     public MenuItem itemAddEmpleados, itemOpcionesReport, itemOpcionesCerrar,
             itemToolUsuarios, itemToolRegistroSistema, itemToolManual, itemToolEstructura, itemSalir;
@@ -103,7 +103,7 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
     public void abrirGestionEmpleado(MouseEvent mouseEvent) {
         cambiarSceneMultiple(mouseEvent, routesEmpleados, loadRoot ->
                         cambiarEscena(loadRoot, rootPane), adminAgregar, adminGestion,
-                adminLiquidaciones, adminBuscarEmpleados, adminCapacitacion, adminSeleccionPersonal
+                adminBuscarEmpleados, adminCapacitacion, adminSeleccionPersonal
         );
     }
 

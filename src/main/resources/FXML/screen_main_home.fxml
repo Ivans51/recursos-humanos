@@ -37,7 +37,7 @@
                         <MenuItem fx:id="itemToolUsuarios" mnemonicParsing="false" onAction="#onHandleMenuItem" text="Administración de Usuarios" />
                         <MenuItem fx:id="itemToolRegistroSistema" mnemonicParsing="false" onAction="#onHandleMenuItem" text="Registro del Sistema" />
                         <MenuItem fx:id="itemToolManual" mnemonicParsing="false" onAction="#onHandleMenuItem" text="Manual de Usuario" />
-                        <MenuItem fx:id="itemToolEstructura" mnemonicParsing="false" onAction="#onHandleMenuItem" text="Manual de Usuario" />
+                        <MenuItem fx:id="itemToolEstructura" mnemonicParsing="false" onAction="#onHandleMenuItem" text="Estructura Organizativa" />
                     </items>
                 </Menu>
             </menus>
@@ -62,15 +62,6 @@
                                                     </styleClass>
                                                 </Label>
                                                 <Label fx:id="adminGestion" text="Gestion" onMouseClicked="#abrirGestionEmpleado">
-                                                    <padding>
-                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                                    </padding>
-                                                    <styleClass>
-                                                        <String fx:value="label-white" />
-                                                        <String fx:value="label-cursor" />
-                                                    </styleClass>
-                                                </Label>
-                                                <Label fx:id="adminLiquidaciones" text="Liquidaciones" onMouseClicked="#abrirGestionEmpleado">
                                                     <padding>
                                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                     </padding>

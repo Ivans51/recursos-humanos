@@ -2,6 +2,7 @@ package core.controller.screen;
 
 import com.itextpdf.text.DocumentException;
 import com.jfoenix.controls.JFXButton;
+import com.sun.istack.internal.Nullable;
 import core.conexion.connection.MyBatisConnection;
 import core.conexion.dao.ContratacionDAO;
 import core.conexion.dao.EmpleadoDAO;
@@ -19,7 +20,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 
-import javax.annotation.Nullable;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.List;

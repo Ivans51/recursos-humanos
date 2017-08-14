@@ -70,7 +70,6 @@ public class ScreenLiquidacion extends ManagerFXML implements Initializable {
             String dateFormat = FechaUtil.getDateFormat(FechaUtil.getCurrentDate());
             lblFechaRetiro.setText(dateFormat);
             lblAntiguedad.setText("No tengo idea");
-
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -159,7 +158,6 @@ public class ScreenLiquidacion extends ManagerFXML implements Initializable {
     public void onCerrar(ActionEvent event) {
         cambiarEscena(Route.ScreenHomeBackground, anchor);
     }
-
     public int getDiasUtilidades() {
         int mesesLaborando = FechaUtil.getMesesLaborando(contratacion.getFechaInicio());
         if (mesesLaborando < 3){
@@ -174,5 +172,6 @@ public class ScreenLiquidacion extends ManagerFXML implements Initializable {
             int años = mesesLaborando / 12;
             return diasUtilidades = años * 60;
         }
+        return 0;
     }
 }

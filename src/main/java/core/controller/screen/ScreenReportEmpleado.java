@@ -42,7 +42,7 @@ public class ScreenReportEmpleado extends ManagerFXML implements Initializable, 
     private String[] tableS = {"cedula", "nombreEmpleado", "direccion", "fechaNacimiento", "cargo",
             "statusLaborando", "salario", "fechaInicio", "monto"};
     private List<Empleado> empleadoList;
-    private List<Contratacion> contratacionnList;
+    private List<Contratacion> contratacionList;
     private List<EmpleadoPago> empleadoPagoList;
     private List<Nomina> nominaList;
     private Valores valores;
@@ -60,7 +60,8 @@ public class ScreenReportEmpleado extends ManagerFXML implements Initializable, 
         table.inicializarTabla(tableS, tbCedula, tbNombre, tbDireccion, tbFechaNac, tbCargos, tbStatus, tbSueldo, tbIngreso, tbMonto);
 
         selectValores();
-        calculoLiquidacion = new CalculoLiquidacion(valores.getSalario(), valores.getDiasUtilidades());
+        int mesesLaborando = FechaUtil.getMesesLaborando(contratacionList.get(0).getFechaInicio());
+        calculoLiquidacion = new CalculoLiquidacion(valores.getSalario(), valores.getDiasUtilidades(), mesesLaborando);
         setDataTable(calculoLiquidacion.cestaTicket(valores.getPrecioUnidadTributaria()), null);
         table.getListTable().addAll(empleadoPagoList);
     }
@@ -68,7 +69,7 @@ public class ScreenReportEmpleado extends ManagerFXML implements Initializable, 
     private void selectValores() {
         valores = valoresDAO.selectByIdLastDate();
         empleadoList = empleadoDAO.selectAll();
-        contratacionnList = contratacionDAO.selectAll();
+        contratacionList = contratacionDAO.selectAll();
         nominaList = nominaDAO.selectAll();
     }
 
@@ -79,10 +80,10 @@ public class ScreenReportEmpleado extends ManagerFXML implements Initializable, 
             empleadoPago.setNombreEmpleado(empleadoList.get(i).getNombreEmpleado());
             empleadoPago.setDireccion(empleadoList.get(i).getDireccion());
             empleadoPago.setFechaNacimiento(empleadoList.get(i).getFechaNacimiento());
-            empleadoPago.setCargo(contratacionnList.get(i).getCargo());
+            empleadoPago.setCargo(contratacionList.get(i).getCargo());
             empleadoPago.setStatusLaborando(empleadoList.get(i).getStatusLaborando());
-            empleadoPago.setSalario(contratacionnList.get(i).getSalario());
-            empleadoPago.setFechaInicio(contratacionnList.get(i).getFechaInicio());
+            empleadoPago.setSalario(contratacionList.get(i).getSalario());
+            empleadoPago.setFechaInicio(contratacionList.get(i).getFechaInicio());
             if (nominaList != null)
                 empleadoPago.setMonto(nominaList.get(i).getPrestamo());
             else

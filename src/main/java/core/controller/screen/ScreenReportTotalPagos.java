@@ -3,10 +3,12 @@ package core.controller.screen;
 import com.itextpdf.text.DocumentException;
 import com.jfoenix.controls.JFXButton;
 import core.conexion.connection.MyBatisConnection;
+import core.conexion.dao.ContratacionDAO;
 import core.conexion.dao.EmpleadoDAO;
 import core.conexion.dao.NominaDAO;
 import core.conexion.dao.ValoresDAO;
 import core.conexion.model.EmpleadoTotalPago;
+import core.conexion.vo.Contratacion;
 import core.conexion.vo.Empleado;
 import core.conexion.vo.Nomina;
 import core.conexion.vo.Valores;
@@ -36,6 +38,7 @@ public class ScreenReportTotalPagos extends ManagerFXML implements Initializable
     public TableUtil table;
     private String[] tableS = {"cedula", "nombreEmpleado", "cestaTicket", "salarioIngtegral", "quincena", "utilidades", "vales"};
     private List<Empleado> empleadoList;
+    private List<Contratacion> contratacionList;
     private List<Nomina> nominaList;
     private List<EmpleadoTotalPago>  empleadoTotalPagos;
     private EmpleadoTotalPago empleadoTotalPago;
@@ -44,6 +47,7 @@ public class ScreenReportTotalPagos extends ManagerFXML implements Initializable
     public CalculoLiquidacion calculoLiquidacion;
 
     private EmpleadoDAO empleadoDAO = new EmpleadoDAO(MyBatisConnection.getSqlSessionFactory());
+    private ContratacionDAO contratacionDAO = new ContratacionDAO(MyBatisConnection.getSqlSessionFactory());
     private ValoresDAO valoresDAO = new ValoresDAO(MyBatisConnection.getSqlSessionFactory());
     private NominaDAO nominaDAO = new NominaDAO(MyBatisConnection.getSqlSessionFactory());
     public PDFCreator pdfCreator;
@@ -52,7 +56,8 @@ public class ScreenReportTotalPagos extends ManagerFXML implements Initializable
     public void initialize(URL location, ResourceBundle resources) {
         try {
             // Iniciailizar tabla
-            calculoLiquidacion = new CalculoLiquidacion(valores.getSalario(), valores.getDiasUtilidades());
+            int mesesLaborando = FechaUtil.getMesesLaborando(contratacionList.get(0).getFechaInicio());
+            calculoLiquidacion = new CalculoLiquidacion(valores.getSalario(), valores.getDiasUtilidades(), mesesLaborando);
             table = new TableUtil(EmpleadoTotalPago.class, tablaReportTotal);
             table.inicializarTabla(tableS, tbCedula, tbNombre, tbCestaTicke, tbSalarioIntegral,tbQuincena, tbUtitilidades, tbVales);
             initSelect();
@@ -64,6 +69,7 @@ public class ScreenReportTotalPagos extends ManagerFXML implements Initializable
     }
 
     private void initSelect() {
+        contratacionList = contratacionDAO.selectAll();
         empleadoList = empleadoDAO.selectAll();
         nominaList = nominaDAO.selectAll();
         valores = valoresDAO.selectByIdLastDate();

@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import core.conexion.vo.Empleado;
 import core.conexion.vo.Usuario;
 import core.conexion.vo.Valores;
+import core.util.BackupBaseDato;
 import core.util.ManagerFXML;
 import core.util.Route;
 import core.util.Storage;
@@ -16,6 +17,7 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -52,7 +54,7 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
     public TitledPane titleAdministrar, titleReport, titleAyuda, titleValores;
     public Label adminAgregar, adminGestion, adminBuscarEmpleados, adminCapacitacion, adminSeleccionPersonal;
     public Label reportFiltrado, reportPagos, reportFactura;
-    public MenuItem itemAddEmpleados, itemOpcionesReport, itemOpcionesCerrar,
+    public MenuItem itemAddEmpleados, itemOpcionesBackup, itemOpcionesCerrar,
             itemToolUsuarios, itemToolRegistroSistema, itemToolManual, itemToolEstructura, itemSalir;
     @FXML
     public AnchorPane rootPane;
@@ -67,7 +69,7 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
 
         Usuario usuario = new Usuario();
         usuario.setNombreUsuario("Ivans");
-        usuario.setIdUsuario(23);
+        usuario.setIdUsuario(27);
         Storage.setUsuario(usuario);
 
         Valores valores = new Valores();
@@ -86,7 +88,7 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
     public void onHandleMenuItem(ActionEvent event) {
         cambiarSceneMultiple(event, routes, loadRoot ->
                         cambiarEscena(loadRoot, rootPane),
-                itemAddEmpleados, itemOpcionesReport, itemToolUsuarios, itemToolRegistroSistema,
+                itemAddEmpleados, itemOpcionesCerrar, itemToolUsuarios, itemToolRegistroSistema,
                 itemToolManual, itemToolEstructura);
     }
 
@@ -120,5 +122,11 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
 
     public void abrirAyuda(MouseEvent mouseEvent) {
         cambiarEscena(Route.ScrenAbout, rootPane);
+    }
+
+    public void onBackup(ActionEvent event) throws URISyntaxException {
+        BackupBaseDato backupBaseDato = new BackupBaseDato("rrhh", "root", "", ScreenMainHome.class);
+        backupBaseDato.backupdbtosql();
+        // backupBaseDato.restoredbfromsql("rrhh");
     }
 }

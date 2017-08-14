@@ -14,6 +14,7 @@ public class Contratacion {
     private Date fechaCulminacion;
     private String cargo;
     private double salario;
+    private double salarioActual;
     private String empleado_cedula;
 
     public int getIdContratacion() {
@@ -80,6 +81,14 @@ public class Contratacion {
         this.empleado_cedula = empleado_cedula;
     }
 
+    public double getSalarioActual() {
+        return salarioActual;
+    }
+
+    public void setSalarioActual(double salarioActual) {
+        this.salarioActual = salarioActual;
+    }
+
     @Override
     public String toString() {
         return "Contratacion{" +
@@ -90,7 +99,8 @@ public class Contratacion {
                 ", fechaCulminacion=" + fechaCulminacion +
                 ", cargo='" + cargo + '\'' +
                 ", salario=" + salario +
-                ", Fk_cedula_empleado='" + empleado_cedula + '\'' +
+                ", salarioActual=" + salarioActual +
+                ", empleado_cedula='" + empleado_cedula + '\'' +
                 '}';
     }
 }

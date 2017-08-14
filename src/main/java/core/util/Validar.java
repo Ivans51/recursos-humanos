@@ -1,6 +1,7 @@
 package core.util;
 
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 
@@ -84,19 +85,32 @@ public class Validar {
     /**
      * Comportamiento del campo
      *
-     * @param txt
      * @param type 1: deshabilitado, 2: Visible, 3: No editable
      */
-    public static void desahabilitarCampo(TextInputControl txt, int type) throws Myexception {
-        switch (type) {
-            case 1:
-                txt.setDisable(true);
-                break;
-            case 2:
-                txt.setVisible(true);
-                break;
-            case 3:
-                txt.setEditable(true);
+    public static void disabledControl(int type, boolean state, Control... ctr) throws Myexception {
+        for (Control control : ctr) {
+            switch (type) {
+                case 1:
+                    control.setDisable(state);
+                    break;
+                case 2:
+                    control.setVisible(state);
+                    break;
+            }
+        }
+    }
+    public static void disabledInput(int type, boolean state, TextInputControl... ctr) throws Myexception {
+        for (TextInputControl control : ctr) {
+            switch (type) {
+                case 1:
+                    control.setDisable(state);
+                    break;
+                case 2:
+                    control.setVisible(state);
+                    break;
+                case 3:
+                    control.setEditable(state);
+            }
         }
     }
 
@@ -162,7 +176,7 @@ public class Validar {
 
     public static void isNumber(String... number) throws Myexception {
         for (String s : number) {
-            if (!s.matches("[0-9]+")) {
+            if (!s.matches("\\d+(\\.\\d{1,4})?")) {
                 throw new Myexception("El campo no puede contener texto");
             }
         }

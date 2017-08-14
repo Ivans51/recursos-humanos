@@ -79,7 +79,6 @@ public class ManagerFXML {
     }
 
     public void cambiarSceneMultiple(EventObject event, String[] route, CambiarScene cambiarScene, Object... control) {
-
         Object[] click = setClick(control);
         for (int i = 0; i < click.length; i++) {
             if (event.getSource() == click[i]) {

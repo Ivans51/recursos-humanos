@@ -13,7 +13,8 @@
         <result property="fechaInicio" column="fechaInicio"/>
         <result property="fechaCulminacion" column="fechaCulminacion"/>
         <result property="cargo" column="cargo"/>
-        <result property="salario" column="salario"/>
+        <result property="salario" column="salarioInicial"/>
+        <result property="salarioActual" column="salarioActual"/>
         <result property="empleado_cedula" column="empleado_cedula"/>
     </resultMap>
 
@@ -28,25 +29,34 @@
         WHERE idContratacion = #{id}
     </select>
 
+    <select id="selectByCargo" parameterType="String" resultMap="result">
+        SELECT *
+        FROM rrhh.contratacion
+        WHERE cargo = #{cargo}
+        GROUP BY cargo
+    </select>
+
+    <select id="selectAllCargo" parameterType="String" resultMap="result">
+        SELECT *
+        FROM rrhh.contratacion
+        GROUP BY cargo
+    </select>
+
     <select id="selectByForeighKey" parameterType="String" resultMap="result">
         SELECT *
         FROM rrhh.contratacion
         WHERE empleado_cedula = #{empleado_cedula}
     </select>
 
-    <insert id="insert" parameterType="Contratacion" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO rrhh.contratacion (name) VALUES (#{name});
-    </insert>
-
     <insert id="insertContratacion" parameterType="Contratacion" useGeneratedKeys="true" keyProperty="idContratacion">
-        INSERT INTO rrhh.contratacion (cedula, nombre, fechaInicio, fechaCulminacion, cargo, salario, empleado_cedula)
-        VALUES (#{cedula}, #{nombre}, #{fechaInicio}, #{fechaCulminacion}, #{cargo}, #{salario}, #{empleado_cedula});
+        INSERT INTO rrhh.contratacion (cedula, nombre, fechaInicio, fechaCulminacion, cargo, salarioInicial, salarioActual, empleado_cedula)
+        VALUES (#{cedula}, #{nombre}, #{fechaInicio}, #{fechaCulminacion}, #{cargo}, #{salario}, #{salarioActual}, #{empleado_cedula});
     </insert>
 
     <update id="update" parameterType="Contratacion">
         UPDATE rrhh.contratacion
-        SET name = #{name}
-        WHERE idContratacion = #{id}
+        SET salarioActual = #{salarioActual}
+        WHERE cargo = #{cargo}
     </update>
 
     <delete id="delete" parameterType="int">

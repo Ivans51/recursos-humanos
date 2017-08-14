@@ -15,4 +15,8 @@ public class ControlUtil {
             spinner[i].setValueFactory(valueFactory);
         }
     }
+
+    public static String removeDecimal(double doubles){
+        return Double.toString(Math.floor(doubles));
+    }
 }

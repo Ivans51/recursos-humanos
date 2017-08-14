@@ -28,7 +28,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Opciones">
                     <items>
-                        <MenuItem fx:id="itemOpcionesReport" mnemonicParsing="false" onAction="#onHandleMenuItem" text="Reportes" />
+                        <MenuItem fx:id="itemOpcionesBackup" mnemonicParsing="false" onAction="#onBackup" text="Backup" />
                         <MenuItem fx:id="itemOpcionesCerrar" mnemonicParsing="false" onAction="#onHandleMenuItemCerrar" text="Cierre Sesión" />
                     </items>
                 </Menu>

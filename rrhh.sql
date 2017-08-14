@@ -1,137 +1,184 @@
--- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- MySQL dump 10.16  Distrib 10.1.21-MariaDB, for Win32 (AMD64)
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 11-08-2017 a las 14:35:18
--- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 7.1.1
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: localhost
+-- ------------------------------------------------------
+-- Server version	10.1.21-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Base de datos: `rrhh`
+-- Table structure for table `auditoria`
 --
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `auditoria`
---
-
+DROP TABLE IF EXISTS `auditoria`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `auditoria` (
-  `idAuditoria` int(11) NOT NULL,
+  `idAuditoria` int(11) NOT NULL AUTO_INCREMENT,
   `fecha` date NOT NULL,
   `hora` datetime NOT NULL,
   `accion` text NOT NULL,
-  `usuario_idUsuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  `nombreUsuario` varchar(45) NOT NULL,
+  `usuario_idUsuario` int(11) NOT NULL,
+  PRIMARY KEY (`idAuditoria`,`usuario_idUsuario`),
+  KEY `fk_auditoria_usuario1_idx` (`usuario_idUsuario`),
+  CONSTRAINT `fk_auditoria_usuario1` FOREIGN KEY (`usuario_idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estructura de tabla para la tabla `capacitacion`
+-- Dumping data for table `auditoria`
 --
 
+LOCK TABLES `auditoria` WRITE;
+/*!40000 ALTER TABLE `auditoria` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auditoria` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `capacitacion`
+--
+
+DROP TABLE IF EXISTS `capacitacion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `capacitacion` (
-  `idCapacitacion` int(11) NOT NULL,
+  `idCapacitacion` int(11) NOT NULL AUTO_INCREMENT,
   `instructor` text NOT NULL,
   `tipo` varchar(45) NOT NULL,
   `nombreEmpleado` text NOT NULL,
   `fechaInicio` date NOT NULL,
   `fechaCulminacion` date NOT NULL,
   `duracion` varchar(45) NOT NULL,
-  `empleado_cedula` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `empleado_cedula` varchar(45) NOT NULL,
+  PRIMARY KEY (`idCapacitacion`,`empleado_cedula`),
+  KEY `fk_capacitacion_empleado1_idx` (`empleado_cedula`),
+  CONSTRAINT `fk_capacitacion_empleado1` FOREIGN KEY (`empleado_cedula`) REFERENCES `empleado` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `capacitacion`
+-- Dumping data for table `capacitacion`
 --
 
-INSERT INTO `capacitacion` (`idCapacitacion`, `instructor`, `tipo`, `nombreEmpleado`, `fechaInicio`, `fechaCulminacion`, `duracion`, `empleado_cedula`) VALUES
-(9, 'Pedro', '1', 'Juan', '2017-08-10', '2017-08-11', '23', '123');
-
--- --------------------------------------------------------
+LOCK TABLES `capacitacion` WRITE;
+/*!40000 ALTER TABLE `capacitacion` DISABLE KEYS */;
+/*!40000 ALTER TABLE `capacitacion` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estructura de tabla para la tabla `contratacion`
+-- Table structure for table `contratacion`
 --
 
+DROP TABLE IF EXISTS `contratacion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `contratacion` (
-  `idContratacion` int(11) NOT NULL,
+  `idContratacion` int(11) NOT NULL AUTO_INCREMENT,
   `cedula` varchar(45) NOT NULL,
   `nombre` text NOT NULL,
   `fechaInicio` date NOT NULL,
   `fechaCulminacion` date DEFAULT NULL,
   `cargo` varchar(45) NOT NULL,
-  `salario` double NOT NULL,
-  `empleado_cedula` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  `salarioInicial` double NOT NULL,
+  `salarioActual` int(11) DEFAULT NULL,
+  `empleado_cedula` varchar(45) NOT NULL,
+  PRIMARY KEY (`idContratacion`,`empleado_cedula`),
+  KEY `fk_contratacion_empleado1_idx` (`empleado_cedula`),
+  CONSTRAINT `fk_contratacion_empleado1` FOREIGN KEY (`empleado_cedula`) REFERENCES `empleado` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estructura de tabla para la tabla `empleado`
+-- Dumping data for table `contratacion`
 --
 
+LOCK TABLES `contratacion` WRITE;
+/*!40000 ALTER TABLE `contratacion` DISABLE KEYS */;
+/*!40000 ALTER TABLE `contratacion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `empleado`
+--
+
+DROP TABLE IF EXISTS `empleado`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `empleado` (
   `cedula` varchar(45) NOT NULL,
   `nombreEmpleado` text NOT NULL,
   `fechaNacimiento` date NOT NULL,
   `direccion` varchar(100) NOT NULL,
   `cargo` varchar(45) NOT NULL,
-  `status` text NOT NULL,
   `registroSS` varchar(45) NOT NULL,
   `horaInicio` datetime DEFAULT NULL,
   `horasTrabajadas` int(11) NOT NULL DEFAULT '0',
   `statusLaborando` tinyint(1) DEFAULT '0',
-  `diasLaborados` int(11) NOT NULL,
-  `FK_id_Usuario` int(11) DEFAULT NULL
+  `diasLaborados` int(11) NOT NULL DEFAULT '0',
+  `FK_id_Usuario` int(11) DEFAULT NULL,
+  PRIMARY KEY (`cedula`),
+  KEY `FK_id_Usuario` (`FK_id_Usuario`),
+  CONSTRAINT `empleado_ibfk_1` FOREIGN KEY (`FK_id_Usuario`) REFERENCES `usuario` (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `empleado`
+-- Dumping data for table `empleado`
 --
 
-INSERT INTO `empleado` (`cedula`, `nombreEmpleado`, `fechaNacimiento`, `direccion`, `cargo`, `status`, `registroSS`, `horaInicio`, `horasTrabajadas`, `statusLaborando`, `diasLaborados`, `FK_id_Usuario`) VALUES
-('123', 'Juan', '2017-08-10', 'Santa Rita', 'Aseo', '1', '1242', '2017-08-11 08:02:11', 2, 1, 11, 23);
-
--- --------------------------------------------------------
+LOCK TABLES `empleado` WRITE;
+/*!40000 ALTER TABLE `empleado` DISABLE KEYS */;
+INSERT INTO `empleado` VALUES ('123','Juan','2017-08-12','Calle Santa Rita','Ventas','123413','2017-08-13 12:54:42',0,0,0,27);
+/*!40000 ALTER TABLE `empleado` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estructura de tabla para la tabla `estructura_organizativa`
+-- Table structure for table `estructura_organizativa`
 --
 
+DROP TABLE IF EXISTS `estructura_organizativa`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `estructura_organizativa` (
-  `idEstrutura` int(11) NOT NULL,
+  `idEstrutura` int(11) NOT NULL AUTO_INCREMENT,
   `departamento` varchar(45) NOT NULL,
   `funcion` varchar(45) NOT NULL,
   `jefeInmediato` varchar(45) NOT NULL,
-  `usuario_idUsuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `usuario_idUsuario` int(11) NOT NULL,
+  PRIMARY KEY (`idEstrutura`,`usuario_idUsuario`),
+  KEY `fk_estructura_organizativa_usuario1_idx` (`usuario_idUsuario`),
+  CONSTRAINT `fk_estructura_organizativa_usuario1` FOREIGN KEY (`usuario_idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `estructura_organizativa`
+-- Dumping data for table `estructura_organizativa`
 --
 
-INSERT INTO `estructura_organizativa` (`idEstrutura`, `departamento`, `funcion`, `jefeInmediato`, `usuario_idUsuario`) VALUES
-(2, 'Ventas', 'Gerente', 'Juan', 23);
-
--- --------------------------------------------------------
+LOCK TABLES `estructura_organizativa` WRITE;
+/*!40000 ALTER TABLE `estructura_organizativa` DISABLE KEYS */;
+/*!40000 ALTER TABLE `estructura_organizativa` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estructura de tabla para la tabla `nomina`
+-- Table structure for table `nomina`
 --
 
+DROP TABLE IF EXISTS `nomina`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `nomina` (
-  `idNomina` int(11) NOT NULL,
+  `idNomina` int(11) NOT NULL AUTO_INCREMENT,
   `nombreEmpleado` text NOT NULL,
   `diasHabiles` int(11) NOT NULL DEFAULT '11',
   `diasDescanso` int(11) NOT NULL DEFAULT '4',
@@ -139,24 +186,31 @@ CREATE TABLE `nomina` (
   `diasFeriados` int(11) NOT NULL DEFAULT '0',
   `prestamo` double NOT NULL,
   `diasNoLaborados` int(11) NOT NULL DEFAULT '0',
-  `empleado_cedula` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `empleado_cedula` varchar(45) NOT NULL,
+  PRIMARY KEY (`idNomina`,`empleado_cedula`),
+  KEY `fk_nomina_empleado1_idx` (`empleado_cedula`),
+  CONSTRAINT `fk_nomina_empleado1` FOREIGN KEY (`empleado_cedula`) REFERENCES `empleado` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `nomina`
+-- Dumping data for table `nomina`
 --
 
-INSERT INTO `nomina` (`idNomina`, `nombreEmpleado`, `diasHabiles`, `diasDescanso`, `bonoNocturno`, `diasFeriados`, `prestamo`, `diasNoLaborados`, `empleado_cedula`) VALUES
-(2, 'Juan', 9, 4, 2, 2, 1000, 2, '123');
-
--- --------------------------------------------------------
+LOCK TABLES `nomina` WRITE;
+/*!40000 ALTER TABLE `nomina` DISABLE KEYS */;
+/*!40000 ALTER TABLE `nomina` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estructura de tabla para la tabla `pago_nomina`
+-- Table structure for table `pago_nomina`
 --
 
+DROP TABLE IF EXISTS `pago_nomina`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pago_nomina` (
-  `idNominaPago` int(11) NOT NULL,
+  `idNominaPago` int(11) NOT NULL AUTO_INCREMENT,
   `nombreEmpleado` text NOT NULL,
   `diasHabiles` int(11) NOT NULL DEFAULT '11',
   `diasDescanso` int(11) NOT NULL DEFAULT '4',
@@ -171,34 +225,62 @@ CREATE TABLE `pago_nomina` (
   `totalDeducciones` double NOT NULL,
   `salarioTotal` double NOT NULL,
   `fecha` date NOT NULL,
-  `empleado_cedula` varchar(45) NOT NULL
+  `empleado_cedula` varchar(45) NOT NULL,
+  PRIMARY KEY (`idNominaPago`,`empleado_cedula`),
+  KEY `fk_nomina_empleado1_idx` (`empleado_cedula`),
+  CONSTRAINT `fk_nomina_empleado10` FOREIGN KEY (`empleado_cedula`) REFERENCES `empleado` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estructura de tabla para la tabla `seleccion_personal`
+-- Dumping data for table `pago_nomina`
 --
 
+LOCK TABLES `pago_nomina` WRITE;
+/*!40000 ALTER TABLE `pago_nomina` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pago_nomina` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `seleccion_personal`
+--
+
+DROP TABLE IF EXISTS `seleccion_personal`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `seleccion_personal` (
-  `idSeleccion` int(11) NOT NULL,
+  `idSeleccion` int(11) NOT NULL AUTO_INCREMENT,
   `nombreCandidato` text NOT NULL,
   `cedula` varchar(45) NOT NULL,
   `direccion` varchar(45) NOT NULL,
   `telefono` varchar(45) NOT NULL,
   `puestoPostulacion` varchar(45) NOT NULL,
   `disponibilidad` varchar(45) NOT NULL,
-  `usuario_idUsuario` int(11) NOT NULL
+  `usuario_idUsuario` int(11) NOT NULL,
+  PRIMARY KEY (`idSeleccion`,`usuario_idUsuario`),
+  KEY `fk_seleccion_personal_usuario1_idx` (`usuario_idUsuario`),
+  CONSTRAINT `fk_seleccion_personal_usuario1` FOREIGN KEY (`usuario_idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estructura de tabla para la tabla `usuario`
+-- Dumping data for table `seleccion_personal`
 --
 
+LOCK TABLES `seleccion_personal` WRITE;
+/*!40000 ALTER TABLE `seleccion_personal` DISABLE KEYS */;
+/*!40000 ALTER TABLE `seleccion_personal` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuario` (
-  `idUsuario` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
   `nombreUsuario` varchar(45) NOT NULL,
   `clave` varchar(45) NOT NULL,
   `correo` varchar(45) NOT NULL,
@@ -209,220 +291,63 @@ CREATE TABLE `usuario` (
   `respuesta2` varchar(45) NOT NULL,
   `fechaCreacion` date NOT NULL,
   `cedula` varchar(45) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`idUsuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `usuario`
+-- Dumping data for table `usuario`
 --
 
-INSERT INTO `usuario` (`idUsuario`, `nombreUsuario`, `clave`, `correo`, `nivelAcceso`, `pregunta1`, `respuesta1`, `pregunta2`, `respuesta2`, `fechaCreacion`, `cedula`, `status`) VALUES
-(23, 'Ivans', '1234', 'Ivans@gmail.com', 1, 'Vacion', 'si', 'Vacion', 'No', '2017-08-10', '123', 1);
-
--- --------------------------------------------------------
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (27,'Ivans','1234','Ivans@gmail.com',1,'Lugar de nacimiento de la madre','Maracay','Profesor favorito','Aponte','2017-08-12','123',1);
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estructura de tabla para la tabla `valores`
+-- Table structure for table `valores`
 --
 
+DROP TABLE IF EXISTS `valores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `valores` (
-  `idvalores` int(11) NOT NULL,
+  `idvalores` int(11) NOT NULL AUTO_INCREMENT,
   `salario` double DEFAULT NULL,
   `precioUnidadTributaria` varchar(45) DEFAULT NULL,
   `paroForzoso` varchar(45) DEFAULT NULL,
   `IVSS` varchar(45) DEFAULT NULL,
   `FAO` varchar(45) DEFAULT NULL,
+  `diasUtilidades` int(11) DEFAULT NULL,
   `fecha` date DEFAULT NULL,
-  `fk_id_usuario` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `fk_id_usuario` int(11) DEFAULT NULL,
+  `contratacion_idContratacion` int(11) NOT NULL,
+  PRIMARY KEY (`idvalores`,`contratacion_idContratacion`),
+  KEY `Fk_id_usuario_idx` (`fk_id_usuario`),
+  KEY `fk_valores_contratacion1_idx` (`contratacion_idContratacion`),
+  CONSTRAINT `FK_id_usuario` FOREIGN KEY (`fk_id_usuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_valores_contratacion1` FOREIGN KEY (`contratacion_idContratacion`) REFERENCES `contratacion` (`idContratacion`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `valores`
+-- Dumping data for table `valores`
 --
 
-INSERT INTO `valores` (`idvalores`, `salario`, `precioUnidadTributaria`, `paroForzoso`, `IVSS`, `FAO`, `fecha`, `fk_id_usuario`) VALUES
-(8, 54000, '300', '1', '4', '0.5', '2017-08-10', 23);
+LOCK TABLES `valores` WRITE;
+/*!40000 ALTER TABLE `valores` DISABLE KEYS */;
+/*!40000 ALTER TABLE `valores` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `auditoria`
---
-ALTER TABLE `auditoria`
-  ADD PRIMARY KEY (`idAuditoria`,`usuario_idUsuario`),
-  ADD KEY `fk_auditoria_usuario1_idx` (`usuario_idUsuario`);
-
---
--- Indices de la tabla `capacitacion`
---
-ALTER TABLE `capacitacion`
-  ADD PRIMARY KEY (`idCapacitacion`,`empleado_cedula`),
-  ADD KEY `fk_capacitacion_empleado1_idx` (`empleado_cedula`);
-
---
--- Indices de la tabla `contratacion`
---
-ALTER TABLE `contratacion`
-  ADD PRIMARY KEY (`idContratacion`,`empleado_cedula`),
-  ADD KEY `fk_contratacion_empleado1_idx` (`empleado_cedula`);
-
---
--- Indices de la tabla `empleado`
---
-ALTER TABLE `empleado`
-  ADD PRIMARY KEY (`cedula`),
-  ADD KEY `FK_id_Usuario` (`FK_id_Usuario`);
-
---
--- Indices de la tabla `estructura_organizativa`
---
-ALTER TABLE `estructura_organizativa`
-  ADD PRIMARY KEY (`idEstrutura`,`usuario_idUsuario`),
-  ADD KEY `fk_estructura_organizativa_usuario1_idx` (`usuario_idUsuario`);
-
---
--- Indices de la tabla `nomina`
---
-ALTER TABLE `nomina`
-  ADD PRIMARY KEY (`idNomina`,`empleado_cedula`),
-  ADD KEY `fk_nomina_empleado1_idx` (`empleado_cedula`);
-
---
--- Indices de la tabla `pago_nomina`
---
-ALTER TABLE `pago_nomina`
-  ADD PRIMARY KEY (`idNominaPago`,`empleado_cedula`),
-  ADD KEY `fk_nomina_empleado1_idx` (`empleado_cedula`);
-
---
--- Indices de la tabla `seleccion_personal`
---
-ALTER TABLE `seleccion_personal`
-  ADD PRIMARY KEY (`idSeleccion`,`usuario_idUsuario`),
-  ADD KEY `fk_seleccion_personal_usuario1_idx` (`usuario_idUsuario`);
-
---
--- Indices de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`idUsuario`);
-
---
--- Indices de la tabla `valores`
---
-ALTER TABLE `valores`
-  ADD PRIMARY KEY (`idvalores`),
-  ADD KEY `Fk_id_usuario_idx` (`fk_id_usuario`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `auditoria`
---
-ALTER TABLE `auditoria`
-  MODIFY `idAuditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT de la tabla `capacitacion`
---
-ALTER TABLE `capacitacion`
-  MODIFY `idCapacitacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT de la tabla `contratacion`
---
-ALTER TABLE `contratacion`
-  MODIFY `idContratacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
---
--- AUTO_INCREMENT de la tabla `estructura_organizativa`
---
-ALTER TABLE `estructura_organizativa`
-  MODIFY `idEstrutura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT de la tabla `nomina`
---
-ALTER TABLE `nomina`
-  MODIFY `idNomina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT de la tabla `pago_nomina`
---
-ALTER TABLE `pago_nomina`
-  MODIFY `idNominaPago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT de la tabla `seleccion_personal`
---
-ALTER TABLE `seleccion_personal`
-  MODIFY `idSeleccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
---
--- AUTO_INCREMENT de la tabla `valores`
---
-ALTER TABLE `valores`
-  MODIFY `idvalores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `auditoria`
---
-ALTER TABLE `auditoria`
-  ADD CONSTRAINT `fk_auditoria_usuario1` FOREIGN KEY (`usuario_idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `capacitacion`
---
-ALTER TABLE `capacitacion`
-  ADD CONSTRAINT `fk_capacitacion_empleado1` FOREIGN KEY (`empleado_cedula`) REFERENCES `empleado` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `contratacion`
---
-ALTER TABLE `contratacion`
-  ADD CONSTRAINT `fk_contratacion_empleado1` FOREIGN KEY (`empleado_cedula`) REFERENCES `empleado` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `empleado`
---
-ALTER TABLE `empleado`
-  ADD CONSTRAINT `empleado_ibfk_1` FOREIGN KEY (`FK_id_Usuario`) REFERENCES `usuario` (`idUsuario`);
-
---
--- Filtros para la tabla `estructura_organizativa`
---
-ALTER TABLE `estructura_organizativa`
-  ADD CONSTRAINT `fk_estructura_organizativa_usuario1` FOREIGN KEY (`usuario_idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `nomina`
---
-ALTER TABLE `nomina`
-  ADD CONSTRAINT `fk_nomina_empleado1` FOREIGN KEY (`empleado_cedula`) REFERENCES `empleado` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `pago_nomina`
---
-ALTER TABLE `pago_nomina`
-  ADD CONSTRAINT `fk_nomina_empleado10` FOREIGN KEY (`empleado_cedula`) REFERENCES `empleado` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `seleccion_personal`
---
-ALTER TABLE `seleccion_personal`
-  ADD CONSTRAINT `fk_seleccion_personal_usuario1` FOREIGN KEY (`usuario_idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `valores`
---
-ALTER TABLE `valores`
-  ADD CONSTRAINT `FK_id_usuario` FOREIGN KEY (`fk_id_usuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-08-13 18:56:46

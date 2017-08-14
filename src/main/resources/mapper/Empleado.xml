@@ -24,7 +24,7 @@
 
     <resultMap id="contratacion" type="Contratacion">
         <id property="idContratacion" column="idContratacion"/>
-        <result property="salario" column="salario"/>
+        <result property="salarioInicial" column="salarioInicial"/>
         <result property="fechaInicio" column="fechaInicio"/>
         <result property="fechaCulminacion" column="fechaCulminacion"/>
     </resultMap>
@@ -52,7 +52,7 @@
     <select id="selectAllEmpleadoContrato" parameterType="string" resultMap="result">
         SELECT
             a.cedula, a.nombreEmpleado, a.fechaNacimiento, a.direccion, a.direccion, a.cargo,
-            b.salario, b.fechaInicio, b.fechaCulminacion
+            b.salarioInicial, b.fechaInicio, b.fechaCulminacion
         FROM rrhh.empleado a INNER JOIN contratacion b
             ON a.cedula = b.empleado_cedula
     </select>

@@ -16,6 +16,7 @@
         <result property="diasUtilidades" column="diasUtilidades"/>
         <result property="fecha" column="fecha"/>
         <result property="fk_id_usuario" column="fk_id_usuario"/>
+        <result property="contratacion_idContratacion" column="contratacion_idContratacion"/>
     </resultMap>
 
     <select id="selectAll" resultMap="result">
@@ -37,13 +38,14 @@
     </select>
 
     <insert id="insert" parameterType="Valores" useGeneratedKeys="true" keyProperty="idvalores">
-        INSERT INTO rrhh.valores (salario, precioUnidadTributaria, paroForzoso, IVSS, FAO, fecha, fk_id_usuario)
-        VALUES (#{salario}, #{precioUnidadTributaria}, #{paroForzoso}, #{IVSS}, #{FAO}, #{fecha}, #{fk_id_usuario});
+        INSERT INTO rrhh.valores (salario, precioUnidadTributaria, paroForzoso, IVSS, FAO, fecha, fk_id_usuario, contratacion_idContratacion)
+        VALUES (#{salario}, #{precioUnidadTributaria}, #{paroForzoso}, #{IVSS}, #{FAO}, #{fecha}, #{fk_id_usuario}, #{contratacion_idContratacion});
     </insert>
 
     <update id="update" parameterType="Valores">
         UPDATE rrhh.valores
-        SET name = #{name}
+        SET salario = #{salario}, precioUnidadTributaria = #{precioUnidadTributaria},
+            paroForzoso = #{paroForzoso}, IVSS = #{IVSS}, FAO = #{FAO}, fecha = #{fecha}
         WHERE idvalores = #{idvalores}
     </update>
 

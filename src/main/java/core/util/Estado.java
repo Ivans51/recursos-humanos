@@ -15,4 +15,8 @@ public class Estado {
 
     public static final int EXITOSA = 1, ERROR = 2;
     public static final int PRIMERIZO = 0, TRUE = 1;
+
+    public static final int DISABLE = 1;
+    public static final int VISIBLE = 1;
+    public static final int EDITABLE = 1;
 }

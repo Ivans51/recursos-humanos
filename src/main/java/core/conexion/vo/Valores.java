@@ -16,6 +16,7 @@ public class Valores {
     private Date fecha;
     private int diasUtilidades;
     private int fk_id_usuario;
+    private int contratacion_idContratacion;
 
     public int getIdvalores() {
         return idvalores;
@@ -89,6 +90,14 @@ public class Valores {
         this.diasUtilidades = diasUtilidades;
     }
 
+    public int getContratacion_idContratacion() {
+        return contratacion_idContratacion;
+    }
+
+    public void setContratacion_idContratacion(int contratacion_idContratacion) {
+        this.contratacion_idContratacion = contratacion_idContratacion;
+    }
+
     @Override
     public String toString() {
         return "Valores{" +
@@ -101,6 +110,7 @@ public class Valores {
                 ", fecha=" + fecha +
                 ", diasUtilidades=" + diasUtilidades +
                 ", fk_id_usuario=" + fk_id_usuario +
+                ", contratacion_idContratacion=" + contratacion_idContratacion +
                 '}';
     }
 }

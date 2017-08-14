@@ -33,6 +33,20 @@ public class ContratacionDAO {
         return list;
 
     }
+    @SuppressWarnings("unchecked")
+    public List<Contratacion> selectAllCargo() {
+        List<Contratacion> list = null;
+        SqlSession session = sqlSessionFactory.openSession();
+
+        try {
+            list = session.selectList("Contratacion.selectAllCargo");
+        } finally {
+            session.close();
+        }
+        System.out.println("selectAll() --> " + list);
+        return list;
+
+    }
 
     /**
      * Select instance of Contratacion from the database.
@@ -56,6 +70,18 @@ public class ContratacionDAO {
         SqlSession session = sqlSessionFactory.openSession();
         try {
             person = session.selectOne("Contratacion.selectByForeighKey", id);
+        } finally {
+            session.close();
+        }
+        System.out.println("selectById(" + id + ") --> " + person);
+        return person;
+    }
+
+    public Contratacion selectByCargo(String id) {
+        Contratacion person = null;
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            person = session.selectOne("Contratacion.selectByCargo", id);
         } finally {
             session.close();
         }

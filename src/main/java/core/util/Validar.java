@@ -63,11 +63,6 @@ public class Validar {
         }
     }
 
-    public static void disableControl(TextInputControl... txt) {
-        for (TextInputControl txtInput : txt)
-            txtInput.setDisable(false);
-    }
-
     public static void entradaNumerica(TextInputControl... txt) {
         for (TextInputControl txtInput : txt) {
             txtInput.promptTextProperty().addListener((observable, oldValue, newValue) -> {
@@ -85,7 +80,7 @@ public class Validar {
     /**
      * Comportamiento del campo
      *
-     * @param type 1: deshabilitado, 2: Visible, 3: No editable
+     * @param type 1: deshabilitado, 2: Visible
      */
     public static void disabledControl(int type, boolean state, Control... ctr) throws Myexception {
         for (Control control : ctr) {
@@ -99,6 +94,11 @@ public class Validar {
             }
         }
     }
+    /**
+     * Comportamiento del campo
+     *
+     * @param type 1: deshabilitado, 2: Visible, 3: No editable
+     */
     public static void disabledInput(int type, boolean state, TextInputControl... ctr) throws Myexception {
         for (TextInputControl control : ctr) {
             switch (type) {

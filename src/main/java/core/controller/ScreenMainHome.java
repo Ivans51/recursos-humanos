@@ -51,7 +51,7 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
     // private Usuario usuario = Storage.getUsuario();
 
     public JFXButton nombreUsuario;
-    public TitledPane titleAdministrar, titleReport, titleAyuda, titleValores;
+    public TitledPane titleAdministrar, titleReport, titleAyuda;
     public Label adminAgregar, adminGestion, adminBuscarEmpleados, adminCapacitacion, adminSeleccionPersonal;
     public Label reportFiltrado, reportPagos, reportFactura;
     public MenuItem itemAddEmpleados, itemOpcionesBackup, itemOpcionesCerrar,
@@ -114,10 +114,6 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
                         cambiarEscena(loadRoot, rootPane),
                 reportFiltrado, reportPagos, reportFactura
         );
-    }
-
-    public void abrirActualizarValores(MouseEvent mouseEvent) {
-        cambiarEscena(Route.ScreenInsertValores, rootPane);
     }
 
     public void abrirAyuda(MouseEvent mouseEvent) {

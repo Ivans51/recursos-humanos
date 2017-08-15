@@ -4,9 +4,11 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import core.conexion.connection.MyBatisConnection;
+import core.conexion.dao.ContratacionDAO;
 import core.conexion.dao.EmpleadoDAO;
 import core.conexion.dao.NominaDAO;
 import core.conexion.dao.ValoresDAO;
+import core.conexion.vo.Contratacion;
 import core.conexion.vo.Empleado;
 import core.conexion.vo.Nomina;
 import core.conexion.vo.Valores;
@@ -29,23 +31,29 @@ public class ScreenGestionEmpleado extends ManagerFXML implements Initializable 
     public JFXDatePicker txtDateFecha;
     public JFXButton btnModificaEMpleado, btnActualizarTodos, btnActualizarDeduciones;
     public Spinner txtDiasHabiles, txtBonosNocturno, txtDiasDescanso, txtDiasFeriados, txtDiasNoLaborados;
-    public JFXTextField txtFaov, txtIVSS, txtParoForzoso, txtPrestamo;
-
+    public JFXTextField txtFaov, txtIVSS, txtParoForzoso, txtPrestamo, txtSalario;
     private EmpleadoDAO empleadoDAO = new EmpleadoDAO(MyBatisConnection.getSqlSessionFactory());
     private NominaDAO nominaDAO = new NominaDAO(MyBatisConnection.getSqlSessionFactory());
     private ValoresDAO valoresDAO = new ValoresDAO(MyBatisConnection.getSqlSessionFactory());
+    private ContratacionDAO contratacionDAO = new ContratacionDAO(MyBatisConnection.getSqlSessionFactory());
     private Empleado empleadoG;
     private Nomina nomina;
     private Valores valores;
+    private Contratacion contrato;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Validar.disableControl(txtCedula);
-        Validar.entradaNumerica(txtPrestamo);
-        startNomina();
-        startEmpleado();
-        startValores();
-        startSpinner();
+        try {
+            Validar.disabledControl(Estado.DISABLE, true, txtCedula, txtEstatus);
+            Validar.entradaNumerica(txtPrestamo);
+            startNomina();
+            startEmpleado();
+            startContratacion();
+            startValores();
+            startSpinner();
+        } catch (Myexception myexception) {
+            myexception.printStackTrace();
+        }
     }
 
     private void startEmpleado() {
@@ -55,6 +63,11 @@ public class ScreenGestionEmpleado extends ManagerFXML implements Initializable 
             txtNombreApellido.setText(empleadoG.getNombreEmpleado());
             txtCargo.setText(empleadoG.getCargo());
         }
+    }
+
+    private void startContratacion(){
+        contrato = contratacionDAO.selectByForeighKey("123");
+        txtSalario.setText(String.valueOf(contrato.getSalarioActual()));
     }
 
     private void startNomina() {

@@ -41,34 +41,40 @@
                         </HBox>
                         <VBox alignment="TOP_RIGHT" prefHeight="380.0" prefWidth="373.0">
                             <children>
-                                <JFXTextField fx:id="txtCedula" alignment="TOP_LEFT" labelFloat="true"
+                                <JFXTextField fx:id="txtCedula" alignment="TOP_LEFT"
                                               promptText="Cédula">
                                     <VBox.margin>
-                                        <Insets bottom="35.0"/>
+                                        <Insets bottom="10.0"/>
                                     </VBox.margin>
                                 </JFXTextField>
-                                <JFXTextField fx:id="txtNombreApellido" alignment="TOP_LEFT" labelFloat="true"
+                                <JFXTextField fx:id="txtNombreApellido" alignment="TOP_LEFT"
                                               promptText="Nombre y Apellido">
                                     <VBox.margin>
-                                        <Insets bottom="35.0"/>
+                                        <Insets bottom="10.0"/>
                                     </VBox.margin>
                                 </JFXTextField>
-                                <JFXDatePicker fx:id="txtDateFecha" maxWidth="1.7976931348623157E308"
+                                <JFXDatePicker fx:id="txtDateFecha" maxWidth="1.7976931348623157E308" promptText="Fecha"
                                                minWidth="-Infinity">
                                     <VBox.margin>
-                                        <Insets bottom="35.0"/>
+                                        <Insets bottom="10.0"/>
                                     </VBox.margin>
                                 </JFXDatePicker>
-                                <JFXTextField fx:id="txtCargo" alignment="TOP_LEFT" labelFloat="true"
+                                <JFXTextField fx:id="txtCargo" alignment="TOP_LEFT"
                                               promptText="Cargo">
                                     <VBox.margin>
-                                        <Insets bottom="35.0"/>
+                                        <Insets bottom="10.0"/>
                                     </VBox.margin>
                                 </JFXTextField>
-                                <JFXTextField fx:id="txtEstatus" alignment="TOP_LEFT" labelFloat="true"
-                                              promptText="Estatus">
+                                <JFXTextField fx:id="txtSalario" alignment="TOP_LEFT"
+                                              promptText="Nuevo Salario">
                                     <VBox.margin>
-                                        <Insets bottom="35.0"/>
+                                        <Insets bottom="10.0"/>
+                                    </VBox.margin>
+                                </JFXTextField>
+                                <JFXTextField fx:id="txtEstatus" alignment="TOP_LEFT"
+                                              promptText="Estatus empleado">
+                                    <VBox.margin>
+                                        <Insets bottom="10.0"/>
                                     </VBox.margin>
                                 </JFXTextField>
                                 <HBox maxWidth="1.7976931348623157E308" spacing="10" alignment="CENTER">

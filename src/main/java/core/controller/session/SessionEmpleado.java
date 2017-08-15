@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 
 /**
  * Created by WAMS-10 on 29/07/2017.
+ * Ready
  */
 public class SessionEmpleado extends ManagerFXML implements Initializable {
 
@@ -60,10 +61,12 @@ public class SessionEmpleado extends ManagerFXML implements Initializable {
 
     private void selectStatusEmpleado() throws Myexception {
         empleado = empleadoDAO.selectByIdUser(usuario.getIdUsuario());
+        // Terminar la jornada
         if (empleado.getStatusLaborando() == 1)
             throw new Myexception("No update");
     }
 
+    // Empezo la jornada
     private void statusEmpleado() {
         idUsuario = empleado.getFK_id_Usuario();
         int horasTrabajadas = empleado.getHorasTrabajadas();

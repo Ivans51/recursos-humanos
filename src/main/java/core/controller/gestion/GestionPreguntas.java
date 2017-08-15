@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 
 /**
  * Created by WAMS-10 on 29/07/2017.
+ * Ready
  */
 public class GestionPreguntas extends ManagerFXML implements Initializable {
 

@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 
 /**
  * Created by Ivans on 7/16/2017.
+ * Ready
  */
 public class GestionUserController extends ManagerFXML implements Initializable {
 

@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 
 /**
  * Created by Ivans on 7/17/2017.
+ * Ready
  */
 public class GestionUserCambioClave extends ManagerFXML implements Initializable {
 

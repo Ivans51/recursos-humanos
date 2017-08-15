@@ -24,7 +24,7 @@
 
     <resultMap id="contratacion" type="Contratacion">
         <id property="idContratacion" column="idContratacion"/>
-        <result property="salarioInicial" column="salarioInicial"/>
+        <result property="salario" column="salarioInicial"/>
         <result property="fechaInicio" column="fechaInicio"/>
         <result property="fechaCulminacion" column="fechaCulminacion"/>
     </resultMap>

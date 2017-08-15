@@ -95,17 +95,16 @@ public class ContratacionDAO {
      * @param contratacion the instance to be persisted.
      */
     public int insertContratacion(Contratacion contratacion) {
-        int id = -1;
         SqlSession session = sqlSessionFactory.openSession();
 
         try {
-            id = session.insert("Contratacion.insertContratacion", contratacion);
+            session.insert("Contratacion.insertContratacion", contratacion);
         } finally {
             session.commit();
             session.close();
         }
         System.out.println("insert(" + contratacion + ") --> " + contratacion.getIdContratacion());
-        return id;
+        return contratacion.getIdContratacion();
     }
 
     /**

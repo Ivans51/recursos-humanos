@@ -23,3 +23,8 @@
 .layot-color-four {
     -fx-background-color: #EEEEEE;
 }
+
+.gridpane-layout {
+    -fx-background-image: url("../icons/cuadros.jpg");
+    -fx-background-size: 220%;
+}

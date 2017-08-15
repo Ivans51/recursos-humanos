@@ -13,7 +13,8 @@ public class Route {
     public static String GestionUsuarioPreguntas = "/FXML/gestion_usuario_preguntas.fxml";
     public static String MainNivelUsuario = "/FXML/main_nivel_usuario.fxml";
     public static String ScrenAbout = "/FXML/screen_about.fxml";
-    public static String ScrenEstructuraOrganizativa = "/FXML/screen_estructura_organizativa.fxml";
+    public static String ScreenEstructura = "/FXML/screen_edit_estructura.fxml";
+    public static String ScreenShowEstructura = "/FXML/screen_show_estructura.fxml";
     public static String ScreenAddEmpleados = "/FXML/screen_add_empleado.fxml";
     public static String ScreenAddUser = "/FXML/screen_add_user.fxml";
     public static String ScreenContratoEmpleado = "/FXML/screen_contrato_empleado.fxml";

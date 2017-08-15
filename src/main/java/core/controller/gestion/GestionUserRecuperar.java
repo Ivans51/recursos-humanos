@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 
 /**
  * Created by Ivans on 7/31/2017.
+ * Ready
  */
 public class GestionUserRecuperar extends ManagerFXML implements Initializable {
 
@@ -22,7 +23,7 @@ public class GestionUserRecuperar extends ManagerFXML implements Initializable {
     private UsuarioDAO usuarioDAO = new UsuarioDAO(MyBatisConnection.getSqlSessionFactory());
     private Usuario usuario;
     // TODO: 8/13/2017 usuario y clave
-    private String username = "", password = "";
+    private String username = "RepuestosCarts21@Hotmail.com", password = "RHumanos21";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

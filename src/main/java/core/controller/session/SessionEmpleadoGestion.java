@@ -59,7 +59,7 @@ public class SessionEmpleadoGestion extends ManagerFXML implements Initializable
     }
 
     public void onEstructura(MouseEvent mouseEvent) {
-
+        abrirStage(Route.ScreenShowEstructura, "Estructura Organizativa", null, null);
     }
 
     public void onClose(MouseEvent mouseEvent) {

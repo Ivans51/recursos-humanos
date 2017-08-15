@@ -94,6 +94,18 @@ public class Validar {
             }
         }
     }
+    public static void disabledControl(int type, boolean state, MenuItem... ctr) throws Myexception {
+        for (MenuItem control : ctr) {
+            switch (type) {
+                case 1:
+                    control.setDisable(state);
+                    break;
+                case 2:
+                    control.setVisible(state);
+                    break;
+            }
+        }
+    }
     /**
      * Comportamiento del campo
      *

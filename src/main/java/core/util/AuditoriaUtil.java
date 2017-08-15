@@ -10,16 +10,26 @@ import java.text.ParseException;
  */
 public class AuditoriaUtil {
 
-    AuditoriaDAO auditoriaDAO = new AuditoriaDAO(MyBatisConnection.getSqlSessionFactory());
-    Auditoria auditoria = new Auditoria();
+    private AuditoriaDAO auditoriaDAO = new AuditoriaDAO(MyBatisConnection.getSqlSessionFactory());
+    private Auditoria auditoria = new Auditoria();
+    private String nombreUsuario = Storage.getUsuario().getNombreUsuario();
+    private int idUsuario = Storage.getUsuario().getIdUsuario();
 
-    private void insertar(String accion) throws ParseException {
-        auditoria.setAccion(accion);
-        auditoria.setFecha(FechaUtil.getCurrentDate());
-        auditoria.setHora(FechaUtil.getHourMinutes());
-        auditoria.setNombreUsuario(Storage.getUsuario().getNombreUsuario());
-        auditoria.setFK_idUsuario(Storage.getUsuario().getIdUsuario());
-        auditoriaDAO.insert(auditoria);
+    public void insertar(String accion) {
+        try {
+            auditoria.setAccion(accion);
+            auditoria.setFecha(FechaUtil.getCurrentDate());
+            auditoria.setHora(FechaUtil.getHourMinutes());
+            auditoria.setNombreUsuario(nombreUsuario);
+            auditoria.setFK_idUsuario(idUsuario);
+            auditoriaDAO.insert(auditoria);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void dataUser(String nombre, int id){
+
     }
 
 }

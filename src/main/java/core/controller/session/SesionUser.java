@@ -7,7 +7,6 @@ import core.consultas.LoginUser;
 import core.util.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
@@ -16,6 +15,7 @@ import java.util.ResourceBundle;
 
 /**
  * Created by Ivans on 7/15/2017.
+ * Ready
  */
 public class SesionUser extends ManagerFXML implements Initializable {
 
@@ -28,6 +28,8 @@ public class SesionUser extends ManagerFXML implements Initializable {
     private Usuario usuario;
     private String sessionLoading = Route.SessionLoading;
     private String preguntas = Route.GestionUsuarioPreguntas;
+
+    private AuditoriaUtil auditoriaUtil;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -50,22 +52,40 @@ public class SesionUser extends ManagerFXML implements Initializable {
         switch (usuario.getStatus()) {
             case Estado.PRIMERIZO:
                 abrirStage(preguntas, "Preguntas de Seguridad", bthAcceder, null);
+                auditoria();
                 break;
-            case Estado.EXITOSA:
-                abrirStage(sessionLoading, "Preguntas de Seguridad", bthAcceder, null);
+            case Estado.ADMINISTRADOR:
+                abrirStage(sessionLoading, "Repuestos Cars 21", bthAcceder, null);
+                auditoria();
                 break;
+            case Estado.SECRETARIA:
+                abrirStage(sessionLoading, "Repuestos Cars 21", bthAcceder, null);
+                auditoria();
+                break;
+            case Estado.INVITADO:
+                abrirStage(sessionLoading, "Repuestos Cars 21", bthAcceder, null);
+                auditoria();
+                break;
+            case Estado.EMPLEADO:
+                throw new Myexception("Acceso denegado, \n Seleccione Empleado en Gestión de sessión");
         }
+    }
+
+    private void auditoria() {
+        auditoriaUtil = new AuditoriaUtil();
+        auditoriaUtil.dataUser(usuario.getNombreUsuario(), usuario.getIdUsuario());
+        auditoriaUtil.insertar("Registro usuario " + usuario.getNombreUsuario());
     }
 
     public void clickGestionUsuario(MouseEvent mouseEvent) throws Myexception {
         abrirStage(Route.GestionUsuario, "Gestion de Usuario", txtGestionUsuario, null);
     }
 
-    public void clickClose(MouseEvent mouseEvent) {
-        cerrarStage(btnCancelar);
-    }
-
     public void onRegresar(MouseEvent mouseEvent) {
         abrirStage(Route.ScreenMainHome, "Respuestos Cart S 21 C.A.", btnRegresar, null);
+    }
+
+    public void clickClose(MouseEvent mouseEvent) {
+        cerrarStage(btnCancelar);
     }
 }

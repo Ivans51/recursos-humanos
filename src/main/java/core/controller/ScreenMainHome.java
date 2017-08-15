@@ -4,10 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import core.conexion.vo.Empleado;
 import core.conexion.vo.Usuario;
 import core.conexion.vo.Valores;
-import core.util.BackupBaseDato;
-import core.util.ManagerFXML;
-import core.util.Route;
-import core.util.Storage;
+import core.util.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,18 +20,21 @@ import java.util.ResourceBundle;
 
 /**
  * Created by WAMS-10 on 17/07/2017.
+ * Falta validar status user
  */
 public class ScreenMainHome extends ManagerFXML implements Initializable {
 
+    // Menu Item
     private String[] routes = {
             Route.ScreenContratoEmpleado,
             Route.MainNivelUsuario,
             Route.ScreenTableUser,
             Route.ScreenAddUser,
             Route.ScrenAbout,
-            Route.ScrenEstructuraOrganizativa
+            Route.ScreenEstructura
     };
 
+    // Title Pane
     private String[] routesEmpleados = {
             Route.ScreenContratoEmpleado,
             Route.ScreenGestionEmpleado,
@@ -43,12 +43,12 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
             Route.ScreenTableSeleccion
     };
 
+    // Title Pane
     private String[] routesReport = {
             Route.ScreenReportEmpleado,
             Route.ScreenReportTotalPagos,
             Route.ScreenFactura
     };
-    // private Usuario usuario = Storage.getUsuario();
 
     public JFXButton nombreUsuario;
     public TitledPane titleAdministrar, titleReport, titleAyuda;
@@ -61,22 +61,45 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // nombreUsuario.setText(usuario.getNombreUsuario());
+        try {
+            Empleado empleado = new Empleado();
+            empleado.setCedula("123");
+            Storage.setEmpleado(empleado);
 
-        Empleado empleado = new Empleado();
-        empleado.setCedula("123");
-        Storage.setEmpleado(empleado);
+            Usuario usuario = new Usuario();
+            usuario.setNombreUsuario("Ivans");
+            usuario.setIdUsuario(27);
+            Storage.setUsuario(usuario);
 
-        Usuario usuario = new Usuario();
-        usuario.setNombreUsuario("Ivans");
-        usuario.setIdUsuario(27);
-        Storage.setUsuario(usuario);
+            Valores valores = new Valores();
+            valores.setSalario(25000);
+            Storage.setValores(valores);
 
-        Valores valores = new Valores();
-        valores.setSalario(25000);
-        Storage.setValores(valores);
+            validarStateUser();
+            nombreUsuario.setText(Storage.getUsuario().getNombreUsuario());
 
-        nombreUsuario.setText(Storage.getUsuario().getNombreUsuario());
+        } catch (Myexception myexception) {
+            myexception.printStackTrace();
+        }
+    }
+
+    private void validarStateUser() throws Myexception {
+        switch (Storage.getUsuario().getStatus()){
+            case Estado.ADMINISTRADOR:
+                break;
+            case Estado.SECRETARIA:
+                Validar.disabledControl(Estado.VISIBLE, true, itemToolRegistroSistema);
+                FuncionesUtil.removePositionArray(routes, 4);
+                break;
+            case Estado.INVITADO:
+                Validar.disabledControl(Estado.VISIBLE, true, itemToolRegistroSistema);
+                FuncionesUtil.removePositionArray(routes, 4);
+                break;
+            case Estado.EMPLEADO:
+                Validar.disabledControl(Estado.VISIBLE, true, itemToolRegistroSistema);
+                FuncionesUtil.removePositionArray(routes, 4);
+                break;
+        }
     }
 
     /* Styles Panel iquierdo */

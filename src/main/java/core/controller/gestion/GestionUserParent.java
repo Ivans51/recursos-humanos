@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 
 /**
  * Created by Ivans on 7/17/2017.
+ * Ready
  */
 public class GestionUserParent extends ManagerFXML implements Initializable {
 

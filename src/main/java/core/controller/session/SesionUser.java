@@ -71,9 +71,8 @@ public class SesionUser extends ManagerFXML implements Initializable {
         }
     }
 
-    private void auditoria() {
-        auditoriaUtil = new AuditoriaUtil();
-        auditoriaUtil.dataUser(usuario.getNombreUsuario(), usuario.getIdUsuario());
+    private void auditoria() throws Myexception {
+        auditoriaUtil = new AuditoriaUtil(usuario.getNombreUsuario(), usuario.getIdUsuario());
         auditoriaUtil.insertar("Registro usuario " + usuario.getNombreUsuario());
     }
 

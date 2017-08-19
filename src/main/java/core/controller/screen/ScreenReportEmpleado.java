@@ -55,22 +55,28 @@ public class ScreenReportEmpleado extends ManagerFXML implements Initializable, 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Iniciailizar tabla
-        table = new TableUtil(EmpleadoPago.class, tablaReportTotal);
-        table.inicializarTabla(tableS, tbCedula, tbNombre, tbDireccion, tbFechaNac, tbCargos, tbStatus, tbSueldo, tbIngreso, tbMonto);
 
-        selectValores();
-        int mesesLaborando = FechaUtil.getMesesLaborando(contratacionList.get(0).getFechaInicio());
-        calculoLiquidacion = new CalculoLiquidacion(valores.getSalario(), valores.getDiasUtilidades(), mesesLaborando);
-        setDataTable(calculoLiquidacion.cestaTicket(valores.getPrecioUnidadTributaria()), null);
-        table.getListTable().addAll(empleadoPagoList);
+        try {
+            // Iniciailizar tabla
+            table = new TableUtil(EmpleadoPago.class, tablaReportTotal);
+            table.inicializarTabla(tableS, tbCedula, tbNombre, tbDireccion, tbFechaNac, tbCargos, tbStatus, tbSueldo, tbIngreso, tbMonto);
+            selectValores();
+            int mesesLaborando = FechaUtil.getMesesLaborando(contratacionList.get(0).getFechaInicio());
+            calculoLiquidacion = new CalculoLiquidacion(valores.getSalario(), valores.getDiasUtilidades(), mesesLaborando);
+            setDataTable(calculoLiquidacion.cestaTicket(valores.getPrecioUnidadTributaria()), null);
+            table.getListTable().addAll(empleadoPagoList);
+        } catch (Myexception myexception) {
+            myexception.printStackTrace();
+            new AlertUtil(Estado.ERROR, myexception.getMessage());
+        }
     }
 
-    private void selectValores() {
+    private void selectValores() throws Myexception {
         valores = valoresDAO.selectByIdLastDate();
         empleadoList = empleadoDAO.selectAll();
         contratacionList = contratacionDAO.selectAll();
         nominaList = nominaDAO.selectAll();
+        throw new Myexception("Revise que tenga valores de pago, empleado y la nomina con datos");
     }
 
     private void setDataTable(@Nullable double monto, @Nullable List<Nomina> nominaList) {

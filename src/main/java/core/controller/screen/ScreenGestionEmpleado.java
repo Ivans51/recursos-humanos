@@ -26,16 +26,18 @@ import java.util.ResourceBundle;
  */
 public class ScreenGestionEmpleado extends ManagerFXML implements Initializable {
 
+    private EmpleadoDAO empleadoDAO = new EmpleadoDAO(MyBatisConnection.getSqlSessionFactory());
+    private NominaDAO nominaDAO = new NominaDAO(MyBatisConnection.getSqlSessionFactory());
+    private ValoresDAO valoresDAO = new ValoresDAO(MyBatisConnection.getSqlSessionFactory());
+    private ContratacionDAO contratacionDAO = new ContratacionDAO(MyBatisConnection.getSqlSessionFactory());
+
     public AnchorPane anchor;
     public JFXTextField txtCedula, txtNombreApellido, txtCargo, txtEstatus;
     public JFXDatePicker txtDateFecha;
     public JFXButton btnModificaEMpleado, btnActualizarTodos, btnActualizarDeduciones;
     public Spinner txtDiasHabiles, txtBonosNocturno, txtDiasDescanso, txtDiasFeriados, txtDiasNoLaborados;
     public JFXTextField txtFaov, txtIVSS, txtParoForzoso, txtPrestamo, txtSalario;
-    private EmpleadoDAO empleadoDAO = new EmpleadoDAO(MyBatisConnection.getSqlSessionFactory());
-    private NominaDAO nominaDAO = new NominaDAO(MyBatisConnection.getSqlSessionFactory());
-    private ValoresDAO valoresDAO = new ValoresDAO(MyBatisConnection.getSqlSessionFactory());
-    private ContratacionDAO contratacionDAO = new ContratacionDAO(MyBatisConnection.getSqlSessionFactory());
+
     private Empleado empleadoG;
     private Nomina nomina;
     private Valores valores;
@@ -57,7 +59,7 @@ public class ScreenGestionEmpleado extends ManagerFXML implements Initializable 
     }
 
     private void startEmpleado() {
-        if (ScreenTableEmpleados.empleado != null) {
+        if (ScreenTableEmpleados.empleado.getCedula() != null) {
             empleadoG = ScreenTableEmpleados.empleado;
             txtCedula.setText(empleadoG.getCedula());
             txtNombreApellido.setText(empleadoG.getNombreEmpleado());
@@ -112,19 +114,26 @@ public class ScreenGestionEmpleado extends ManagerFXML implements Initializable 
         empleadoG.setFechaNacimiento(FechaUtil.getDatePickentCurrent(txtDateFecha));
         empleadoG.setCargo(txtCargo.getText());
         empleadoDAO.updateDatosEmpleado(empleadoG);
+        if (empleadoDAO == null) throw new Myexception("Empleado vacío");
     }
 
     public void onActualizarAsignaciones(ActionEvent event) {
-        getDatosAsignaciones();
+        try {
+            getDatosAsignaciones();
+        } catch (Myexception myexception) {
+            myexception.printStackTrace();
+            new AlertUtil(Estado.ERROR, myexception.getMessage());
+        }
     }
 
-    private void getDatosAsignaciones() {
+    private void getDatosAsignaciones() throws Myexception {
         nomina = new Nomina();
         nomina.setDiasHabiles((int) txtDiasHabiles.getValue());
         nomina.setDiasDescanso((int) txtDiasDescanso.getValue());
         nomina.setBonoNocturno((int) txtBonosNocturno.getValue());
         nomina.setDiasFeriados((int) txtDiasFeriados.getValue());
         nominaDAO.updateAsignaciones(nomina);
+        if (nominaDAO == null) throw new Myexception("Nomina vacía");
     }
 
     public void onActualizarDeduciones(ActionEvent event) {
@@ -137,10 +146,11 @@ public class ScreenGestionEmpleado extends ManagerFXML implements Initializable 
         }
     }
 
-    private void getDatosDeduciones() {
+    private void getDatosDeduciones() throws Myexception {
         nomina = new Nomina();
         nomina.setPrestamo(Double.parseDouble(txtPrestamo.getText()));
         nominaDAO.updateAsignaciones(nomina);
+        if (nominaDAO == null) throw new Myexception("Nomina vacía");
     }
 
     public void onCancelar(ActionEvent event) {

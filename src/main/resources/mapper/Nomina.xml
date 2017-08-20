@@ -35,8 +35,9 @@
         WHERE empleado_cedula = #{FK_cedula_empleado}
     </select>
 
-    <insert id="insert" parameterType="Nomina" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO rrhh.nomina (name) VALUES (#{name});
+    <insert id="insert" parameterType="Nomina" useGeneratedKeys="true" keyProperty="idNomina">
+        INSERT INTO rrhh.nomina (nombreEmpleado, diasHabiles, diasDescanso, bonoNocturno, diasFeriados, prestamo, diasNoLaborados, empleado_cedula)
+        VALUES (#{nombreEmpleado}, #{diasHabiles}, #{diasDescanso}, #{bonoNocturno}, #{diasFeriados}, #{prestamo}, #{diasNoLaborados}, #{FK_cedula_empleado});
     </insert>
 
     <update id="update" parameterType="Nomina">

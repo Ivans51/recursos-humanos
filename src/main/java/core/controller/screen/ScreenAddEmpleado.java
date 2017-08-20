@@ -6,9 +6,11 @@ import com.jfoenix.controls.JFXTextField;
 import core.conexion.connection.MyBatisConnection;
 import core.conexion.dao.ContratacionDAO;
 import core.conexion.dao.EmpleadoDAO;
+import core.conexion.dao.NominaDAO;
 import core.conexion.dao.ValoresDAO;
 import core.conexion.vo.Contratacion;
 import core.conexion.vo.Empleado;
+import core.conexion.vo.Nomina;
 import core.conexion.vo.Valores;
 import core.util.*;
 import javafx.event.ActionEvent;
@@ -32,9 +34,11 @@ public class ScreenAddEmpleado extends ManagerFXML implements Initializable {
     private ContratacionDAO contratacionDAO = new ContratacionDAO(MyBatisConnection.getSqlSessionFactory());
     private EmpleadoDAO empleadoDAO = new EmpleadoDAO(MyBatisConnection.getSqlSessionFactory());
     private ValoresDAO valoresDAO = new ValoresDAO(MyBatisConnection.getSqlSessionFactory());
+    private NominaDAO nominaDAO = new NominaDAO(MyBatisConnection.getSqlSessionFactory());
     public static Empleado empleado = new Empleado();
     private Contratacion contratacion;
     public Contratacion contratacionInsert;
+    private Nomina nomina = new Nomina();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -55,8 +59,10 @@ public class ScreenAddEmpleado extends ManagerFXML implements Initializable {
                 insertarEmpleados();
                 insertarContratacion();
                 insertarValores();
+                insertarNomina();
                 Validar.limmpiarCampos(registroSS, direccion, cargo);
-                cambiarEscena(Route.ScreenAddUser, anchorPane);
+                new AlertUtil(Estado.EXITOSA, "Registre el empleado como usuario");
+                cambiarEscena(Route.ScreenHomeBackground, anchorPane);
             } catch (Myexception ex) {
                 new AlertUtil(Estado.ERROR, ex.getMessage());
                 System.out.println(ex.getMessage());
@@ -65,6 +71,17 @@ public class ScreenAddEmpleado extends ManagerFXML implements Initializable {
             }
         } else
             cambiarEscena(Route.ScreenHomeBackground, anchorPane);
+    }
+
+    private void insertarNomina() {
+        nomina.setNombreEmpleado(contratacion.getNombre());
+        nomina.setFK_cedula_empleado(contratacion.getCedula());
+        nomina.setBonoNocturno(0);
+        nomina.setDiasDescanso(0);
+        nomina.setDiasFeriados(0);
+        nomina.setPrestamo(0);
+        nomina.setDiasNoLaborados(0);
+        nominaDAO.insert(nomina);
     }
 
     private void insertarEmpleados() {

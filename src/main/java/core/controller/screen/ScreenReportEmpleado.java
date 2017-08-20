@@ -22,6 +22,9 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.sql.Date;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -43,7 +46,7 @@ public class ScreenReportEmpleado extends ManagerFXML implements Initializable, 
             "statusLaborando", "salario", "fechaInicio", "monto"};
     private List<Empleado> empleadoList;
     private List<Contratacion> contratacionList;
-    private List<EmpleadoPago> empleadoPagoList;
+    private List<EmpleadoPago> empleadoPagoList = new ArrayList<>();
     private List<Nomina> nominaList;
     private Valores valores;
 
@@ -76,11 +79,15 @@ public class ScreenReportEmpleado extends ManagerFXML implements Initializable, 
         empleadoList = empleadoDAO.selectAll();
         contratacionList = contratacionDAO.selectAll();
         nominaList = nominaDAO.selectAll();
-        throw new Myexception("Revise que tenga valores de pago, empleado y la nomina con datos");
+        if (nominaList == null || valores == null || empleadoList == null || contratacionList == null)
+            throw new Myexception("Revise que tenga valores de pago, empleado y la nomina con datos");
+
     }
 
     private void setDataTable(@Nullable double monto, @Nullable List<Nomina> nominaList) {
         for (int i = 0; i < empleadoList.size(); i++) {
+            int yearsDiff = FechaUtil.getYearsDiff(contratacionList.get(i).getFechaInicio());
+            calculoLiquidacion.setAñosServicios(yearsDiff);
             empleadoPago = new EmpleadoPago();
             empleadoPago.setCedula(empleadoList.get(i).getCedula());
             empleadoPago.setNombreEmpleado(empleadoList.get(i).getNombreEmpleado());

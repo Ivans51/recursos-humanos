@@ -1,6 +1,7 @@
 package core.controller.session;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import core.conexion.connection.MyBatisConnection;
 import core.conexion.dao.EmpleadoDAO;
@@ -21,9 +22,10 @@ import java.util.ResourceBundle;
 public class SessionEmpleado extends ManagerFXML implements Initializable {
 
     public JFXButton acceder, cancelarEmpleado;
-    public JFXTextField nombre, clave;
+    public JFXTextField nombre;
+    public JFXPasswordField clave;
     public Empleado empleado = new Empleado();
-    EmpleadoDAO empleadoDAO = new EmpleadoDAO(MyBatisConnection.getSqlSessionFactory());
+    private EmpleadoDAO empleadoDAO = new EmpleadoDAO(MyBatisConnection.getSqlSessionFactory());
     private LoginUser loginUser = new LoginUser();
     private Usuario usuario = new Usuario();
     private int idUsuario;
@@ -40,7 +42,7 @@ public class SessionEmpleado extends ManagerFXML implements Initializable {
             seleccionandoEmpleado();
         } catch (Myexception myexception) {
             myexception.printStackTrace();
-            // TODO: 8/3/2017 AlertUtil
+            new AlertUtil(Estado.ERROR, myexception.getMessage());
         }
     }
 

@@ -27,8 +27,8 @@
     </select>
 
     <insert id="insert" parameterType="Auditoria" useGeneratedKeys="true" keyProperty="idAuditoria">
-        INSERT INTO rrhh.auditoria (fecha, hora, accion, nombreUsuario usuario_idUsuario)
-        VALUES (#{fecha}, #{hora}, #{accion}, #{nombreUsuario}, #{usuario_idUsuario});
+        INSERT INTO rrhh.auditoria (fecha, accion, nombreUsuario, usuario_idUsuario)
+        VALUES (#{fecha}, #{accion}, #{nombreUsuario}, #{FK_idUsuario});
     </insert>
 
     <update id="update" parameterType="Auditoria">

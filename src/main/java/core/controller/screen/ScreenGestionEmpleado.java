@@ -59,15 +59,17 @@ public class ScreenGestionEmpleado extends ManagerFXML implements Initializable 
     }
 
     private void startEmpleado() {
-        if (ScreenTableEmpleados.empleado.getCedula() != null) {
-            empleadoG = ScreenTableEmpleados.empleado;
-            txtCedula.setText(empleadoG.getCedula());
-            txtNombreApellido.setText(empleadoG.getNombreEmpleado());
-            txtCargo.setText(empleadoG.getCargo());
+        if (ScreenTableEmpleados.empleado != null) {
+            if (ScreenTableEmpleados.empleado.getCedula() != null) {
+                empleadoG = ScreenTableEmpleados.empleado;
+                txtCedula.setText(empleadoG.getCedula());
+                txtNombreApellido.setText(empleadoG.getNombreEmpleado());
+                txtCargo.setText(empleadoG.getCargo());
+            }
         }
     }
 
-    private void startContratacion(){
+    private void startContratacion() {
         contrato = contratacionDAO.selectByForeighKey("123");
         txtSalario.setText(String.valueOf(contrato.getSalarioActual()));
     }

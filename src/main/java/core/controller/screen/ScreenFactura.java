@@ -1,5 +1,6 @@
 package core.controller.screen;
 
+import com.itextpdf.text.DocumentException;
 import com.jfoenix.controls.JFXButton;
 import core.conexion.connection.MyBatisConnection;
 import core.conexion.dao.ContratacionDAO;
@@ -16,6 +17,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.ResourceBundle;
@@ -23,7 +28,7 @@ import java.util.ResourceBundle;
 /**
  * Created by Ivans on 7/18/2017.
  */
-public class ScreenFactura extends ManagerFXML implements Initializable {
+public class ScreenFactura extends ManagerFXML implements Initializable, PDFCreator.PDFTabla {
 
     public JFXButton btnImprimir;
     public TextField txtFechaPago;
@@ -42,6 +47,7 @@ public class ScreenFactura extends ManagerFXML implements Initializable {
     private ValoresDAO valoresDAO = new ValoresDAO(MyBatisConnection.getSqlSessionFactory());
     private Valores valores = new Valores();
     private CalculoQuincena quincena;
+    private PDFCreator pdfCreator;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -112,8 +118,79 @@ public class ScreenFactura extends ManagerFXML implements Initializable {
         try {
             Validar.campoVacio(txtFechaPago);
             getDatosEmpleado();
+            imprimir();
         } catch (Myexception myexception) {
             new AlertUtil(Estado.ERROR, "Campo Vacío");
+            myexception.printStackTrace();
+        }
+    }
+
+    private void imprimir(){
+        try {
+            pdfCreator = new PDFCreator();
+            pdfCreator.setSegundoParrafo("Factura del empleado" + lblNombreApellido.getText());
+            String name = "Factura del empleado " + empleado.getNombreEmpleado() + ".pdf";
+            pdfCreator.crearPDF(name, "Cars CA", 4, this);
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    File myFile = new File("Factura del empleado.pdf");
+                    Desktop.getDesktop().open(myFile);
+                } catch (IOException ex) {
+                    // no application registered for PDFs
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void addCellTable() {
+        try {
+            pdfCreator.getTabla().addCell("Nombre y Apellido");
+            pdfCreator.getTabla().addCell(empleado.getNombreEmpleado());
+            pdfCreator.getTabla().addCell("Cargo");
+            pdfCreator.getTabla().addCell(empleado.getCargo());
+            pdfCreator.getTabla().addCell("Cédula");
+            pdfCreator.getTabla().addCell(empleado.getCedula());
+            pdfCreator.getTabla().addCell("Fecha de Ingreso");
+            pdfCreator.getTabla().addCell(String.valueOf(empleado.getFechaNacimiento()));
+            pdfCreator.getTabla().addCell("Salario");
+            pdfCreator.getTabla().addCell(String.valueOf(quincena.getSalarioDiario()));
+            pdfCreator.getTabla().addCell("Salario Mensual");
+            pdfCreator.getTabla().addCell(String.valueOf(valores.getSalario()));
+            pdfCreator.getTabla().addCell("Asignaciones");
+            pdfCreator.getTabla().addCell("");
+            pdfCreator.getTabla().addCell("Deduciones");
+            pdfCreator.getTabla().addCell("");
+            pdfCreator.getTabla().addCell("Dias Habiles");
+            pdfCreator.getTabla().addCell(String.valueOf(quincena.getDiasHabiles()));
+            pdfCreator.getTabla().addCell("FAOV");
+            pdfCreator.getTabla().addCell(String.valueOf(quincena.getFAOV()));
+            pdfCreator.getTabla().addCell("Dias Descanso");
+            pdfCreator.getTabla().addCell(String.valueOf(quincena.getDiasNoLaborados()));
+            pdfCreator.getTabla().addCell("IVSS");
+            pdfCreator.getTabla().addCell(String.valueOf(quincena.getIVSS()));
+            pdfCreator.getTabla().addCell("Bono Nocturno");
+            pdfCreator.getTabla().addCell(String.valueOf(quincena.getIVSS()));
+            pdfCreator.getTabla().addCell("Paro Forzoso");
+            pdfCreator.getTabla().addCell(String.valueOf(quincena.getBonoNocturno()));
+            pdfCreator.getTabla().addCell("Dias Feriados Laborados");
+            pdfCreator.getTabla().addCell(String.valueOf(quincena.getDiasFeriados()));
+            pdfCreator.getTabla().addCell("Prestamo");
+            pdfCreator.getTabla().addCell(String.valueOf(nomina.getPrestamo()));
+            pdfCreator.getTabla().addCell("Total Asignaciones");
+            pdfCreator.getTabla().addCell(String.valueOf(quincena.getTotalAsignaciones()));
+            pdfCreator.getTabla().addCell("Total Deduciones");
+            pdfCreator.getTabla().addCell(String.valueOf(quincena.getTotalDeduciones()));
+            pdfCreator.getTabla().addCell("");
+            pdfCreator.getTabla().addCell("");
+            pdfCreator.getTabla().addCell("Total de Pago");
+            pdfCreator.getTabla().addCell(String.valueOf(quincena.getTotalQuincena()));
+
+        } catch (Myexception myexception) {
             myexception.printStackTrace();
         }
     }

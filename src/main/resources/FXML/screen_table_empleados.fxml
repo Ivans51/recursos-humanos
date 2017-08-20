@@ -75,6 +75,7 @@
         </AnchorPane>
         <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" spacing="30.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
+            <JFXButton fx:id="btnFactura" layoutX="310.0" layoutY="15.0" onAction="#onFactura" styleClass="button-bold" text="Factura" />
                 <JFXButton fx:id="btnDetalles" layoutX="490.0" layoutY="15.0" onAction="#onDetalles" styleClass="button-bold" text="Detalles" />
             <JFXButton fx:id="btnLiquidar" layoutX="611.0" layoutY="15.0" onAction="#onLiquidar" styleClass="button-bold" text="Liquidar" />
             <JFXButton fx:id="btnCerrar" layoutX="611.0" layoutY="15.0" onAction="#onCerrar" styleClass="button-bold" text="Cerrar" />

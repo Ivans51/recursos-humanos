@@ -9,8 +9,6 @@ import core.conexion.dao.ValoresDAO;
 import core.conexion.vo.Contratacion;
 import core.conexion.vo.Valores;
 import core.util.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;

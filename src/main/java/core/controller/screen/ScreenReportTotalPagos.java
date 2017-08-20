@@ -7,6 +7,7 @@ import core.conexion.dao.ContratacionDAO;
 import core.conexion.dao.EmpleadoDAO;
 import core.conexion.dao.NominaDAO;
 import core.conexion.dao.ValoresDAO;
+import core.conexion.model.EmpleadoPago;
 import core.conexion.model.EmpleadoTotalPago;
 import core.conexion.vo.Contratacion;
 import core.conexion.vo.Empleado;
@@ -23,6 +24,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -40,7 +42,7 @@ public class ScreenReportTotalPagos extends ManagerFXML implements Initializable
     private List<Empleado> empleadoList;
     private List<Contratacion> contratacionList;
     private List<Nomina> nominaList;
-    private List<EmpleadoTotalPago>  empleadoTotalPagos;
+    private List<EmpleadoTotalPago>  empleadoTotalPagos = new ArrayList<>();
     private EmpleadoTotalPago empleadoTotalPago;
     private Valores valores;
     private Empleado empleado;
@@ -56,11 +58,11 @@ public class ScreenReportTotalPagos extends ManagerFXML implements Initializable
     public void initialize(URL location, ResourceBundle resources) {
         try {
             // Iniciailizar tabla
+            initSelect();
             int mesesLaborando = FechaUtil.getMesesLaborando(contratacionList.get(0).getFechaInicio());
             calculoLiquidacion = new CalculoLiquidacion(valores.getSalario(), valores.getDiasUtilidades(), mesesLaborando);
             table = new TableUtil(EmpleadoTotalPago.class, tablaReportTotal);
             table.inicializarTabla(tableS, tbCedula, tbNombre, tbCestaTicke, tbSalarioIntegral,tbQuincena, tbUtitilidades, tbVales);
-            initSelect();
             setDataTable();
             table.getListTable().addAll(empleadoList);
         } catch (Myexception myexception) {
@@ -79,6 +81,8 @@ public class ScreenReportTotalPagos extends ManagerFXML implements Initializable
         CalculoQuincena calculoQuincena = new CalculoQuincena(valores.getSalario());
         double totalQuincena = calculoQuincena.getTotalQuincena();
         for (int i = 0; i < empleadoList.size(); i++) {
+            int yearsDiff = FechaUtil.getYearsDiff(contratacionList.get(i).getFechaInicio());
+            calculoLiquidacion.setAñosServicios(yearsDiff);
             empleadoTotalPago = new EmpleadoTotalPago();
             empleadoTotalPago.setCedula(empleadoList.get(i).getCedula());
             empleadoTotalPago.setNombreEmpleado(empleadoList.get(i).getNombreEmpleado());

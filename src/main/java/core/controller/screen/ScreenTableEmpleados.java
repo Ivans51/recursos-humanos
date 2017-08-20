@@ -26,7 +26,7 @@ public class ScreenTableEmpleados extends ManagerFXML implements Initializable, 
 
     public AnchorPane anchorPane;
     public TextField txtBuscarCedula;
-    public JFXButton btnCerrar, btnBuscar, btnDetalles, btnLiquidar;
+    public JFXButton btnCerrar, btnBuscar, btnDetalles, btnLiquidar, btnFactura;
     public TableView<EmpleadoContratacion> tableEmpleado;
     public TableColumn tbCedula, tbNombre, tbDireccion, tbFechaNac, tbCargos, tbStatus, tbSueldo, tbIngreso, tbCulminuacion;
     public static Empleado empleado;
@@ -124,6 +124,10 @@ public class ScreenTableEmpleados extends ManagerFXML implements Initializable, 
 
     public void onLiquidar(ActionEvent event) {
         abrirSceneByEmpleado(Route.ScreenTableLiquidacion);
+    }
+
+    public void onFactura(ActionEvent actionEvent) {
+        abrirSceneByEmpleado(Route.ScreenFactura);
     }
 
     private void abrirSceneByEmpleado(String loadRoot) {

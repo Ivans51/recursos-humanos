@@ -25,6 +25,7 @@ import java.util.ResourceBundle;
 /**
  * Created by Ivans on 7/18/2017.
  */
+
 public class ScreenAddUser extends ManagerFXML implements Initializable, TableUtil.StatusControles {
 
     public AnchorPane anchorPane;
@@ -33,16 +34,18 @@ public class ScreenAddUser extends ManagerFXML implements Initializable, TableUt
     public JFXButton btnGuardar, btnCancelar, btnEliminar, btnActualizar;
     public TableColumn tbIdUsuario, tbNombreUsuario, tbCorreo, tbNivelUsuario, tbCedula, tbStatus;
     public TableView<Usuario> tablaUsuarios;
+
     public TableUtil table;
-    public Empleado empleado;
-    public String activar = "Activar";
-    public String desactivar = "Desactivar";
     private String[] tableS = {"idUsuario", "nombreUsuario", "correo", "nivelAcceso", "cedula", "status"};
     private ObservableList<String> listUserCombo = FXCollections.observableArrayList("1", "2", "3");
     private ObservableList<String> listNacionalidadCombo = FXCollections.observableArrayList("V", "E");
     private List<Usuario> usuarios;
-    private Usuario usuario;
     private UsuarioDAO usuarioDAO = new UsuarioDAO(MyBatisConnection.getSqlSessionFactory());
+    private Usuario usuario;
+    public Empleado empleado;
+
+    public String activar = "Activar";
+    public String desactivar = "Desactivar";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -66,18 +69,18 @@ public class ScreenAddUser extends ManagerFXML implements Initializable, TableUt
     }
 
     private void initData() {
-            try {
-                if (ScreenAddEmpleado.empleado.getCedula() != null) {
-                    empleado = ScreenAddEmpleado.empleado;
-                    String cedulaValue = Validar.recuperarSegundaPalabra("-", empleado.getCedula());
-                    nacionalidad.setValue(cedulaValue);
-                    nivelUsuario.setValue(3);
-                    nacionalidad.setDisable(true);
-                    nivelUsuario.setDisable(true);
-                }
-            } catch (Myexception myexception) {
-                myexception.printStackTrace();
+        try {
+            if (ScreenAddEmpleado.empleado.getCedula() != null) {
+                empleado = ScreenAddEmpleado.empleado;
+                String cedulaValue = Validar.recuperarSegundaPalabra("-", empleado.getCedula());
+                nacionalidad.setValue(cedulaValue);
+                nivelUsuario.setValue(3);
+                nacionalidad.setDisable(true);
+                nivelUsuario.setDisable(true);
             }
+        } catch (Myexception myexception) {
+            myexception.printStackTrace();
+        }
     }
 
     /**

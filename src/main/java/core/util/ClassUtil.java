@@ -1,4 +1,4 @@
-package core.controller.screen;
+package core.util;
 
 import javafx.scene.control.Control;
 

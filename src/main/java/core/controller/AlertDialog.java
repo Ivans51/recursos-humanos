@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 public class AlertDialog extends ManagerFXML implements Initializable {
 
     public Label descripcionAlert;
-    public ImageView imagenAlert;
+    // public ImageView imagenAlert;
     public Label closeAlert;
 
     public void initData(AlertModel alertModel){
@@ -40,7 +40,7 @@ public class AlertDialog extends ManagerFXML implements Initializable {
 
     private void setInfoAlert(String value, String path) {
         descripcionAlert.setText(value);
-        imagenAlert.setImage(getImageFile(path));
+        // imagenAlert.setImage(getImageFile(path));
     }
 
     private Image getImageFile(String path) {

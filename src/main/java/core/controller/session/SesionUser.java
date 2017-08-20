@@ -1,6 +1,7 @@
 package core.controller.session;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import core.conexion.vo.Usuario;
 import core.consultas.LoginUser;
@@ -21,7 +22,8 @@ public class SesionUser extends ManagerFXML implements Initializable {
 
     private final LoginUser loginUser = new LoginUser();
     @FXML
-    public JFXTextField nombre, clave;
+    public JFXTextField nombre;
+    public JFXPasswordField clave;
     public Label txtGestionUsuario;
     public JFXButton btnRegresar, bthAcceder, btnCancelar;
 

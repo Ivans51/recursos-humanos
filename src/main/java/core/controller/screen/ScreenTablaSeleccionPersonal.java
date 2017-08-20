@@ -59,10 +59,17 @@ public class ScreenTablaSeleccionPersonal extends ManagerFXML implements Initial
     }
 
     private void insertDatos() {
-        int id = seleccionPersonalDAO.insert(getContratacionSeleccion());
-        SeleccionPersonal usuarioId = seleccionPersonalDAO.selectById(id);
-        table.getListTable().add(usuarioId);
-        tablaSeleccion.refresh();
+        try {
+            Validar.campoVacio(txtNombreCandidato, txtCedula, txtDireccion, txtTelefono, txtPuesto, txtDisponibillidad);
+            Validar.entradaNumerica(txtDisponibillidad);
+            Validar.isLetterSpeed(txtNombreCandidato.getText());
+            int id = seleccionPersonalDAO.insert(getContratacionSeleccion());
+            SeleccionPersonal usuarioId = seleccionPersonalDAO.selectById(id);
+            table.getListTable().add(usuarioId);
+            tablaSeleccion.refresh();
+        } catch (Myexception myexception) {
+            myexception.printStackTrace();
+        }
     }
 
     public void onClickUpdate(ActionEvent event) {

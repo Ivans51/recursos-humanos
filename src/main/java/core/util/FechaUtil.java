@@ -33,8 +33,8 @@ public class FechaUtil {
     public static int getHourMinutes() throws ParseException {
         DateTime dt = new DateTime();
         int hours = dt.getHourOfDay();
-        int minutes = dt.getMinuteOfDay();
-        return hours + minutes;
+        int minutes = dt.getMinuteOfHour();
+        return hours;
     }
 
     public static String getDateFormat(Date date) throws ParseException {

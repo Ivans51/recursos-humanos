@@ -8,11 +8,13 @@ import core.util.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -30,14 +32,12 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
             Route.MainNivelUsuario,
             Route.ScreenTableUser,
             Route.ScreenAddUser,
-            Route.ScrenAbout,
-            Route.ScreenEstructura
+            Route.ScrenAbout
     };
 
     // Title Pane
     private String[] routesEmpleados = {
             Route.ScreenContratoEmpleado,
-            Route.ScreenGestionEmpleado,
             Route.ScreenTableEmpleados,
             Route.ScreenTableCapacitacion,
             Route.ScreenTableSeleccion
@@ -46,14 +46,13 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
     // Title Pane
     private String[] routesReport = {
             Route.ScreenReportEmpleado,
-            Route.ScreenReportTotalPagos,
-            Route.ScreenFactura
+            Route.ScreenReportTotalPagos
     };
 
     public JFXButton nombreUsuario;
     public TitledPane titleAdministrar, titleReport, titleAyuda;
-    public Label adminAgregar, adminGestion, adminBuscarEmpleados, adminCapacitacion, adminSeleccionPersonal;
-    public Label reportFiltrado, reportPagos, reportFactura;
+    public Label adminAgregar, adminBuscarEmpleados, adminCapacitacion, adminSeleccionPersonal;
+    public Label reportFiltrado, reportPagos;
     public MenuItem itemAddEmpleados, itemOpcionesBackup, itemOpcionesCerrar,
             itemToolUsuarios, itemToolRegistroSistema, itemToolManual, itemToolEstructura, itemSalir;
     @FXML
@@ -121,13 +120,14 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
 
 
     public void onHandleMenuItemSalir(ActionEvent actionEvent) {
-        // TODO: 8/2/2017 how to close stage in menu item
-        //cerrarStage(itemSalir);
+        Node  source = (Node)  actionEvent.getSource();
+        Stage stage  = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 
     public void abrirGestionEmpleado(MouseEvent mouseEvent) {
         cambiarSceneMultiple(mouseEvent, routesEmpleados, loadRoot ->
-                        cambiarEscena(loadRoot, rootPane), adminAgregar, adminGestion,
+                        cambiarEscena(loadRoot, rootPane), adminAgregar,
                 adminBuscarEmpleados, adminCapacitacion, adminSeleccionPersonal
         );
     }
@@ -135,7 +135,7 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
     public void abrirReport(MouseEvent mouseEvent) {
         cambiarSceneMultiple(mouseEvent, routesReport, loadRoot ->
                         cambiarEscena(loadRoot, rootPane),
-                reportFiltrado, reportPagos, reportFactura
+                reportFiltrado, reportPagos
         );
     }
 

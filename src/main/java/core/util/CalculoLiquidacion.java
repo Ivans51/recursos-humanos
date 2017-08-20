@@ -22,10 +22,6 @@ public class CalculoLiquidacion {
         this.añosServicios = añosServicios;
     }
 
-    public void setSueldoBasico(Double sueldoBasico) {
-        this.sueldoBasico = sueldoBasico;
-    }
-
     public Double salarioDiario() throws Myexception {
         if (sueldoBasico == null)
             throw new Myexception("sueldo basico nulo");

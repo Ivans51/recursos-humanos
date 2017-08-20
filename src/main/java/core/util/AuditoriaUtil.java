@@ -15,19 +15,18 @@ public class AuditoriaUtil {
     private String nombreUsuario = Storage.getUsuario().getNombreUsuario();
     private int idUsuario = Storage.getUsuario().getIdUsuario();
 
-    public AuditoriaUtil(String nombreUsuario, int idUsuario) throws Myexception {
+    public AuditoriaUtil(String nombreUsuario, int idUsuario) {
         this.nombreUsuario = nombreUsuario;
         this.idUsuario = idUsuario;
         auditoria = new Auditoria();
         auditoriaDAO = new AuditoriaDAO(MyBatisConnection.getSqlSessionFactory());
-        throw new Myexception("idUsuario o nombre usuario vacío");
     }
 
     public void insertar(String accion) {
         try {
             auditoria.setAccion(accion);
             auditoria.setFecha(FechaUtil.getCurrentDate());
-            auditoria.setHora(FechaUtil.getHourMinutes());
+            //auditoria.setHora(FechaUtil.getHourMinutes());
             auditoria.setNombreUsuario(nombreUsuario);
             auditoria.setFK_idUsuario(idUsuario);
             auditoriaDAO.insert(auditoria);

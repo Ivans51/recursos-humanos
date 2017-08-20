@@ -32,7 +32,7 @@ public class Route {
     public static String ScreenInsertValores = "/FXML/screen_tabla_insert_valores.fxml";
     public static String ScreenWelcome = "/FXML/screen_welcome.fxml";
     public static String SessionEmpleado = "/FXML/session_empleado.fxml";
-    public static String SessionEmpleadoGestion = "/FXML/screen_tabla_insert_valores.fxml";
+    public static String SessionEmpleadoGestion = "/FXML/session_empleado_gestion.fxml";
     public static String SessionLoadingAlert = "/FXML/session_loading_alert.fxml";
     public static String SessionLoading = "/FXML/session_loading.fxml";
     public static String SessionUsuario = "/FXML/session_usuario.fxml";

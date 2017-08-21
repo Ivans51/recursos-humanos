@@ -24,17 +24,6 @@
                           <Insets bottom="15.0" />
                       </VBox.margin>
                   </TextField>
-                  <Label layoutX="60.0" layoutY="170.0" styleClass="label-bold" text="Nombre de usuario">
-                      <padding>
-                          <Insets bottom="5.0" />
-                      </padding>
-                  </Label>
-                  <TextField fx:id="txtNombreUsuario" layoutX="60.0" layoutY="195.0">
-                      <VBox.margin>
-                          <Insets bottom="15.0" />
-                      </VBox.margin>
-                  </TextField>
-                  <VBox alignment="CENTER" />
               </children>
               <padding>
                   <Insets left="200.0" right="200.0" top="100.0" />

@@ -103,8 +103,7 @@ public class ScreenAddEmpleado extends ManagerFXML implements Initializable {
         contratacion.setFechaInicio(contratacion.getFechaInicio());
         contratacion.setSalario(contratacion.getSalario());
         contratacion.setCargo(contratacion.getCargo());
-        String cedula = Storage.getEmpleado().getCedula();
-        contratacion.setEmpleado_cedula(cedula);
+        contratacion.setEmpleado_cedula(contratacion.getCedula());
         int i = contratacionDAO.insertContratacion(contratacion);
         contratacionInsert = contratacionDAO.selectById(i);
     }

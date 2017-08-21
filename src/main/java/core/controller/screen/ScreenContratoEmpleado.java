@@ -62,7 +62,7 @@ public class ScreenContratoEmpleado extends ManagerFXML implements Initializable
         Date currentDate = FechaUtil.getCurrentDate();
         contratacion.setFechaInicio(currentDate);
         contratacion.setFechaCulminacion(null);
-        contratacion.setSalario(Storage.getValores().getSalario());
+        contratacion.setSalario(Double.parseDouble(null));
         contratacion.setCargo(cargo.getText());
     }
 }

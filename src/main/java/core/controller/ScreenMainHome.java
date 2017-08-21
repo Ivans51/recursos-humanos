@@ -61,29 +61,15 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            Empleado empleado = new Empleado();
-            empleado.setCedula("123");
-            Storage.setEmpleado(empleado);
-
-            Usuario usuario = new Usuario();
-            usuario.setNombreUsuario("Ivans");
-            usuario.setIdUsuario(27);
-            Storage.setUsuario(usuario);
-
-            Valores valores = new Valores();
-            valores.setSalario(25000);
-            Storage.setValores(valores);
-
             validarStateUser();
             nombreUsuario.setText(Storage.getUsuario().getNombreUsuario());
-
         } catch (Myexception myexception) {
             myexception.printStackTrace();
         }
     }
 
     private void validarStateUser() throws Myexception {
-        switch (Storage.getUsuario().getStatus()){
+        switch (Storage.getUsuario().getNivelAcceso()){
             case Estado.ADMINISTRADOR:
                 break;
             case Estado.SECRETARIA:
@@ -95,8 +81,7 @@ public class ScreenMainHome extends ManagerFXML implements Initializable {
                 FuncionesUtil.removePositionArray(routes, 4);
                 break;
             case Estado.EMPLEADO:
-                Validar.disabledControl(Estado.VISIBLE, true, itemToolRegistroSistema);
-                FuncionesUtil.removePositionArray(routes, 4);
+                cerrarStage(nombreUsuario);
                 break;
         }
     }

@@ -18,12 +18,12 @@ import java.util.ResourceBundle;
  */
 public class GestionUserRecuperar extends ManagerFXML implements Initializable {
 
-    public TextField txtCorreo, txtNombreUsuario;
+    public TextField txtCorreo;
     public JFXButton btnSend, btnCancelar;
     private UsuarioDAO usuarioDAO = new UsuarioDAO(MyBatisConnection.getSqlSessionFactory());
     private Usuario usuario;
     // TODO: 8/13/2017 usuario y clave
-    private String username = "RepuestosCarts21@Hotmail.com", password = "RHumanos21";
+    private String username = "repuestoscarts21@gmail.com", password = "12345678*";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -32,13 +32,13 @@ public class GestionUserRecuperar extends ManagerFXML implements Initializable {
 
     public void onSend(ActionEvent event) {
         try {
-            Validar.campoVacio(txtCorreo, txtNombreUsuario);
+            Validar.campoVacio(txtCorreo);
             usuario = new Usuario();
             usuario.setCorreo(txtCorreo.getText());
-            usuario.setNombreUsuario(txtNombreUsuario.getText());
             usuario = usuarioDAO.selectByCorreo(usuario);
             SendEmail.doSendMail(username, password, usuario.getCorreo(),
-                    "Respuestos Cart S 21 C.A.", "Su clave es: " + usuario.getClave());
+                    "Respuestos Cart S 21 C.A.", "Su usuario y clave es: "
+                            + usuario.getNombreUsuario() + usuario.getClave());
             new AlertUtil(Estado.EXITOSA, "Contraseña Enviada");
         } catch (Myexception myexception) {
             myexception.printStackTrace();

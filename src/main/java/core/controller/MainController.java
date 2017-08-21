@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 public class MainController extends ManagerFXML implements Initializable {
 
     public JFXButton administrador, secretaria, invitado, empleados, salir;
-    String[] routes = {Route.ScreenMainHome, Route.SessionUsuario, Route.SessionUsuario, Route.SessionEmpleado};
+    String[] routes = {Route.SessionUsuario, Route.SessionUsuario, Route.SessionUsuario, Route.SessionEmpleado};
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
